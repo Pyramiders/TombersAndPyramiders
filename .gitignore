@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+.DS_Store
+a.out
+
 # User-specific files
 *.suo
 *.user
@@ -12,15 +15,16 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
-# Build results
+# Build results.
+########NOTE: Changes were made here to allow libraries to be shared for Windows
 [Dd]ebug/
 [Dd]ebugPublic/
-[Rr]elease/
+#[Rr]elease/
 [Rr]eleases/
-x64/
-x86/
+# x64/
+# x86/
 bld/
-[Bb]in/
+#[Bb]in/
 [Oo]bj/
 [Ll]og/
 
@@ -41,6 +45,9 @@ TestResult.xml
 [Dd]ebugPS/
 [Rr]eleasePS/
 dlldata.c
+
+# Benchmark Results
+BenchmarkDotNet.Artifacts/
 
 # .NET Core
 project.lock.json
@@ -113,6 +120,10 @@ _TeamCity*
 # DotCover is a Code Coverage Tool
 *.dotCover
 
+# AxoCover is a Code Coverage Tool
+.axoCover/*
+!.axoCover/settings.json
+
 # Visual Studio code coverage results
 *.coverage
 *.coveragexml
@@ -148,7 +159,7 @@ publish/
 # Publish Web Output
 *.[Pp]ublish.xml
 *.azurePubxml
-# TODO: Comment the next line if you want to checkin your web deploy settings
+# Note: Comment the next line if you want to checkin your web deploy settings,
 # but database connection strings (with potential passwords) will be unencrypted
 *.pubxml
 *.publishproj
@@ -183,6 +194,7 @@ AppPackages/
 BundleArtifacts/
 Package.StoreAssociation.xml
 _pkginfo.txt
+*.appx
 
 # Visual Studio cache files
 # files ending in .cache can be ignored
@@ -278,6 +290,9 @@ __pycache__/
 # tools/**
 # !tools/packages.config
 
+# Tabs Studio
+*.tss
+
 # Telerik's JustMock configuration file
 *.jmconfig
 
@@ -286,3 +301,8 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+# OpenCover UI analysis results
+OpenCover/
+a.out
+a.out.dSYM/Contents/Resources/DWARF/a.out
