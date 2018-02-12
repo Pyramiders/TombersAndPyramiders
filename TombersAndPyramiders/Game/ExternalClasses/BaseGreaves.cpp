@@ -16,7 +16,7 @@
 /*----------------------------------------------------------------------------------------
 	Instance Methods
 ----------------------------------------------------------------------------------------*/
-void BaseGreaves::addToInventory(Inventory* inventory)
+void BaseGreaves::addSubclassToInventory()
 {
-	inventory->setGreaves(this);
+	m_inventory->setGreaves(this);
 }

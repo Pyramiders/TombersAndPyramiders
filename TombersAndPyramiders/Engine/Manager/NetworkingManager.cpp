@@ -271,7 +271,6 @@ void NetworkingManager::handleParsingEvents(std::string packet)
 
 //TODO: Deserialize this:
 //Example: {key : Player|UPDATE,rotation : 37.000000,scale : 1.000000,x : 1.000000,y : 0.000000}
-
 std::map<std::string, void*> NetworkingManager::deserializeMessage(std::string message)
 {
 	std::map<std::string, void*> data;

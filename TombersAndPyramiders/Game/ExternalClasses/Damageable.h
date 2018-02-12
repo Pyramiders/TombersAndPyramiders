@@ -42,5 +42,7 @@ class Damageable
     public:
 		int getHealth();
 		void setHealth(int health);
+	
+	protected:
 		virtual void death() = 0;
 };

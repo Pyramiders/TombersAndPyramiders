@@ -14,18 +14,20 @@
 ========================================================================================*/
 #include <memory>
 #include "Component.h"
+#include "Character.h"
+
 class GameObject;
 class BasePilot;
 
 /*========================================================================================
 	BaseController	
 ========================================================================================*/
-class BaseController : Component
+class BaseController : public Component
 {
     /*----------------------------------------------------------------------------------------
 		Instance Fields
     ----------------------------------------------------------------------------------------*/
-	private:
+	protected:
 		std::unique_ptr<BasePilot> m_pilot;
 
     /*----------------------------------------------------------------------------------------
@@ -34,9 +36,15 @@ class BaseController : Component
     public:
         explicit BaseController() = delete;
 
-		explicit BaseController(GameObject* gameObject);
+		explicit BaseController(GameObject* parentGameobject, BasePilot* pilot);
 
 		virtual ~BaseController() {};
+		
+	/*----------------------------------------------------------------------------------------
+		Instance Setter Methods
+	----------------------------------------------------------------------------------------*/
+	public:
+		void setPilot(BasePilot* pilot);
 
 	/*----------------------------------------------------------------------------------------
 		Instance Methods

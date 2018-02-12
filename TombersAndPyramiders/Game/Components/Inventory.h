@@ -14,13 +14,11 @@
 ========================================================================================*/
 #include <memory>
 #include "Component.h"
-
-class BaseItem;
-class BaseWeapon;
-class BaseShield;
-class BaseHelmet;
-class BaseChestplate;
-class BaseGreaves;
+#include "BaseWeapon.h"
+#include "BaseShield.h"
+#include "BaseHelmet.h"
+#include "BaseChestplate.h"
+#include "BaseGreaves.h"
 
 /*========================================================================================
 	Inventory	
@@ -46,25 +44,29 @@ class Inventory : public Component
 		/**
 			Initializes inventory with nullptr equipment.
 		*/
-		explicit Inventory(GameObject* gameobject);
+		explicit Inventory(GameObject* parentGameobject);
 
-		explicit Inventory(GameObject* gameobject, BaseWeapon* weapon, BaseShield* shield, BaseHelmet* helmet,
+		explicit Inventory(GameObject* parentGameobject, BaseWeapon* weapon, BaseShield* shield, BaseHelmet* helmet,
 			BaseChestplate* chestplate, BaseGreaves* greaves);
 
 	/*----------------------------------------------------------------------------------------
 		Instance Getter Methods
     ----------------------------------------------------------------------------------------*/
     public:
-        BaseWeapon& getWeapon();
-		BaseShield& getShield();
-		BaseHelmet& getHelmet();
-		BaseChestplate& getChestplate();
-		BaseGreaves& getGreaves();
+        BaseWeapon* getWeapon();
+		BaseShield* getShield();
+		BaseHelmet* getHelmet();
+		BaseChestplate* getChestplate();
+		BaseGreaves* getGreaves();
     
 	/*----------------------------------------------------------------------------------------
 		Instance Setter Methods
 	----------------------------------------------------------------------------------------*/
     public:
+		/**
+			DO NOT CALL THESE METHODS.
+			CALL INVENTORY.ADDITEM() INSTEAD.
+		*/
 		void setWeapon(BaseWeapon* weapon);
 		void setShield(BaseShield* shield);
 		void setHelmet(BaseHelmet* helmet);

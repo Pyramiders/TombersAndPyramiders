@@ -16,6 +16,7 @@
 #include <mutex>
 #include "FrameBufferObject.h"
 #include "UserDefinedRenderLayers.h"
+#include <memory>
 
 #define SHADER_TYPE_DEFAULT 0
 #define SHADER_TYPE_PIXEL 1
@@ -23,7 +24,7 @@
 
 struct RenderingObject
 {
-	ISprite* sprite;
+	std::shared_ptr<ISprite> sprite;
 	Transform* transform;
 	SpriteRenderer* spriteRenderer;
 

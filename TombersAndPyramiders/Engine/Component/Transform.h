@@ -5,6 +5,7 @@
 #include "HelperFunctions.h"
 #include <iostream>
 #include "Component.h"
+#include <memory>
 
 class Transform : public Component
 {
@@ -14,11 +15,10 @@ private:
 	float m_z;
 	float m_rotation;
 	float m_scale;
-	GLfloat* m_values;
+	std::shared_ptr<GLfloat> m_values;
 
 public:
 	Transform(GameObject* gameObject);
-	~Transform();
 	void addTranslation(float xToAdd, float yToAdd);
 
 	void onStart() {};
@@ -48,4 +48,13 @@ public:
 	void setRotation(float newAngle);
 	float getRotation();
 	operator GLfloat*();
+	template< typename T >
+
+	struct array_deleter
+	{
+		void operator ()(T const * p)
+		{
+			delete[] p;
+		}
+	};
 };

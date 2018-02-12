@@ -8,6 +8,7 @@
 
 SceneTemplate::SceneTemplate()
 {
+	
 }
 
 void SceneTemplate::onStart()

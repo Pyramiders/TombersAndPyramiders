@@ -48,10 +48,8 @@ class BaseChestplate : public BaseEquippableItem
 		*/
 		virtual int absorbDamage(int damage);
 
-		/**
-			Adds the chestplate to the given inventory.
-		*/
-		virtual void addToInventory(Inventory* inventory);
+	protected:
+		void addSubclassToInventory();
 
 	private:
 		/**

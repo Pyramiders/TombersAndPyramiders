@@ -1,5 +1,8 @@
+#pragma once
+
 #include <stack>
-#include "Scene.h"
+
+class Scene;
 
 class SceneManager {
 private:

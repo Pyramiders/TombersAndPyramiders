@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "ComponentTemplate.h"
 
+//Instance/MovableCharacter
 class GameObjectTemplate : public GameObject
 {
 private:
@@ -24,4 +25,5 @@ public:
 	void onStart() {};
 	void onUpdate(int ticks) {};
 	void onEnd() {};
+
 };

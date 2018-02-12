@@ -33,8 +33,10 @@ class BaseShield : public BaseEquippableItem, public Updateable
 		Instance Methods
 	----------------------------------------------------------------------------------------*/
     public:
-		virtual void addToInventory(Inventory* inventory);
 		virtual void onStart() = 0;
 		virtual void onUpdate(int ticks) = 0;
 		virtual void onEnd() = 0;
+
+	protected:
+		void addSubclassToInventory();
 };

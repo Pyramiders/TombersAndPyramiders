@@ -16,7 +16,7 @@
 /*----------------------------------------------------------------------------------------
 	Instance Methods
 ----------------------------------------------------------------------------------------*/
-void BaseShield::addToInventory(Inventory* inventory)
+void BaseShield::addSubclassToInventory()
 {
-	inventory->setShield(this);
+	m_inventory->setShield(this);
 }

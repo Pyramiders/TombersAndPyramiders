@@ -73,6 +73,9 @@
     <Filter Include="Source Files\Engine\Component\AI">
       <UniqueIdentifier>{35a34bfc-1b5c-4cb4-8531-9d0015b2f05d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\ExternalClasses\Items">
+      <UniqueIdentifier>{609bb4e8-7259-48d7-bb47-14bfe7920735}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -195,21 +198,6 @@
     <ClCompile Include="Engine\External\Render\ISprite.cpp">
       <Filter>Source Files\Engine\External\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Components\AI.cpp">
-      <Filter>Source Files\Engine\Component\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="AILearning.cpp">
-      <Filter>Source Files\Engine\Component\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="NeuralNet.cpp">
-      <Filter>Source Files\Engine\Component\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="Neuron.cpp">
-      <Filter>Source Files\Engine\Component\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="TrainingData.cpp">
-      <Filter>Source Files\Engine\Component\AI</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\GameObjects\Camera.cpp">
       <Filter>Source Files\Engine\GameObject</Filter>
     </ClCompile>
@@ -222,35 +210,20 @@
     <ClCompile Include="Engine\External\Render\FrameBufferObject.cpp">
       <Filter>Source Files\Engine\External\Render</Filter>
     </ClCompile>
-    <ClCompile Include="GarbageCollection.cpp">
-      <Filter>Source Files\Engine\External</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Manager\AudioManager.cpp">
       <Filter>Source Files\Engine\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Game\ExternalClasses\BaseChestplate.cpp">
-      <Filter>Source Files\Game\ExternalClasses</Filter>
+    <ClCompile Include="Engine\Component\Collision\BoxCollider.cpp">
+      <Filter>Source Files\Engine\Component\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="Game\ExternalClasses\BaseHelmet.cpp">
-      <Filter>Source Files\Game\ExternalClasses</Filter>
+    <ClCompile Include="Engine\Component\Collision\CircleCollider.cpp">
+      <Filter>Source Files\Engine\Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\External\Math\Axis.cpp">
+      <Filter>Source Files\Engine\External\Math</Filter>
     </ClCompile>
     <ClCompile Include="Game\Components\Inventory.cpp">
       <Filter>Source Files\Game\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\ExternalClasses\BaseItem.cpp">
-      <Filter>Source Files\Game\ExternalClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\ExternalClasses\BaseGreaves.cpp">
-      <Filter>Source Files\Game\ExternalClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\ExternalClasses\BaseShield.cpp">
-      <Filter>Source Files\Game\ExternalClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\ExternalClasses\BaseWeapon.cpp">
-      <Filter>Source Files\Game\ExternalClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\ExternalClasses\BaseEquippableItem.cpp">
-      <Filter>Source Files\Game\ExternalClasses</Filter>
     </ClCompile>
     <ClCompile Include="Game\ExternalClasses\Damageable.cpp">
       <Filter>Source Files\Game\ExternalClasses</Filter>
@@ -260,6 +233,93 @@
     </ClCompile>
     <ClCompile Include="Game\Components\BaseController.cpp">
       <Filter>Source Files\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ExternalClasses\PlayerPilot.cpp">
+      <Filter>Source Files\Game\ExternalClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\CharacterController.cpp">
+      <Filter>Source Files\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ExternalClasses\BaseChestplate.cpp">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ExternalClasses\BaseEquippableItem.cpp">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ExternalClasses\BaseGreaves.cpp">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ExternalClasses\BaseHelmet.cpp">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ExternalClasses\BaseItem.cpp">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ExternalClasses\BaseShield.cpp">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ExternalClasses\BaseWeapon.cpp">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\DamagingRegion.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ExternalClasses\BaseMeleeWeapon.cpp">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ExternalClasses\BaseShortsword.cpp">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ExternalClasses\WoodenShortsword.cpp">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ExternalClasses\BaseProjectileWeapon.cpp">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ExternalClasses\BaseLongbow.cpp">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ExternalClasses\WoodenLongbow.cpp">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Projectile.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Character.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\AI\AI.cpp">
+      <Filter>Source Files\Engine\Component\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\AI\AILearning.cpp">
+      <Filter>Source Files\Engine\Component\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\AI\NeuralNet.cpp">
+      <Filter>Source Files\Engine\Component\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\AI\Neuron.cpp">
+      <Filter>Source Files\Engine\Component\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component\AI\TrainingData.cpp">
+      <Filter>Source Files\Engine\Component\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\CameraTestScene.cpp">
+      <Filter>Source Files\Game\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scenes\CharacterTestScene.cpp">
+      <Filter>Source Files\Game\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\MiscSquare.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\MovingSquare.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Components\CameraFollow.cpp">
+      <Filter>Source Files\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Managers\SpawnManager.cpp">
+      <Filter>Source Files\Game\Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -389,21 +449,6 @@
     <ClInclude Include="Engine\GameObjects\SimpleSprite.h">
       <Filter>Source Files\Engine\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Components\AI.h">
-      <Filter>Source Files\Engine\Component\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="AILearning.h">
-      <Filter>Source Files\Engine\Component\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="NeuralNet.h">
-      <Filter>Source Files\Engine\Component\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Neuron.h">
-      <Filter>Source Files\Engine\Component\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="TrainingData.h">
-      <Filter>Source Files\Engine\Component\AI</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\GameObjects\Camera.h">
       <Filter>Source Files\Engine\GameObject</Filter>
     </ClInclude>
@@ -416,35 +461,20 @@
     <ClInclude Include="Engine\External\Render\FrameBufferObject.h">
       <Filter>Source Files\Engine\External\Render</Filter>
     </ClInclude>
-    <ClInclude Include="GarbageCollection.h">
-      <Filter>Source Files\Engine\External</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Manager\AudioManager.h">
       <Filter>Source Files\Engine\Manager</Filter>
     </ClInclude>
     <ClInclude Include="Engine\External\ThreadQueue.h">
       <Filter>Source Files\Engine\External</Filter>
     </ClInclude>
-    <ClInclude Include="Game\ExternalClasses\BaseChestplate.h">
-      <Filter>Source Files\Game\ExternalClasses</Filter>
+    <ClInclude Include="Engine\Component\Collision\BoxCollider.h">
+      <Filter>Source Files\Engine\Component\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="Game\ExternalClasses\BaseEquippableItem.h">
-      <Filter>Source Files\Game\ExternalClasses</Filter>
+    <ClInclude Include="Engine\Component\Collision\CircleCollider.h">
+      <Filter>Source Files\Engine\Component\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="Game\ExternalClasses\BaseHelmet.h">
-      <Filter>Source Files\Game\ExternalClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\ExternalClasses\BaseItem.h">
-      <Filter>Source Files\Game\ExternalClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\ExternalClasses\BaseShield.h">
-      <Filter>Source Files\Game\ExternalClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\ExternalClasses\BaseWeapon.h">
-      <Filter>Source Files\Game\ExternalClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\ExternalClasses\BaseGreaves.h">
-      <Filter>Source Files\Game\ExternalClasses</Filter>
+    <ClInclude Include="Engine\External\Math\Axis.h">
+      <Filter>Source Files\Engine\External\Math</Filter>
     </ClInclude>
     <ClInclude Include="Game\Components\Inventory.h">
       <Filter>Source Files\Game\Components</Filter>
@@ -458,6 +488,93 @@
     <ClInclude Include="Game\Components\BaseController.h">
       <Filter>Source Files\Game\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Game\ExternalClasses\PlayerPilot.h">
+      <Filter>Source Files\Game\ExternalClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Components\CharacterController.h">
+      <Filter>Source Files\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ExternalClasses\BaseChestplate.h">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ExternalClasses\BaseEquippableItem.h">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ExternalClasses\BaseGreaves.h">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ExternalClasses\BaseHelmet.h">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ExternalClasses\BaseItem.h">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ExternalClasses\BaseShield.h">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ExternalClasses\BaseWeapon.h">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\DamagingRegion.h">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ExternalClasses\BaseMeleeWeapon.h">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ExternalClasses\BaseShortsword.h">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ExternalClasses\WoodenShortsword.h">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ExternalClasses\BaseProjectileWeapon.h">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ExternalClasses\BaseLongbow.h">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ExternalClasses\WoodenLongbow.h">
+      <Filter>Source Files\Game\ExternalClasses\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Projectile.h">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Character.h">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\AI\AI.h">
+      <Filter>Source Files\Engine\Component\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\AI\AILearning.h">
+      <Filter>Source Files\Engine\Component\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\AI\NeuralNet.h">
+      <Filter>Source Files\Engine\Component\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\AI\Neuron.h">
+      <Filter>Source Files\Engine\Component\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component\AI\TrainingData.h">
+      <Filter>Source Files\Engine\Component\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\CameraTestScene.h">
+      <Filter>Source Files\Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scenes\CharacterTestScene.h">
+      <Filter>Source Files\Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\MiscSquare.h">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\MovingSquare.h">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Components\CameraFollow.h">
+      <Filter>Source Files\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Managers\SpawnManager.h">
+      <Filter>Source Files\Game\Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Character.bmp">
@@ -466,9 +583,6 @@
     <Image Include="Assets\Character.png">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="fragment_shader.fs" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Engine\External\Render\contrastFragment.txt">

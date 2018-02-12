@@ -6,10 +6,9 @@
 #include <iostream>
 #include "MessageManager.h"
 #include "NetworkingManager.h"
-#include "SceneManager.h"
 #include "PhysicsManager.h"
 #include "AudioManager.h"
-#include "GarbageCollection.h"
+#include <memory>
 
 GameManager* GameManager::s_instance;
 
@@ -82,8 +81,9 @@ void GameManager::onUpdate(int ticks)
 	SpriteRendererManager::getInstance()->onUpdate(ticks);
 	PhysicsManager::getInstance()->onUpdate(ticks);
 
-	for (std::map<int, GameObject*>::iterator it = m_globalGameObjects.begin(); it != m_globalGameObjects.end(); ++it)
+	for (std::map<int, std::shared_ptr<GameObject>>::iterator it = m_globalGameObjects.begin(); it != m_globalGameObjects.end(); ++it)
 	{
+		it->second->onComponentsUpdate(ticks);
 		it->second->onUpdate(ticks);
 	}
 
@@ -105,12 +105,12 @@ void GameManager::fpsThrottle(int ticks)
 		SDL_Delay(delay);
 }
 
-void GameManager::addGameObject(int id, GameObject* obj)
+void GameManager::addGameObject(int id, std::shared_ptr<GameObject> obj)
 {
 	m_globalGameObjects[id] = obj;
 }
-
-void GameManager::removeGameObject(GameObject* objectToRemove)
+//void GameObject::destroy(int gameObjectId)
+void GameManager::removeGameObject(int objectToRemove)
 {
 	m_gameObjectsToRemove.push_back(objectToRemove);
 }
@@ -123,12 +123,27 @@ void GameManager::clearObjectsToRemove()
 
 	for (int i = 0; i < m_gameObjectsToRemove.size(); i++)
 	{
-		GameObject* object = m_gameObjectsToRemove[i];
-		if (object == NULL)
-			continue;
-		m_globalGameObjects.erase(object->getId());
-		SceneManager::getInstance()->getCurrentScene()->removeGameObject(object->getId());
-		delete(object);
+		int id = m_gameObjectsToRemove[i];
+		std::shared_ptr<GameObject> object = m_globalGameObjects[id];
+		if (object == nullptr) 
+		{
+			object = SceneManager::getInstance()->getCurrentScene()->sceneObjects[id];
+		}
+		if (object != nullptr)
+		{
+			m_globalGameObjects.erase(id);
+			SceneManager::getInstance()->getCurrentScene()->removeGameObject(id);
+			std::shared_ptr<SpriteRenderer> renderer = object->getComponent<SpriteRenderer>();
+			if (renderer != nullptr) 
+			{
+				SpriteRendererManager::getInstance()->removeSpriteFromRendering(renderer.get());
+			}
+			std::shared_ptr<Collider> collider = object->getComponent<Collider>();
+			if (collider != nullptr)
+			{
+				PhysicsManager::getInstance()->removeCollider(collider.get());
+			}
+		}
 	}
 	m_gameObjectsToRemove.clear();
 }

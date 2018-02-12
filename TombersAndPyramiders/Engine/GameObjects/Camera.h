@@ -6,7 +6,7 @@
 class Camera : public GameObject
 {
 private:
-	static Camera* s_activeCamera;
+	static std::shared_ptr<Camera> s_activeCamera;
 	bool m_init;
 
 protected:
@@ -18,6 +18,9 @@ public:
 	void virtual applyRenderFilters(SpriteRendererManager* rendererManager);
 	void virtual notifyInactivity();
 
-	static void setActiveCamera(Camera* camera);
-	static Camera* getActiveCamera();
+	static void setActiveCamera(std::shared_ptr<Camera> camera);
+	static std::shared_ptr<Camera> getActiveCamera();
+
+	bool isOnScreen(Transform* transform);
+	bool isOnScreen(float transformX, float transformY, float transformScale);
 };

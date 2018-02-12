@@ -23,12 +23,12 @@ Shader* SpriteRenderer::getShader()
 	return m_activeShader;
 }
 
-void SpriteRenderer::setActiveSprite(ISprite* sprite)
+void SpriteRenderer::setActiveSprite(std::shared_ptr<ISprite> sprite)
 {
 	m_activeSprite = sprite;
 }
 
-ISprite* SpriteRenderer::getSprite()
+std::shared_ptr<ISprite> SpriteRenderer::getSprite()
 {
 	return m_activeSprite;
 }

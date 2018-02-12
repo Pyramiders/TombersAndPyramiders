@@ -1,6 +1,11 @@
 #pragma once
 
-#include "GameObject.h"
+#include <memory>
+#include <vector>
+#include <map>
+#include "Updateable.h"
+
+class GameObject;
 
 class Scene : public Updateable
 {
@@ -8,7 +13,7 @@ private:
 	std::vector<int> m_idsToRemove;
 
 public:
-	std::map<int, GameObject*> sceneObjects;
+	std::map<int, std::shared_ptr<GameObject>> sceneObjects;
 
 	//Called on unpausing from the SceneManager's scene stack.
 	virtual void onResume() = 0;
@@ -20,7 +25,7 @@ public:
 	virtual void onPause() = 0;
 
 	//Add a game object that belongs to this scene. Global objects will not be here, but in Game Manager.
-	void addGameObject(int id, GameObject* obj);
+	void addGameObject(int id, std::shared_ptr<GameObject> obj);
 
 	//Remove a game object from the scene
 	void removeGameObject(int id);

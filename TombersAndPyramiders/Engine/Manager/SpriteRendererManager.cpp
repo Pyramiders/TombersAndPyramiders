@@ -4,7 +4,6 @@
 #include <condition_variable>
 #include "SpriteSheet.h"
 #include "Camera.h"
-#include "GarbageCollection.h"
 
 /*
 TODO:
@@ -237,6 +236,7 @@ GLuint SpriteRendererManager::generateTexture(std::string textureFileName)
 		std::cout << "ERROR::SPRITERENDERERMANAGER::FAILED TO READ FILE IN GENERATETEXTURE\n GLError: " << errors << " \nSDLErrors: " << sdlErrors << std::endl;
 		return 0;
 	}
+	//If it crashes, make sure the .png is 32bit not 24bit so it supports RGBA not RGB
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, temp->w, temp->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, temp->pixels);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
@@ -255,6 +255,7 @@ GLuint SpriteRendererManager::generateTexture(std::string textureFileName)
 	glBindTexture(GL_TEXTURE_2D, 0);
 	return texture;
 }
+
 
 bool sortByZ(SpriteRenderer *lhs, SpriteRenderer *rhs)
 {
@@ -283,11 +284,13 @@ void SpriteRendererManager::prepareRenderingThread()
 	}
 	else
 	{
+		std::shared_ptr<Camera> camera = Camera::getActiveCamera();
 		for (size_t i = 0; i < m_activeSprites.size(); i++)
 		{
 			SpriteRenderer *spriteRenderer = m_activeSprites[i];
-
-			if (isRenderingLayerEnabled(spriteRenderer->getLayer()))
+			Transform* transform = spriteRenderer->getGameObject()->getTransform();
+			
+			if (camera->isOnScreen(transform)) 
 			{
 				RenderingObject ro;
 
@@ -316,7 +319,7 @@ void SpriteRendererManager::prepareRenderingThread()
 				}
 
 				//Pass in transform
-				ro.transform = spriteRenderer->getGameObject()->getTransform();
+				ro.transform = transform;
 
 				ro.spriteRenderer = spriteRenderer;
 
@@ -325,6 +328,10 @@ void SpriteRendererManager::prepareRenderingThread()
 					rg.children.push_back(ro);
 				}
 			}
+			//if (isRenderingLayerEnabled(spriteRenderer->getLayer()))
+			//{
+				
+			//}
 		}
 		m_renderingGroups.push_back(rg);
 	}
@@ -394,7 +401,7 @@ void SpriteRendererManager::renderShadowPass(float xSourceDirection, float ySour
 
 			if (rg.shaderID == SHADER_SPRITESHEET)
 			{
-				SpriteSheet spriteSheet = *((SpriteSheet *)ro.sprite);
+				SpriteSheet spriteSheet = *((SpriteSheet *)ro.sprite.get());
 				if (spriteSheet.getColumnCount() > 1000)
 				{
 					int hit = 0;
@@ -463,12 +470,15 @@ void SpriteRendererManager::renderPass(int layerToRender, bool clearFirst)
 
 			if (rg.shaderID == SHADER_SPRITESHEET)
 			{
-				SpriteSheet spriteSheet = *((SpriteSheet *)ro.sprite);
-				if (spriteSheet.getColumnCount() > 1000)
+				SpriteSheet* spriteSheet = ((SpriteSheet *)ro.sprite.get());
+				if (spriteSheet != nullptr)
 				{
-					int hit = 0;
+					if (spriteSheet->getColumnCount() > 1000)
+					{
+						int hit = 0;
+					}
+					glUniform3i(spriteSheetLocation, spriteSheet->getColumnCount(), spriteSheet->getRowCount(), spriteSheet->getCurrentIndex());
 				}
-				glUniform3i(spriteSheetLocation, spriteSheet.getColumnCount(), spriteSheet.getRowCount(), spriteSheet.getCurrentIndex());
 			}
 
 			//Draw

@@ -5,6 +5,7 @@
 #include "SpriteSheet.h"
 #include <string>
 #include <vector>
+#include <memory>
 
 class ComplexSpriteinfo
 {
@@ -47,7 +48,7 @@ class ComplexSprite : public GameObject
 {
 private:
 	Shader* m_shader;
-	std::vector<SpriteSheet*> m_sprites;
+	std::vector<std::shared_ptr<SpriteSheet>> m_sprites;
 	int m_currentSpriteSheet;
 	int m_spriteToReturnTo;
 	int m_framesTilReturn;
@@ -56,8 +57,7 @@ private:
 	double m_lastFrame = 0;
 
 public:
-	ComplexSprite(ComplexSpriteinfo* info, float x, float y, float z = 0.0f, float scale = 1.0f, Shader* nonDefaultShader = nullptr, int framesPerSecond = 8);
-	~ComplexSprite();
+	ComplexSprite(std::shared_ptr<ComplexSpriteinfo> info, float x, float y, float z = 0.0f, float scale = 1.0f, Shader* nonDefaultShader = nullptr, int framesPerSecond = 8);
 
 	void setFPS(int fps);
 	void updateFrames(float delta);

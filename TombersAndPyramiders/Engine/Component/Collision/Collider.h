@@ -8,15 +8,15 @@ class Collider : public Component
 private:
 	GameObject* m_colliderObj;
 	Transform* m_transform;
-	float m_radius;
+	//float m_radius;
 	bool m_collision;
 	std::vector<GameObject*> m_colliders;
 	bool m_disabled;
 public:
-	Collider(GameObject* gameObject, float radius);
+	Collider(GameObject* gameObject/*, float radius*/);
 	bool doesCollide(GameObject* other);
-	float getRadius();
-	void setRadius(float radius);
+	//float getRadius();
+	//void setRadius(float radius);
 
 	bool collisionDetected();
 	void setCollision(bool collision);

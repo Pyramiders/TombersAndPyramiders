@@ -1,16 +1,18 @@
 #include "Transform.h"
 #include <iostream>
+#include "Camera.h"
+#include "Vector2.h"
 
 Transform::operator GLfloat*()
 {
 	if (m_values == nullptr)
 	{
-		m_values = new GLfloat[16]{
+		m_values = std::shared_ptr<GLfloat> ( new GLfloat[16]{
 			1, 0, 0, 0,
 			0, 1, 0, 0,
 			0, 0, 1, 0,
 			0, 0, 0, 1
-		};
+		}, array_deleter<GLfloat>());
 	}
 	else if (m_values == NULL)
 	{
@@ -21,19 +23,21 @@ Transform::operator GLfloat*()
 	float scaleRotCos = m_scale / GAME_WIDTH * 2.0 * cos(-m_rotation * 3.14159 / 180.0);
 	float scaleRotSin = m_scale / GAME_WIDTH * 2.0 * sin(-m_rotation * 3.14159 / 180.0);
 
-	float glX = m_x; //x = 5
-	float glY = m_y; //y = 5
+	Transform cameraTransform = (*(*Camera::getActiveCamera()).getTransform());
+
+	float glX = m_x - cameraTransform.getX(); //x = 5
+	float glY = m_y - cameraTransform.getY(); //y = 5
 
 	worldPositionToOpenGLPosition(&glX, &glY);
 
-	m_values[0] = scaleRotCos;
-	m_values[1] = -scaleRotSin;
-	m_values[4] = scaleRotSin;
-	m_values[5] = scaleRotCos;
-	m_values[12] = glX;
-	m_values[13] = glY;
+	m_values.get()[0] = scaleRotCos;
+	m_values.get()[1] = -scaleRotSin;
+	m_values.get()[4] = scaleRotSin;
+	m_values.get()[5] = scaleRotCos;
+	m_values.get()[12] = glX;
+	m_values.get()[13] = glY;
 
-	return m_values;
+	return m_values.get();
 }
 
 Transform::Transform(GameObject* gameObject) : Component(gameObject)
@@ -43,15 +47,6 @@ Transform::Transform(GameObject* gameObject) : Component(gameObject)
 	m_y = 0.0f;
 	m_rotation = 0.0f;
 	m_values = nullptr;
-}
-
-Transform::~Transform()
-{
-	if (m_values != nullptr && m_values != NULL)
-	{
-		delete m_values;
-		m_values = NULL;
-	}
 }
 
 void Transform::addTranslation(float xToAdd, float yToAdd)

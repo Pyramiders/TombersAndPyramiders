@@ -3,7 +3,7 @@
 #include "SceneManager.h"
 #include "InputManager.h"
 #include <iostream>
-#include "SceneTemplate.h"
+#include "CharacterTestScene.h"
 
 /*
 This class is not intended to have a lot of code. This is intended to be the on entry call for
@@ -15,12 +15,11 @@ GameManager.cpp updates engine managers, Game.cpp update, then the global game o
 The Game.cpp update calls specific managers made to exist for the game.
 The SceneManager.cpp calls its update on all game objects that exist for that scene.
 Each GameObject cycles through and updates each one of their game components.
-
 */
 
 void Game::onStart()
 {
-	SceneManager::getInstance()->pushScene(new SceneTemplate());
+	SceneManager::getInstance()->pushScene(new CharacterTestScene());
 }
 
 void Game::onUpdate(int ticks)

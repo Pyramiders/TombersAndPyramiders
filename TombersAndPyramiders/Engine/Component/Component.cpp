@@ -13,8 +13,12 @@ GameObject* Component::getGameObject()
 
 Component::~Component() {}
 
-
-void Component::destroy(GameObject* gameObject)
+void Component::destroy(std::shared_ptr<GameObject> gameObject)
 {
-	GameManager::getInstance()->removeGameObject(gameObject);
+	destroy(gameObject->getId());
+}
+
+void Component::destroy(int gameObjectID)
+{
+	GameManager::getInstance()->removeGameObject(gameObjectID);
 }

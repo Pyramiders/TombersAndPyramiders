@@ -1,6 +1,7 @@
 
 #include "SceneManager.h"
 #include <iostream>
+#include "Scene.h"
 
 SceneManager* SceneManager::s_instance;
 

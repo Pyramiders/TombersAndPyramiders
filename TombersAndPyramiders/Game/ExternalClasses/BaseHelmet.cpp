@@ -40,9 +40,9 @@ int BaseHelmet::absorbHeadshot(int damage)
 	return damage;
 }
 
-void BaseHelmet::addToInventory(Inventory* inventory)
+void BaseHelmet::addSubclassToInventory()
 {
-	inventory->setHelmet(this);
+	m_inventory->setHelmet(this);
 }
 
 void BaseHelmet::destroy()

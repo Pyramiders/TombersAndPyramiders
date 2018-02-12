@@ -4,13 +4,14 @@
 #include "Shader.h"
 #include "Sprite.h"
 #include <string>
+#include <memory>
 
 //MenuSprite* TitleMenu("Title.png", x, y, scale = 1, nondefaultShader = nullptr);
 class SimpleSprite : public GameObject
 {
 private:
 	Shader* m_shader;
-	Sprite* m_sprite;
+	std::shared_ptr<Sprite> m_sprite;
 public:
 	SimpleSprite(std::string path, float x, float y, float z = 0.0f, float scale = 1.0f, Shader* nonDefaultShader = nullptr);
 	//~SimpleSprite();
