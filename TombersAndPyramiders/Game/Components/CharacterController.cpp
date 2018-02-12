@@ -22,13 +22,13 @@
 #include "BaseWeapon.h"
 #include "BaseShield.h"
 #include "BaseGreaves.h"
-#include "Character.h"
+#include "PlayerCharacter.h"
 
 /*----------------------------------------------------------------------------------------
 	Static Fields
 ----------------------------------------------------------------------------------------*/
-const int CharacterController::DEFAULT_CHARACTER_MAX_HP = 100;
-const Vector2 CharacterController::DEFAULT_CHARACTER_MOVEMENT_SPEED = Vector2(1, 1);
+const int CharacterController::DEFAULT_PLAYER_MAX_HP = 100;
+const Vector2 CharacterController::DEFAULT_PLAYER_MOVEMENT_SPEED = Vector2(1, 1);
 
 /*----------------------------------------------------------------------------------------
 	Resource Management
@@ -44,10 +44,10 @@ CharacterController::CharacterController(GameObject* parentGameobject, Inventory
 		throw std::invalid_argument("CharacterController::CharacterController(): m_inventory cannot be null.");
 	}
 
-	Character* character = dynamic_cast<Character*>(gameObject);
-	if (character != nullptr)
+	PlayerCharacter* player = dynamic_cast<PlayerCharacter*>(gameObject);
+	if (player != nullptr) 
 	{
-		m_character = std::shared_ptr<Character>(character);
+		m_playerCharacter = std::shared_ptr<PlayerCharacter>(player);
 	}
 }
 
@@ -70,10 +70,10 @@ void CharacterController::move(Vector2 delta)
 
 	if (delta.getMagnitude() == 0)
 	{
-		m_character->endRunAnimation();
+		m_playerCharacter->endRunAnimation();
 	} else 
 	{
-		m_character->playRunAnimation();
+		m_playerCharacter->playRunAnimation();
 		gameObject->getTransform()->setRotation(delta.getRotationInDegrees());
 	}
 

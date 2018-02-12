@@ -21,11 +21,6 @@
 BaseController::BaseController(GameObject* parentGameobject, BasePilot* pilot) :
 	Component(parentGameobject)
 {
-	if (pilot == nullptr)
-	{
-		throw std::invalid_argument("BaseController::BaseController(): pilot cannot be null.");
-	}
-
 	setPilot(pilot);
 }
 

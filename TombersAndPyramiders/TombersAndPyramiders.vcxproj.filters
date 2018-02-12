@@ -258,7 +258,7 @@
     <ClCompile Include="Game\Components\CharacterController.cpp">
       <Filter>Source Files\Game\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Game\GameObjects\Character.cpp">
+    <ClCompile Include="Game\GameObjects\PlayerCharacter.cpp">
       <Filter>Source Files\Game\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="CameraTestScene.cpp">
@@ -515,7 +515,7 @@
     <ClInclude Include="Game\Components\CharacterController.h">
       <Filter>Source Files\Game\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Game\GameObjects\Character.h">
+    <ClInclude Include="Game\GameObjects\PlayerCharacter.h">
       <Filter>Source Files\Game\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="CameraTestScene.h">

@@ -27,14 +27,14 @@ class CharacterController : public BaseController, public Damageable
 		Instance Fields
     ----------------------------------------------------------------------------------------*/
 	public:
-		static const int DEFAULT_CHARACTER_MAX_HP;
-		static const Vector2 DEFAULT_CHARACTER_MOVEMENT_SPEED;
+		static const int DEFAULT_PLAYER_MAX_HP;
+		static const Vector2 DEFAULT_PLAYER_MOVEMENT_SPEED;
 
 	private:
 		Inventory* m_inventory;
 		Vector2 m_movementSpeed;
 
-		std::shared_ptr<Character> m_character;
+		std::shared_ptr<PlayerCharacter> m_playerCharacter;
     /*----------------------------------------------------------------------------------------
 		Resource Management
     ----------------------------------------------------------------------------------------*/
@@ -42,8 +42,8 @@ class CharacterController : public BaseController, public Damageable
         explicit CharacterController() = delete;
 
 		explicit CharacterController(GameObject* parentGameobject, Inventory* inventory, BasePilot*
-			pilot = nullptr, int maxHealth = DEFAULT_CHARACTER_MAX_HP, 
-			Vector2 movementSpeed = DEFAULT_CHARACTER_MOVEMENT_SPEED);
+			pilot = new PlayerPilot(), int maxHealth = DEFAULT_PLAYER_MAX_HP, 
+			Vector2 movementSpeed = DEFAULT_PLAYER_MOVEMENT_SPEED);
 
     /*----------------------------------------------------------------------------------------
 		Instance Methods

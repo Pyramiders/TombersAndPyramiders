@@ -10,7 +10,7 @@
 #include <vector>
 #include "SpawnManager.h"
 
-std::shared_ptr<Character> player = nullptr;
+std::shared_ptr<PlayerCharacter> player = nullptr;
 
 CharacterTestScene::CharacterTestScene()
 {
