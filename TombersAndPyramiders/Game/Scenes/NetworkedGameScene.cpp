@@ -36,7 +36,6 @@ void NetworkedGameScene::onStart()
 
 	SpawnManager::getInstance()->generateMiscSquare(25, -25, -100, 115, "sandBG.png", false);
 
-
 	for (float x = 0; x <= size; x++)
 	{
 		for (float y = 0; y >= -size; y--)

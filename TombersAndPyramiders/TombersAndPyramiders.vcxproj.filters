@@ -88,6 +88,7 @@
     <ClCompile Include="Paper.cpp" />
     <ClCompile Include="PathFinding.cpp" />
     <ClCompile Include="Game\Scenes\LaunchScene.cpp" />
+    <ClCompile Include="Engine\External\QuadTree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Component\AI\AI.h" />
@@ -184,6 +185,7 @@
     <ClInclude Include="PathFinding.h" />
     <ClInclude Include="SearchCell.h" />
     <ClInclude Include="Game\Scenes\LaunchScene.h" />
+    <ClInclude Include="Engine\External\QuadTree.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Character.bmp" />

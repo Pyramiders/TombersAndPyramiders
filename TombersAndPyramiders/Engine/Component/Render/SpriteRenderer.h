@@ -6,7 +6,7 @@
 #include "ISprite.h"
 #include <memory>
 
-class SpriteRenderer : public Renderer
+class SpriteRenderer : public Renderer, public std::enable_shared_from_this<SpriteRenderer>
 {
 private:
 	GLuint m_textureBufferID;

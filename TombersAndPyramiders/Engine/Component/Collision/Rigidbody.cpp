@@ -12,6 +12,10 @@ void Rigidbody::BlockMovement()
 		for (int i = 0; i < m_boxCollider->getColliders().size(); ++i)
 		{
 			GameObject* blockingGameObject = m_boxCollider->getColliders()[i];
+			if (blockingGameObject == nullptr || blockingGameObject == NULL) {
+				throw "RIGIDBODY::BLOCKMOVEMENT::NULL PTR FIX ME PLZ GUYS"; //TODO:: Michael & Evgeni:: Doesent get hit, blockingGameObject has garbage data and is not nullptr. getComponent crashes after this check fails
+				continue;
+			}
 			std::shared_ptr<BoxCollider> collider = blockingGameObject->getComponent<BoxCollider>();
 			if (!collider->isTrigger())
 			{

@@ -17,6 +17,7 @@
 #include "FrameBufferObject.h"
 #include "UserDefinedRenderLayers.h"
 #include <memory>
+#include <map>
 
 #define SHADER_TYPE_DEFAULT 0
 #define SHADER_TYPE_PIXEL 1
@@ -26,7 +27,7 @@ struct RenderingObject
 {
 	std::shared_ptr<ISprite> sprite;
 	Transform* transform;
-	SpriteRenderer* spriteRenderer;
+	std::shared_ptr<SpriteRenderer> spriteRenderer;
 
 	bool isValid()
 	{
@@ -59,7 +60,8 @@ class SpriteRendererManager
 private:
 	//Singleton variables
 	static SpriteRendererManager *s_instance;
-	std::vector<SpriteRenderer*> m_activeSprites;
+	std::map<int, std::shared_ptr<SpriteRenderer>> m_activeSprites;
+	std::vector<SpriteRenderer*> m_spritesToSubscribe;
 	std::unordered_set<int> m_disabledLayers;
 	std::thread m_renderingThread;
 	std::mutex m_renderTalkingStick;
@@ -103,12 +105,12 @@ public:
 	void enableRenderingLayer(int layer);
 	void enableAllRenderingLayers();
 	bool isRenderingLayerEnabled(int layer);
-	void removeSpriteFromRendering(SpriteRenderer* sprite);
+	void removeSpriteFromRendering(int objectID);
 	void purge();
 
 	/////RENDERING METHODS: Maybe extract to a base "RenderContext" class to pass to the Camera
 	void renderShadowPass(float xSourceDirection, float ySourceDirection, float shadowStrength);
-	void renderPass(int layer = RENDER_LAYER_ALL, bool clearFirst = true);
+	void renderPass(int layer = 0, bool clearFirst = true);
 	void renderFBO(FrameBufferObject fboToRender, Shader* shader, FrameBufferObject* toFbo = nullptr); //Default "FBOShader" type assumes it takes a texture to draw
 
 	void renderGaussianBlur(FrameBufferObject fboToBlur, FrameBufferObject* toFbo = nullptr); //Blurs then draws

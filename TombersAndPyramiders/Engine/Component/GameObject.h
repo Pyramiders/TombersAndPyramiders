@@ -12,7 +12,7 @@
 
 
 template<int> //template parameter could be anything!
-void dynamic_pointer_cast(); //ADD this. NO NEED TO DEFINE IT
+void dynamic_pointer_cast(); //ADD this. NO NEED TO DEFINE IT. Required for compiler due to some weird bug about not knowing which prototype is available in certain circumstances
 
 class GameObject : public Updateable
 {
