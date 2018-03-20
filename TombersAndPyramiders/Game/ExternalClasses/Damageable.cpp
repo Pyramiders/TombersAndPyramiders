@@ -15,6 +15,7 @@
 #include <stdexcept>
 #include <algorithm>
 #include "Damageable.h"
+#include "SpawnManager.h"
 
 /*----------------------------------------------------------------------------------------
 	Resource Management
@@ -40,11 +41,7 @@ void Damageable::setHealth(int health)
 {
 	/* Cap min = 0 and max = max health. */
 	m_health = std::min(std::max(health, 0), m_maxHealth);
-
-	if (m_health <= 0)
-	{
-		death();
-	}
+	 
 }
 
 void Damageable::takeDamage(int damage)

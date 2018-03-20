@@ -11,6 +11,8 @@
 #include "NetworkingManager.h"
 #include <memory>
 #include "WoodenShortsword.h"
+#include "GameManager.h"
+
 
 std::shared_ptr<Character> player = nullptr;
 std::shared_ptr<Character> player2 = nullptr;
@@ -35,7 +37,7 @@ void NetworkedGameScene::onStart()
 	const float scale = 5;
 
 	SpawnManager::getInstance()->generateMiscSquare(25, -25, -100, 115, "sandBG.png", false);
-
+	SpawnManager::getInstance()->generateHealth(-10, 10, "FullHealth.png", false);
 
 	for (float x = 0; x <= size; x++)
 	{

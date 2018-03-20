@@ -13,6 +13,7 @@
 #include "NetworkedGameScene.h"
 #include "NetworkCharacter.h"
 #include "HostPilot.h"
+#include "Health.h"
 
 std::shared_ptr<SpawnManager> SpawnManager::s_instance;
 
@@ -106,6 +107,14 @@ std::shared_ptr<HostCharacter> SpawnManager::generateNetworkCharacter(Uint32 ip,
 SpawnManager::~SpawnManager()
 {
 
+}
+
+std::shared_ptr<Health> SpawnManager::generateHealth(float x, float y, string spriteName, bool hasCollider)
+{
+	std::shared_ptr<Health> health = GameManager::getInstance()->createGameObject<Health>(false, spriteName, hasCollider);
+	health->getTransform()->setPosition(x, y);
+	health->getTransform()->setScale(10);
+	return health;
 }
 
 std::shared_ptr<MiscSquare> SpawnManager::generateMiscSquare(float x, float y, float z, float scale, string spriteName, bool hasCollider)

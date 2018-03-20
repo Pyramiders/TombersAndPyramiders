@@ -15,6 +15,7 @@
 #include "Character.h"
 #include "CharacterController.h"
 #include "Inventory.h"
+#include "SpawnManager.h"
 
 /*----------------------------------------------------------------------------------------
 	Resource Management
@@ -25,12 +26,17 @@ Character::Character(BasePilot* basePilot) :
 	setFPS(12);
 	Inventory* inventory = addComponent<Inventory>(this).get();
 	addComponent<CharacterController>(this, inventory, basePilot);
+	//m_health = SpawnManager::getInstance()->generateHealth(-10, 10, "FullHealth.png", false);
+	
 }
 
 /*----------------------------------------------------------------------------------------
 	Instance Getter Methods
 ----------------------------------------------------------------------------------------*/
-
+void setHealthBar(float percent) {
+	
+	
+}
 
 /*----------------------------------------------------------------------------------------
 	Instance Setter Methods

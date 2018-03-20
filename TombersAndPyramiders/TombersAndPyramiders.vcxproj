@@ -213,6 +213,7 @@
     <ClCompile Include="Game\Scenes\CameraTestScene.cpp" />
     <ClCompile Include="Game\Scenes\CharacterTestScene.cpp" />
     <ClCompile Include="Game\Scenes\SceneTemplate.cpp" />
+    <ClCompile Include="Health.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\GameObjects\Monster.cpp" />
     <ClCompile Include="Paper.cpp" />
@@ -310,6 +311,7 @@
     <ClInclude Include="Game\Scenes\CharacterTestScene.h" />
     <ClInclude Include="Game\Scenes\SceneTemplate.h" />
     <ClInclude Include="Game\GameObjects\Monster.h" />
+    <ClInclude Include="Health.h" />
     <ClInclude Include="Paper.h" />
     <ClInclude Include="PathFinding.h" />
     <ClInclude Include="SearchCell.h" />

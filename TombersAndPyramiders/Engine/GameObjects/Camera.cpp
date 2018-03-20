@@ -32,6 +32,8 @@ void Camera::notifyInactivity()
 	s_activeCamera = nullptr;
 }
 
+
+
 void Camera::ensureInit()
 {
 	if (!m_init)
