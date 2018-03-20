@@ -233,6 +233,24 @@ void CharacterController::takeDamage(int damage, bool isCriticalHit)
 	if (s != nullptr)
 		s->sendHurt (Damageable::getHealth());
 	m_character->playHurtAnimation();
+	
+		if (((float)m_health / (float)m_maxHealth) == 0.0)
+		{
+			SpawnManager::getInstance()->generateHealth(0, 0, "EmptyHealth.png", false);
+		}
+		else if (((float)m_health / (float)m_maxHealth) < 0.5)
+		{
+			SpawnManager::getInstance()->generateHealth(0, 0, "LessHealth.png", false);
+		}
+		else if (((float)m_health / (float)m_maxHealth) < 0.75)
+		{
+			SpawnManager::getInstance()->generateHealth(0, 0, "HalfHealth.png", false);
+		}
+		else if (((float)m_health / (float)m_maxHealth) < 1.0)
+		{
+			// delete old healthbar
+			SpawnManager::getInstance()->generateHealth(0, 0, "MoreHealth.png", false);
+		}
 	m_audioSource->playSFX(SFX_HIT);
 }
 

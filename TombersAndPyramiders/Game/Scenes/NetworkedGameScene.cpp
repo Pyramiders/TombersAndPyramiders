@@ -30,10 +30,12 @@ void NetworkedGameScene::onStart ()
 	GameManager::getInstance()->resizeQuadTree(0, 0, 200, 200);
 
 	SpawnManager::getInstance()->generateMiscSquare(25, -25, -100, 200, "sandBG.png", false);
+	SpawnManager::getInstance()->generateHealth(-10, 10, "FullHealth.png", false);
 	/*
 	const float scale = 5;
 
 	SpawnManager::getInstance()->generateMiscSquare(25, -25, -100, 115, "sandBG.png", false);
+
 
 	/*std::vector<std::vector<int>> level{ {0,0,0,0},
 	{0,0,0,0},
@@ -106,6 +108,7 @@ void NetworkedGameScene::onStart ()
 	SpawnManager::getInstance()->generateMiscSquare(25, -25, -100, 115, "sandBG.png", false);
 	AudioManager::getInstance()->playMusic(MUSIC_LEVEL_1);
 >>>>>>> 5c2ae033902e886b31a700b29d0dcc98fa50e94e
+>>>>>>> 59a0a113b62ddcac02a9c69d8db0b0447da35363
 
 	for (float x = 0; x <= size; x++)
 	{

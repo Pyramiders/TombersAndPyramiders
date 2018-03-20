@@ -102,6 +102,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\GameObjects\Monster.cpp" />
     <ClCompile Include="Game\Scenes\LaunchScene.cpp" />
+    <ClCompile Include="Health.cpp" />
     <ClCompile Include="Engine\External\QuadTree.cpp" />
     <ClCompile Include="Game\Scenes\PossessionTestScene.cpp" />
     <ClCompile Include="Game\GameObjects\GhostCharacter.cpp" />
@@ -247,6 +248,7 @@
     <ClInclude Include="Game\Scenes\SceneTemplate.h" />
     <ClInclude Include="Game\GameObjects\Monster.h" />
     <ClInclude Include="Game\Scenes\LaunchScene.h" />
+    <ClInclude Include="Health.h" />
     <ClInclude Include="Engine\External\QuadTree.h" />
     <ClInclude Include="Game\Scenes\PossessionTestScene.h" />
     <ClInclude Include="Game\GameObjects\GhostCharacter.h" />

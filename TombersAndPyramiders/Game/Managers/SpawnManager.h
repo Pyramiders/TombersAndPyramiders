@@ -9,6 +9,7 @@
 #include "WorldItem.h"
 #include "HostCharacter.h"
 #include "ClientCharacter.h"
+#include "Health.h"
 #include "NetworkCharacter.h"
 #include "GhostCharacter.h"
 #include "Boulder.h"
@@ -19,6 +20,7 @@ class SpawnManager : public GameObject
 public:
 	SpawnManager();
 	~SpawnManager();
+	std::shared_ptr<Health> generateHealth(float x, float y, string spriteName, bool hasCollider);
 	std::shared_ptr<MiscSquare> generateMiscSquare(float x, float y, float z, float scale, string spriteName, bool hasCollider, float colliderSize_x = 5, float colliderSize_y = 5);
 	//std::shared_ptr<Wall> generateWall(float x, float y, float scale);
 	//std::shared_ptr<MiscSquare> generateMiscSquare(float x, float y, float scale);

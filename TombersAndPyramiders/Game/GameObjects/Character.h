@@ -18,6 +18,7 @@
 #include "BoxCollider.h"
 #include "ComplexSprite.h"
 #include "BasePilot.h"
+#include "Health.h"
 
 /*========================================================================================
 	Player Animation Defines
@@ -38,6 +39,8 @@ class Character : public ComplexSprite
     ----------------------------------------------------------------------------------------*/
     private:
 		BoxCollider* m_boxCollider = nullptr;
+		std::shared_ptr<Health> m_health;
+		int m_maxHealth;
 
     /*----------------------------------------------------------------------------------------
 		Resource Management
@@ -50,7 +53,7 @@ class Character : public ComplexSprite
 		Instance Getter Methods
     ----------------------------------------------------------------------------------------*/
     public:
-        
+		void setHealthBar(float percent);
     
 	/*----------------------------------------------------------------------------------------
 		Instance Setter Methods

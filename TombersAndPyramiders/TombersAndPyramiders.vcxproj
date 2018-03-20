@@ -245,6 +245,7 @@
     <ClCompile Include="Game\Scenes\CharacterTestScene.cpp" />
     <ClCompile Include="Game\Scenes\PossessionTestScene.cpp" />
     <ClCompile Include="Game\Scenes\SceneTemplate.cpp" />
+    <ClCompile Include="Health.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\GameObjects\Monster.cpp" />
   </ItemGroup>
@@ -374,6 +375,10 @@
     <ClInclude Include="Game\Scenes\PossessionTestScene.h" />
     <ClInclude Include="Game\Scenes\SceneTemplate.h" />
     <ClInclude Include="Game\GameObjects\Monster.h" />
+    <ClInclude Include="Health.h" />
+    <ClInclude Include="Paper.h" />
+    <ClInclude Include="PathFinding.h" />
+    <ClInclude Include="SearchCell.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Character.bmp" />
