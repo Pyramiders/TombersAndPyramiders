@@ -32,6 +32,7 @@ class BaseLongbow : public BaseProjectileWeapon
 		static const float LONGBOW_PROJECTILE_LIFESPAN;
 		static const float LONGBOW_PROJECTILE_X_VELOCITY;
 		static const float LONGBOW_PROJECTILE_Y_VELOCITY;
+		static const float LONGBOW_CRITICAL_HIT_CHANCE;
 		static const float LONGBOW_ATTACK_COOLDOWN_TIME;
 
     /*----------------------------------------------------------------------------------------
@@ -41,34 +42,10 @@ class BaseLongbow : public BaseProjectileWeapon
         /** Default constructor. */
         explicit BaseLongbow() = delete;
 
-		explicit BaseLongbow(std::string projectileImageName,
-			Vector2 projectileColliderSize, Vector2 projectileSpawnOffsetFromHolder,
-			float projectileSpriteScale, Vector2 projectileVelocity, float projectileLifespan);
+		explicit BaseLongbow(int damage, std::string projectileImageName,
+			Vector2 projectileColliderSize, bool destroyProjectilesOnCollision,
+			Vector2 projectileSpawnOffsetFromHolder, float projectileSpriteScale, 
+			Vector2 projectileVelocity, float projectileLifespan);
 
 		virtual ~BaseLongbow() {};
-		
-    /*----------------------------------------------------------------------------------------
-		Instance Methods
-    ----------------------------------------------------------------------------------------*/
-	public:
-		void use();
-
-		void onStart();
-		void onUpdate(int ticks);
-		void onEnd();
-
-	protected:
-		void updateAttack(int ticks);
-		
-		/**
-			Returns a Vector2 containing the coordinates where projectiles should be spawned 
-			this tick.
-		*/
-		Vector2 getProjectileSpawnPoint();
-		
-		/**
-			Returns a Vector2 containing the velocity projectiles should be spawned with
-			this tick.
-		*/
-		Vector2 getProjectileVelocity();
 };

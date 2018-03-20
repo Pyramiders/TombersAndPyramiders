@@ -22,7 +22,9 @@ class WoodenShortsword : public BaseShortsword
     /*----------------------------------------------------------------------------------------
 		Static Fields
     ----------------------------------------------------------------------------------------*/
+	static const int WOODEN_SHORTSWORD_DAMAGE;
 	static const string WOODEN_SHORTSWORD_IMAGE_NAME;
+	static const bool WOODEN_SHORTSWORD_DESTROY_ON_COLLISION;
 
     /*----------------------------------------------------------------------------------------
 		Resource Management

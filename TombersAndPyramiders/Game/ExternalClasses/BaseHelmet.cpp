@@ -17,35 +17,24 @@
 /*----------------------------------------------------------------------------------------
 	Resource Management
 ----------------------------------------------------------------------------------------*/
-BaseHelmet::BaseHelmet(int durability, float absorptionChance) :
-	m_durability{ durability }, m_absorptionChance{ absorptionChance }
+BaseHelmet::BaseHelmet(float criticalResistChance) :
+	m_criticalResistChance{ criticalResistChance }
 {
-	if (durability < 0)
+	if (m_criticalResistChance < 0)
 	{
-		throw std::invalid_argument("BaseHelmet::BaseHelmet: durability must 0 or greater.");
-	}
-
-	if (absorptionChance < 0 ||
-		absorptionChance > 1)
-	{
-		throw std::invalid_argument("BaseHelmet::BaseHelmet: absorptionChance must be in the range [0-1].");
+		throw std::invalid_argument("BaseHelmet::BaseHelmet(): m_criticalResistChance must be non-negative.");
 	}
 }
 
 /*----------------------------------------------------------------------------------------
 	Instance Methods
 ----------------------------------------------------------------------------------------*/
-int BaseHelmet::absorbHeadshot(int damage)
+bool BaseHelmet::doesAvoidCriticalHit()
 {
-	return damage;
+	return (s_random.random0to1() < m_criticalResistChance);
 }
 
 std::shared_ptr<BaseItem> BaseHelmet::addSubclassToInventory()
 {
 	return m_inventory->setHelmet(shared_from_this());
-}
-
-void BaseHelmet::destroy()
-{
-	/* Nothing to do for now. */
 }

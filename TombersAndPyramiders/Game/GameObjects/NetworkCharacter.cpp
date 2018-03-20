@@ -2,14 +2,26 @@
 #include "CharacterController.h"
 #include "Inventory.h"
 #include "Receiver.h"
+#include "Sender.h"
 
-NetworkCharacter::NetworkCharacter(BasePilot* basePilot) :
+NetworkCharacter::NetworkCharacter(BasePilot* basePilot, int networkingID) :
 	Character(basePilot)
 {
 	setFPS(12);
 	addComponent<Inventory>(this);
-	addComponent<CharacterController>(this, getComponent<Inventory>().get(), basePilot);
-	addComponent<Receiver>(this, std::to_string(this->getId()));
+	std::shared_ptr<Receiver> receiver = addComponent<Receiver> (this, networkingID);
+	receiver->Subscribe ("ATTACK", [](std::map<std::string, void*> data) -> void
+	{
+		((NetworkCharacter*)data["this"])->getComponent<CharacterController> ()->useWeapon ();
+	}, this);
+
+	receiver->Subscribe ("TRIGGER", [](std::map<std::string, void*> data) -> void
+	{
+		if (!((NetworkCharacter*)data["this"])->getComponent<CharacterController> ()->tryInvokeTrigger ())
+		{
+			std::cout << "Sync Error on character receiving Trigger event. Should only be called on successful triggering, however receiver could not invoke a trigger." << std::endl;
+		}
+	}, this);
 }
 
 /*----------------------------------------------------------------------------------------
@@ -30,42 +42,6 @@ void NetworkCharacter::onUpdate(int ticks)
 	updateFrames(ticks);
 }
 
-// Private generation logic for describing the sprite sheet relationships for this player
-std::shared_ptr<ComplexSpriteinfo> NetworkCharacter::generateComplexSpriteInfo()
-{
-	std::shared_ptr<ComplexSpriteinfo> spriteInfo = std::make_shared<ComplexSpriteinfo>();
-
-	spriteInfo->addInfo("squareIdle.png", 8, 1);
-	spriteInfo->addInfo("squareRun.png", 8, 1);
-	spriteInfo->addInfo("squareRedAttack.png", 8, 1);
-	spriteInfo->addInfo("squareWhiteAttack.png", 8, 1);
-
-	return spriteInfo;
-}
-
-// Changes the sprite animation to running
-void NetworkCharacter::playRunAnimation()
-{
-	changeSprite(ANIMATION_RUN);
-}
-
-
-// Changes the sprite animation to idling
-void NetworkCharacter::endRunAnimation()
-{
-	changeSprite(ANIMATION_IDLE);
-}
-
-
-// Changes the sprite animation to the melee attack for one animation then returns back to idle
-void NetworkCharacter::playMeleeAttackAnimation()
-{
-	changeSprite(ANIMATION_ATTACK_MELEE, ANIMATION_IDLE);
-}
-
-
-// Changes the sprite animation to the range attack for one animation then returns back to idle
-void NetworkCharacter::playRangeAttackAnimation()
-{
-	changeSprite(ANIMATION_ATTACK_RANGE, ANIMATION_IDLE);
+void NetworkCharacter::onNetworkEnd () {
+	destroy (getId ());
 }

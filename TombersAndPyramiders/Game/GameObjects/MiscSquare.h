@@ -16,7 +16,7 @@ public:
 
 	////Public Methods
 	//The constructor that is called on creation
-	MiscSquare(string spriteName, bool hasCollider);
+	MiscSquare(string spriteName, bool hasCollider, float colliderSize_x = 5.0f, float colliderSize_y = 5.0f);
 	//The destructor that is called on deletion
 	~MiscSquare();
 

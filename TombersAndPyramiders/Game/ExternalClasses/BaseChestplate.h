@@ -23,8 +23,7 @@ class BaseChestplate : public BaseEquippableItem, public std::enable_shared_from
 		Instance Fields
     ----------------------------------------------------------------------------------------*/
 	private:
-		int m_durability;
-		float m_absorptionPercent;
+		float m_damageMultiplier;
 
     /*----------------------------------------------------------------------------------------
 		Resource Management
@@ -32,7 +31,7 @@ class BaseChestplate : public BaseEquippableItem, public std::enable_shared_from
     public:
         explicit BaseChestplate() = delete;
 
-		explicit BaseChestplate(int durability, float absorptionPercent);
+		explicit BaseChestplate(float damageMultiplier);
 
 		virtual ~BaseChestplate() {};
 
@@ -43,17 +42,12 @@ class BaseChestplate : public BaseEquippableItem, public std::enable_shared_from
 		/**
 			Returns the actual amount of damage the character should take after absorption 
 			by the chestplate.
-			
-			Destroys the chestplate if it has taken too much damage.
 		*/
-		virtual int absorbDamage(int damage);
+		virtual int calculateRealDamage(int damage);
 
 	protected:
 		std::shared_ptr<BaseItem> addSubclassToInventory();
 
 	private:
-		/**
-			Destroys the chestplate.
-		*/
-		virtual void destroy();
+
 };

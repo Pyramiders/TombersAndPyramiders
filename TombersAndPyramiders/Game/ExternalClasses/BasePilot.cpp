@@ -20,3 +20,8 @@ void BasePilot::setController(BaseController* controller)
 {
 	m_controller = controller;
 }
+
+BaseController* BasePilot::getController ()
+{
+	return m_controller;
+}

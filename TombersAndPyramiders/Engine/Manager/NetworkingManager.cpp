@@ -1,5 +1,6 @@
 #include "NetworkingManager.h"
 #include "MessageManager.h"
+#include "SpawnManager.h"
 
 NetworkingManager* NetworkingManager::s_instance;
 
@@ -44,48 +45,32 @@ IPaddress NetworkingManager::getIP() {
 
 bool NetworkingManager::startGame() {
 	
-	if (!isHost() || !inLobby || gameStarted)
+	if (!isHost() || !m_inLobby || m_gameStarted)
 		return false;
 
-	inLobby = false;
-	gameStarted = true;
+	m_inLobby = false;
+	m_gameStarted = true;
 	std::cout << "Server start game!" << std::endl;
 	return true;
 }
 
 bool NetworkingManager::startGameClient() {
-	if (isHost() || !inLobby || gameStarted)
+	if (isHost() || !m_inLobby || m_gameStarted)
 		return false;
 
-	inLobby = false;
-	gameStarted = true;
+	m_inLobby = false;
+	m_gameStarted = true;
 	std::cout << "Client start game!" << std::endl;
 	return true;
 }
 
-void NetworkingManager::listenForStart()
-{
-	this->m_startPacketID = MessageManager::subscribe("STARTGAME", [](std::map<std::string, void*> data) -> void
-	{
-		NetworkingManager::getInstance()->startGameClient();
-	}, this);
-}
-
-void NetworkingManager::stopListeningForStart() {
-	MessageManager::unSubscribe("STARTGAME", m_startPacketID);
-}
-
 bool NetworkingManager::host()
 {
-	if (inLobby || gameStarted)
+	if (m_inLobby || m_gameStarted)
 		return false;
 	// create a listening TCP socket on port 9999 (server)
 	IPaddress ip;
 	int channel;
-
-	int startConnTime = SDL_GetTicks();
-	int timeoutTime = SDL_GetTicks();
-	const int TIMEOUT = 60000;
 
 	if (SDLNet_ResolveHost(&ip, NULL, m_port) == -1)
 	{
@@ -100,7 +85,6 @@ bool NetworkingManager::host()
 		std::string error = SDLNet_GetError();
 		return false;
 	}
-	
 	m_udpSocket = SDLNet_UDP_Open(m_port);
 	if (!m_udpSocket)
 	{
@@ -108,72 +92,36 @@ bool NetworkingManager::host()
 		return false;
 	}
 
-	inLobby = true;
-	gameStarted = false;
+	m_inLobby = true;
+	m_gameStarted = false;
 	m_isHost = true;
-	channel = SDLNet_UDP_Bind(m_udpSocket, DEFAULT_CHANNEL, &ip);
 
-	bool result = false;
-	while (!(result = accept()) && SDL_GetTicks() - startConnTime < TIMEOUT);
-	if (result)
-	{
-		std::cout << "Connection established." << std::endl;
-		return true;
-	}
-	else
-	{
-		std::cout << "No peer found, destroying server." << std::endl;
-		close(ip.host);
-		return false;
-	}
+	std::cout << "Hosting server." << std::endl;
+	addPlayer (ip.host, m_socket);
+	m_assignedID = 0;
+	pollSocketAccept ();
+	pollMessagesUDP ();
 }
 
-bool NetworkingManager::join()
+void NetworkingManager::pollSocketAccept ()
 {
-	if (inLobby || gameStarted)
-		return false;
+	m_socketAcceptThread = std::thread (&NetworkingManager::socketAcceptThread, this);
+	m_socketAcceptThread.detach ();
+}
 
-	IPaddress ip;
-	int channel;
-
-	if (SDLNet_ResolveHost(&ip, IP, m_port) == -1)
-	{
-		printf("SDLNet_ResolveHost: %s\n", SDLNet_GetError());
-		return false;
+void NetworkingManager::socketAcceptThread ()
+{
+	while (m_inLobby) {
+		if (accept ())
+		{
+			std::cout << "Connection established." << std::endl;
+		}
 	}
-
-	m_socket = SDLNet_TCP_Open(&ip);
-	if (!m_socket)
-	{
-		printf("SDLNet_TCP_Open: %s\n", SDLNet_GetError());
-		close(ip.host);
-		return false;
-	}
-	/*
-	m_udpSocket = SDLNet_UDP_Open(m_port);
-	if (!m_udpSocket)
-	{
-		printf("SDLNet_UDP_Open: %s\n", SDLNet_GetError());
-		closeUDP();
-		return false;
-	}
-	
-	channel = SDLNet_UDP_Bind(m_udpSocket, DEFAULT_CHANNEL, &ip);*/
-
-	inLobby = true;
-	gameStarted = false;
-	addPlayer(ip.host, m_socket); //right
-	listenForStart();
-
-	std::cout << "SDLNet_TCP_Open:A>A>A WE DID IT JOIN" << std::endl;
-	pollMessages(ip.host);
-	//pollMessagesUDP(ip.host);
-	return true;
 }
 
 bool NetworkingManager::accept()
 {
-	if (gameStarted)
+	if (m_gameStarted)
 		return false;
 
 	TCPsocket m_client = SDLNet_TCP_Accept(m_socket);
@@ -182,20 +130,88 @@ bool NetworkingManager::accept()
 		return false;
 	}
 	IPaddress *ip = SDLNet_TCP_GetPeerAddress(m_client);
-	addPlayer(ip->host, m_client);
-	pollMessages(ip->host);
+	int newID;
+	if ((newID = addPlayer (ip->host, m_client)) == -1) {
+		SDLNet_TCP_Close (m_client);
+		std::cout << "Too many players." << std::endl;
+		return false;
+	}
+	pollMessagesTCP(newID);
+
+	IPaddress udpIP;
+	if (SDLNet_ResolveHost (&udpIP, SDLNet_ResolveIP (ip), m_port) == -1) {
+		std::cout << "Couldn't find resolved client IP " << SDLNet_ResolveIP (ip) << std::endl;
+	}
+	int channel = -1;
+	if ((channel = SDLNet_UDP_Bind (m_udpSocket, -1, &udpIP)) == -1)
+	{
+		printf ("SDLNet_UDP_Bind to channel: %s\n", SDLNet_GetError ());
+	}
+	if (channel >= 0 && channel <= 3) //16 max connections
+		channels[channel] = true;
+	
+	sendAcceptPacket (newID);
 	// communicate over new_tcpsock
-	std::cout << "SDLNet_TCP_Accept:A>A>A WE DID IT ACCETP" << std::endl;
+	std::cout << "Accepted a client." << std::endl;
 	return true;
 }
 
-bool NetworkingManager::close(Uint32 ip)
+bool NetworkingManager::join ()
 {
-	if (m_clients.find(ip) != m_clients.end())
+	if (m_inLobby || m_gameStarted)
+		return false;
+	
+	if (SDLNet_ResolveHost (&m_hostAddress, IP, m_port) == -1)
 	{
-		SDLNet_TCP_Close(m_clients[ip]);
-		m_clients[ip] = NULL;
+		printf ("SDLNet_ResolveHost: %s\n", SDLNet_GetError ());
+		return false;
 	}
+
+
+	listenforAcceptPacket ();
+
+	m_socket = SDLNet_TCP_Open (&m_hostAddress);
+	pollMessagesTCP (addPlayer (m_hostAddress.host, m_socket));
+	if (!m_socket)
+	{
+		printf ("SDLNet_TCP_Open: %s\n", SDLNet_GetError ());
+		stopListeningForAcceptPacket ();
+		SDLNet_TCP_Close (m_socket);
+		return false;
+	}
+		
+	m_udpSocket = SDLNet_UDP_Open(m_port);
+	if (!m_udpSocket)
+	{
+		printf("SDLNet_UDP_Open: %s\n", SDLNet_GetError());
+		closeUDP();
+		return false;
+	}
+
+	//if (-1 == SDLNet_UDP_Bind(m_udpSocket, DEFAULT_CHANNEL, &m_hostAddress))
+	//{
+	//	printf("SDLNet_UDP_Bind: %s\n", SDLNet_GetError());
+	//}
+
+	m_inLobby = true;
+	m_gameStarted = false;
+
+	std::cout << "Joined as a client." << std::endl;
+	pollMessagesUDP();
+	return true;
+}
+
+bool NetworkingManager::closeClientAsHost (int id) {
+	if (m_clients.find (id) != m_clients.end ())
+	{
+		SDLNet_TCP_Close (m_clients[id].second);
+		m_clients.erase (id);
+	}
+	return true;
+}
+
+bool NetworkingManager::closeClient()
+{
 	if (m_socket != NULL)
 	{
 		SDLNet_TCP_Close(m_socket);
@@ -206,11 +222,6 @@ bool NetworkingManager::close(Uint32 ip)
 
 bool NetworkingManager::closeUDP()
 {
-	if (m_udpClient != NULL)
-	{
-		SDLNet_UDP_Close(m_udpClient);
-		m_udpClient = NULL;
-	}
 	if (m_udpSocket != NULL)
 	{
 		SDLNet_UDP_Close(m_udpSocket);
@@ -220,17 +231,19 @@ bool NetworkingManager::closeUDP()
 }
 
 //Host->Sending Messages->Client Exits->Host Crashes on line SDLNet_TCP_Send
-void NetworkingManager::send(Uint32 ip, std::string *msg)
+void NetworkingManager::send(int id, std::string *msg)
 {
-	// send a hello over sock
-	//TCPsocket sock;
 	int result, len;
 	len = msg->length() + 1;
 
-	if (m_clients.find(ip) != m_clients.end())
-		result = SDLNet_TCP_Send(m_clients[ip], msg->c_str(), len);
-	else if (m_socket != NULL)
-		result = SDLNet_TCP_Send(m_socket, msg->c_str(), len);
+	//std::cout << "Sending: ID: " << id << " Packet: " << m_clients[id].first << " Message: " << *msg << std::endl;
+
+	if (m_clients.find (id) != m_clients.end ()) {
+		result = SDLNet_TCP_Send (m_clients[id].second, msg->c_str (), len);
+	}
+	else if (m_socket != NULL) {
+		result = SDLNet_TCP_Send (m_socket, msg->c_str (), len);
+	}
 
 	if (result < len)
 	{
@@ -248,7 +261,10 @@ bool NetworkingManager::createUDPPacket(int packetSize)
 		return false;
 	}
 
-	m_udpPacket->address.port = m_port;
+	if (!isHost ()) {
+		m_udpPacket->address = m_hostAddress;
+	}
+	m_udpPacket->len = packetSize + 1;
 
 	return true;
 }
@@ -258,65 +274,132 @@ void NetworkingManager::sendUDP(std::string *msg)
 	createUDPPacket(msg->length());
 	memcpy(m_udpPacket->data, msg->c_str(), msg->length());
 
-	if (SDLNet_UDP_Send(m_udpClient, DEFAULT_CHANNEL, m_udpPacket) == 0)
-		std::cout << "SDLNET_UDP_SEND failed: " << SDLNet_GetError() << "\n";
+	if (isHost ()) {
+		for (size_t i = 0; i < 4; i++) {
+			if (channels[i]) {
+				m_udpPacket->channel = i;
+				if (!SDLNet_UDP_Send (m_udpSocket, i, m_udpPacket))
+					std::cout << "SDLNET_UDP_SEND failed: " << SDLNet_GetError () << "\n";
+			}
+		}
+	}
+	else {
+		if (!SDLNet_UDP_Send (m_udpSocket, -1, m_udpPacket))
+			std::cout << "SDLNET_UDP_SEND failed: " << SDLNet_GetError () << "\n";
+	}
 }
 
-void NetworkingManager::pollMessages(Uint32 ip)
+void NetworkingManager::pollMessagesTCP(int id)
 {
-	m_messagesToSend.clear();
-	m_receiverThread = std::thread(&NetworkingManager::pollMessagesThread, this, ip);
+	m_messagesToSendTCP.clear();
+	m_receiverThread = std::thread(&NetworkingManager::pollMessagesThreadTCP, this, id);
 	m_receiverThread.detach();
 }
 
-void NetworkingManager::pollMessagesThread(Uint32 ip)
+void NetworkingManager::pollMessagesThreadTCP(int id)
 {
-#define MAXLEN 16384
+
 	int result;
-	char msg[MAXLEN];
+	char msg[MAXLEN_TCP];
 
 	while (m_socket != NULL)
 	{ 
-		if (m_clients.find(ip) != m_clients.end())
-			result = SDLNet_TCP_Recv(m_clients[ip], msg, MAXLEN);
+		if (m_clients.find(id) != m_clients.end())
+			result = SDLNet_TCP_Recv(m_clients[id].second, msg, MAXLEN_TCP);
 		else if (m_socket != NULL)
-			result = SDLNet_TCP_Recv(m_socket, msg, MAXLEN);
+			result = SDLNet_TCP_Recv(m_socket, msg, MAXLEN_TCP);
 		if (result <= 0)
 		{
-			close(ip);
+			if (isHost ()) {
+				closeClientAsHost (id);
+			} else {
+				closeClient ();
+			}
 			continue;
 		}
 		std::string newMsg = msg;
+		//std::cout << "RECIEVING: " << msg << std::endl;
 		m_messageQueue->push(newMsg);
 	}
-	close(ip);
+	if (isHost ()) {
+		closeClientAsHost (id);
+	}
+	else {
+		closeClient ();
+	}
 }
+
+
+void NetworkingManager::sendAcceptPacket (int id) {
+	std::string packet = "[{key:ACCEPT,netID:0,myNetID:" + std::to_string (id) + "}]";
+	send (id, &packet);
+}
+
+void NetworkingManager::listenforAcceptPacket ()
+{
+	this->m_handshakeListenerID = MessageManager::subscribe ("0|ACCEPT", [](std::map<std::string, void*> data) -> void
+	{
+		NetworkingManager::getInstance()->m_assignedID = std::stoi (*(std::string*)data["myNetID"]);
+		NetworkingManager::getInstance ()->stopListeningForAcceptPacket ();
+		SpawnManager::getInstance ()->listenForStartPacket ();
+
+	}, this);
+}
+
+void NetworkingManager::stopListeningForAcceptPacket () {
+	std::cout << "Our Network ID: " << m_assignedID << std::endl;
+	MessageManager::unSubscribe ("0|ACCEPT", m_handshakeListenerID);
+}
+
+//void NetworkingManager::sendStartPacket (Uint32 ip) {
+//	//includes sycnronization (must pass all other players)
+//	std::string packet = "[{key:HANDSHAKE|START, ";
+//
+//	int i = 0;
+//	for (auto it = m_clients.begin (); it != m_clients.end (); it++) {
+//		packet += "player" + std::to_string(i) + ": " + std::to_string (it->first);
+//	}
+//
+//	packet += "}]";
+//
+//	send (ip, &packet);
+//}
 
 void NetworkingManager::pollMessagesUDP()
 {
-	m_messagesToSend.clear();
+	m_messagesToSendUDP.clear();
 	m_udpReceiverThread = std::thread(&NetworkingManager::pollMessagesThreadUDP, this);
 	m_udpReceiverThread.detach();
 }
 
 void NetworkingManager::pollMessagesThreadUDP()
 {
-#define MAXLEN 16384
 	int result;
-	char msg[MAXLEN];
+	char msg[MAXLEN_UDP];
 
 	while (m_udpSocket != NULL)
 	{ //replace with on connection lost
 
-		if (m_udpClient != NULL || m_udpSocket != NULL)
-			result = SDLNet_UDP_Recv(m_udpClient, &m_udpReceivedPacket);
-		if (result < 0)
+		UDPpacket *recPacket = SDLNet_AllocPacket(MAXLEN_UDP);
+
+		if (m_udpSocket != NULL)
+			result = SDLNet_UDP_Recv(m_udpSocket, recPacket);
+		if (result == -1)
 		{
-			closeUDP();
-			continue;
+
 		}
-		std::string newMsg(m_udpReceivedPacket.data, m_udpReceivedPacket.data+MAXLEN);
-		m_messageQueue->push(newMsg);
+		else if (result == 0)
+		{
+
+		}
+		else if (result == 1)
+		{
+			std::string newMsg (recPacket->data, recPacket->data + recPacket->len);
+			m_messageQueue->push (newMsg);
+		}
+
+		SDLNet_FreePacket(recPacket);
+		recPacket = NULL;
 	}
 	closeUDP();
 }
@@ -326,51 +409,93 @@ bool NetworkingManager::getMessage(std::string &msg)
 	if (!m_messageQueue->isEmpty())
 	{
 		m_messageQueue->pop(msg);
+		//std::cout << "Msg: " << msg << std::endl;
 		return true;
 	}
 	return false;
 }
 
-void NetworkingManager::prepareMessageForSending(std::string key, std::map<std::string, std::string> data)
+void NetworkingManager::prepareMessageForSendingUDP (int netID, std::string key, std::map<std::string, std::string> data)
 {
 	Message message;
+	message.netID = netID;
 	message.key = key;
 	message.data = data;
-	m_messagesToSend.push_back(message);
+	m_messagesToSendUDP.push_back (message);
 }
 
-//TODO: Do over time
-void NetworkingManager::sendQueuedEvents()
+void NetworkingManager::prepareMessageForSendingTCP (int netID, std::string key, std::map<std::string, std::string> data)
 {
-	if (m_messagesToSend.size() < 1)
+	Message message;
+	message.netID = netID;
+	message.key = key;
+	message.data = data;
+	m_messagesToSendTCP.push_back (message);
+}
+
+void NetworkingManager::sendQueuedEvents () {
+	sendQueuedEventsTCP ();
+	sendQueuedEventsUDP ();
+}
+
+void NetworkingManager::sendQueuedEventsTCP ()
+{
+	if (m_messagesToSendTCP.size () < 1)
 		return;
 	std::string packet = "[";
-	for (size_t i = 0; i < m_messagesToSend.size(); i++)
+	for (size_t i = 0; i < m_messagesToSendTCP.size (); i++)
 	{
-		packet += serializeMessage(m_messagesToSend[i]);
+		packet += serializeMessage (m_messagesToSendTCP[i]);
 		packet += ",";
 	}
-	packet.pop_back();
+	packet.pop_back ();
 	packet += "]";
 	//Submit it
-	m_messagesToSend.clear();
+	m_messagesToSendTCP.clear ();
 
-	for (auto it = m_clients.begin(); it != m_clients.end(); it++) {
-		send(it->first, new std::string(packet));
+	for (auto it = m_clients.begin (); it != m_clients.end (); it++) {
+		if ((it->second).first == -1) {
+			m_clients.erase (it);
+			--it;
+		}
+		else if (m_assignedID != it->first) {
+			send (it->first, new std::string (packet));
+		}
 	}
+}
+
+void NetworkingManager::sendQueuedEventsUDP ()
+{
+	if (m_messagesToSendUDP.size () < 1)
+		return;
+	std::string packet = "[";
+	for (size_t i = 0; i < m_messagesToSendUDP.size (); i++)
+	{
+		packet += serializeMessage (m_messagesToSendUDP[i]);
+		packet += ",";
+	}
+	packet.pop_back ();
+	packet += "]";
+	//Submit it
+	m_messagesToSendUDP.clear ();
+
+	sendUDP (new std::string (packet));
 }
 
 void NetworkingManager::sendEventToReceiver(std::map<std::string, void*> data)
 {
 	std::string* key = (std::string*)data["key"];
-	std::string value = *key;
+	std::string netID = *(std::string*)data["netID"];
+	std::string value = netID + "|" + *key;
+	//std::cout << "Event: " << value << " NetID: " << netID << std::endl;
 	MessageManager::sendEvent(value, data);
 }
 
 std::string NetworkingManager::serializeMessage(Message message)
 {
 	std::string result = "{";
-	message.data["key"] = message.key.c_str();
+	message.data["netID"] = std::to_string(message.netID).c_str();
+	message.data["key"] = message.key.c_str ();
 
 	for (const auto tuple : message.data)
 	{
@@ -393,27 +518,27 @@ void NetworkingManager::handleParsingEvents(std::string packet)
 		bool reading = false;
 		while (packet.size() > 0)
 		{
-			if (!reading)
+		if (!reading)
+		{
+			if (packet[0] == '{')
 			{
-				if (packet[0] == '{')
-				{
-					reading = true;
-					currentMessage += packet[0];
-				}
-			}
-			else
-			{
+				reading = true;
 				currentMessage += packet[0];
-				if (packet[0] == '}')
-				{
-					reading = false;
-					messages.push_back(currentMessage);
-					sendEventToReceiver(deserializeMessage(currentMessage));
-					currentMessage = "";
-				}
 			}
+		}
+		else
+		{
+			currentMessage += packet[0];
+			if (packet[0] == '}')
+			{
+				reading = false;
+				messages.push_back (currentMessage);
+				sendEventToReceiver (deserializeMessage (currentMessage));
+				currentMessage = "";
+			}
+		}
 
-			packet.erase(0, 1);
+		packet.erase (0, 1);
 		}
 	}
 }
@@ -422,17 +547,17 @@ void NetworkingManager::handleParsingEvents(std::string packet)
 
 //TODO: Deserialize this:
 //Example: {key : Player|UPDATE,rotation : 37.000000,scale : 1.000000,x : 1.000000,y : 0.000000}
-std::map<std::string, void*> NetworkingManager::deserializeMessage(std::string message)
+std::map<std::string, void*> NetworkingManager::deserializeMessage (std::string message)
 {
 	std::map<std::string, void*> data;
 	std::string currentKey = "";
 	std::string currentValue = "";
 	bool readingKey;
 	bool readingValue;
-	while (message.size() > 0)
+	while (message.size () > 0)
 	{
 		char curChar = message[0];
-		message.erase(0, 1);
+		message.erase (0, 1);
 
 		if (curChar == ',' || curChar == '{')
 		{
@@ -441,7 +566,7 @@ std::map<std::string, void*> NetworkingManager::deserializeMessage(std::string m
 			readingValue = false;
 			if (curChar == ',')
 			{
-				data[currentKey] = (void*)new std::string(currentValue);
+				data[currentKey] = (void*)new std::string (currentValue);
 			}
 			std::string newCurrentString = "";
 			std::string newCurrentValue = "";
@@ -459,10 +584,10 @@ std::map<std::string, void*> NetworkingManager::deserializeMessage(std::string m
 		else if (curChar == '}')
 		{
 			//End
-			data[currentKey] = (void*)new std::string(currentValue);
+			data[currentKey] = (void*)new std::string (currentValue);
 			break;
 		}
-		if (!isspace(curChar))
+		if (!isspace (curChar))
 		{
 			if (readingKey)
 			{
@@ -478,31 +603,42 @@ std::map<std::string, void*> NetworkingManager::deserializeMessage(std::string m
 	return data;
 }
 
-void NetworkingManager::setIP(char *ip, int p)
+void NetworkingManager::setIP (char *ip, int p)
 {
 	IP = ip;
 	m_port = p;
 }
 
-int NetworkingManager::addPlayer(Uint32 ip, TCPsocket sock)
+int NetworkingManager::addPlayer (Uint32 ip, TCPsocket sock)
 {
-	if (m_clients.size() > 16)
+	if (m_clients.size () > 16)
 	{
-		return 0;
+		return -1;
 	}
-	m_clients.insert(std::pair<Uint32, TCPsocket>(ip, sock));
-	return 1;
+	int id = m_clients.size ();
+	m_clients.insert (std::pair<int, std::pair<Uint32, TCPsocket>> (id, std::pair<Uint32, TCPsocket> (ip, sock)));
+
+	std::cout << "---- " << m_clients.size() << std::endl;
+	for (auto it = m_clients.begin (); it != m_clients.end (); it++) {
+		std::cout << "Client: " << it->first << " IP: " << (it->second).first << std::endl;
+	}
+
+	return id;
 }
 
-int NetworkingManager::removePlayer(Uint32 ip)
+int NetworkingManager::removePlayer(int id)
 {
 	for (auto it = m_clients.begin(); it != m_clients.end(); it++)
 	{
-		if (it->first == ip) 
+		if (it->first == id) 
 		{
-			m_clients.erase(it);
+			(it->second).first = -1;
 			return 1;
 		}
 	}
 	return 0;
+}
+
+bool NetworkingManager::isSelf (int id) {
+	return m_assignedID == id;
 }

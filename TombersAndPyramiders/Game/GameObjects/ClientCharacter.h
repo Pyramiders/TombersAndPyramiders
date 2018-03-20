@@ -37,6 +37,12 @@ public:
 	----------------------------------------------------------------------------------------*/
 public:
 	void onUpdate(int ticks);
+	void onEnd ();
+	bool playRunAnimation ();
+	bool endRunAnimation ();
+	bool playMeleeAttackAnimation ();
+	bool playRangeAttackAnimation ();
+	bool playHurtAnimation ();
 
 private:
 	/*--------------------

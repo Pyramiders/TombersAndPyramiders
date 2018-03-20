@@ -43,6 +43,7 @@ public:
 	float getY();
 	float getZ();
 	float getScale();
+	float getDistance(Transform* otherTransform);
 
 	//__declspec (property (put = setRotation, get = getRotation)) float rotation;
 	void setRotation(float newAngle);

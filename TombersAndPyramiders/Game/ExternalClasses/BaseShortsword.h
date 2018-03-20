@@ -28,6 +28,7 @@ class BaseShortsword : public BaseMeleeWeapon
 		static const float SHORTSWORD_COLLIDER_SCALE;
 		static const float SHORTSWORD_X_OFFSET_FROM_HOLDER;
 		static const float SHORTSWORD_Y_OFFSET_FROM_HOLDER;
+		static const float SHORTSWORD_CRITICAL_HIT_CHANCE;
 		static const float SHORTSWORD_ATTACK_COOLDOWN_TIME;
 
     /*----------------------------------------------------------------------------------------
@@ -37,20 +38,7 @@ class BaseShortsword : public BaseMeleeWeapon
         /** Default constructor. */
         explicit BaseShortsword() = delete;
 
-		explicit BaseShortsword(string imageName);
+		explicit BaseShortsword(int damage, string imageName, bool destroyOnCollision);
 
 		virtual ~BaseShortsword() {};
-	
-    /*----------------------------------------------------------------------------------------
-		Instance Methods
-    ----------------------------------------------------------------------------------------*/
-	public:
-		virtual void use();
-
-		void onStart();
-		void onUpdate(int ticks);
-		void onEnd();
-
-	private:
-		void updateAttack(int ticks);
 };

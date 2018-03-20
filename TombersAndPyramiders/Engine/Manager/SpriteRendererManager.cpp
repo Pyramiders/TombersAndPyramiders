@@ -4,6 +4,7 @@
 #include <condition_variable>
 #include "SpriteSheet.h"
 #include "Camera.h"
+#include "GameManager.h"
 
 /*
 TODO:
@@ -37,6 +38,15 @@ spriteRenderers.erase(id);
 
 void SpriteRendererManager::onUpdate(int ticks)
 {
+	for (int i = 0; i < m_spritesToSubscribe.size(); i++) 
+	{
+		if (m_spritesToSubscribe[i] != nullptr)
+		{
+			m_activeSprites[m_spritesToSubscribe[i]->getGameObject()->getId()] = m_spritesToSubscribe[i]->shared_from_this();
+		}
+	}
+	m_spritesToSubscribe.clear();
+
 	prepareRenderingThread();
 	//Load fboPlainPass
 	//renderReadingStick.lock();
@@ -47,6 +57,11 @@ void SpriteRendererManager::onUpdate(int ticks)
 
 	//condition.notify_one();
 	//renderReadingStick.unlock();
+}
+
+SDL_Window* SpriteRendererManager::getWindow()
+{
+	return m_mainWindow;
 }
 
 SpriteRendererManager::SpriteRendererManager()
@@ -136,7 +151,7 @@ bool SpriteRendererManager::init()
 	}
 
 	// Create our window centered as an OpenGL window
-	m_mainWindow = SDL_CreateWindow("Blizzard Ball Battle", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+	m_mainWindow = SDL_CreateWindow("Tombers and Pyramiders", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
 
 	// Check that everything worked out okay
 	if (!m_mainWindow)
@@ -189,6 +204,7 @@ bool SpriteRendererManager::init()
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (GLvoid *)0);
 	glBindVertexArray(0); //Unbind VAO
+	glEnable(GL_NORMALIZE);
 
 	m_fboPlainPass.init();
 	m_fboGaussianBlur.init();
@@ -221,113 +237,138 @@ void SpriteRendererManager::cleanup()
 
 GLuint SpriteRendererManager::generateTexture(std::string textureFileName)
 {
-	GLuint texture;
-	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	SDL_Surface *temp = IMG_Load(textureFileName.c_str());
-	if (temp == nullptr)
+	if (m_cachedTextures.find(textureFileName) == m_cachedTextures.end() || true)
 	{
-		GLenum errors = glGetError();
-		const char *sdlErrors = SDL_GetError();
-		std::cout << "ERROR::SPRITERENDERERMANAGER::FAILED TO READ FILE IN GENERATETEXTURE\n GLError: " << errors << " \nSDLErrors: " << sdlErrors << std::endl;
-		return 0;
+		GLuint texture;
+		glGenTextures(1, &texture);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		SDL_Surface *temp = IMG_Load(textureFileName.c_str());
+		if (temp == nullptr)
+		{
+			GLenum errors = glGetError();
+			const char *sdlErrors = SDL_GetError();
+			std::cout << "ERROR::SPRITERENDERERMANAGER::FAILED TO READ FILE IN GENERATETEXTURE\n GLError: " << errors << " \nSDLErrors: " << sdlErrors << std::endl;
+			return 0;
+		}
+		//If it crashes, make sure the .png is 32bit not 24bit so it supports RGBA not RGB
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, temp->w, temp->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, temp->pixels);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	
+		const char *sdlError = SDL_GetError();
+		GLenum glError = glGetError();
+		if (strlen(sdlError) > 0)
+		{
+			std::cout << sdlError << std::endl;
+		}
+		if (glError != GL_NO_ERROR)
+		{
+			std::cout << glError << std::endl;
+		}
+	
+		SDL_FreeSurface(temp);
+		glBindTexture(GL_TEXTURE_2D, 0);
+		m_cachedTextures[textureFileName] = texture;
+		return texture;
+	} else {
+		return m_cachedTextures[textureFileName];
 	}
-	//If it crashes, make sure the .png is 32bit not 24bit so it supports RGBA not RGB
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, temp->w, temp->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, temp->pixels);
-	glGenerateMipmap(GL_TEXTURE_2D);
-
-	const char *sdlError = SDL_GetError();
-	GLenum glError = glGetError();
-	if (strlen(sdlError) > 0)
-	{
-		std::cout << sdlError << std::endl;
-	}
-	if (glError != GL_NO_ERROR)
-	{
-		std::cout << glError << std::endl;
-	}
-
-	SDL_FreeSurface(temp);
-	glBindTexture(GL_TEXTURE_2D, 0);
-	return texture;
 }
 
 
-bool sortByZ(SpriteRenderer *lhs, SpriteRenderer *rhs)
+bool sortByZ(std::shared_ptr<SpriteRenderer> lhs, std::shared_ptr<SpriteRenderer> rhs)
 {
 	return lhs->getGameObject()->getTransform()->getZ() < rhs->getGameObject()->getTransform()->getZ();
 }
 
 void SpriteRendererManager::prepareRenderingThread()
 {
-	GLuint lastShaderUnset = 1000000;
-
-	//while (isBeingCollected);
-	//std::unique_lock<std::mutex> lock(threadMutex);
-
-	//while (renderingThreadIsAlive)
-	//{
-		//condition.wait(lock);
-		//renderReadingStick.lock();
-	m_renderingGroups.clear();
-	GLuint lastShader = lastShaderUnset;
-	std::sort(m_activeSprites.begin(), m_activeSprites.end(), sortByZ);
-	RenderingShaderGroup rg;
-
 	if (m_activeSprites.size() > 0)
 	{
+		GLuint lastShaderUnset = 1000000;
+
+		//while (isBeingCollected);
+		//std::unique_lock<std::mutex> lock(threadMutex);
+
+		//while (renderingThreadIsAlive)
+		//{
+		//condition.wait(lock);
+		//renderReadingStick.lock();
+		m_renderingGroups.clear();
+		GLuint lastShader = lastShaderUnset;
+		RenderingShaderGroup rg;
+
 		std::shared_ptr<Camera> camera = Camera::getActiveCamera();
-		for (size_t i = 0; i < m_activeSprites.size(); i++)
+
+		std::vector<std::shared_ptr<SpriteRenderer>> renderers;
+
+		//##Have Culled Objects. Find Ones To Render
+		auto objectsInBounds = GameManager::getInstance()->getObjectsInBounds(camera->getTransform()->getX(), camera->getTransform()->getY(), getGameWidth(), getGameHeight());
+		for (size_t i = 0; i < objectsInBounds.size(); i++)
 		{
-			SpriteRenderer *spriteRenderer = m_activeSprites[i];
+			if (objectsInBounds[i] == nullptr || objectsInBounds[i] == NULL)
+			{
+				continue;
+			}
+			if (m_activeSprites.find(objectsInBounds[i]->getId()) == m_activeSprites.end())
+			{
+				continue; //This game object is not one we're supposed to render either way
+			}
+			std::shared_ptr<SpriteRenderer> spriteRenderer = m_activeSprites[objectsInBounds[i]->getId()]; //objectsInBounds[i]->getComponent<SpriteRenderer>() also misculls so it is the getObjectsInBounds call itself
+			if (spriteRenderer == nullptr)
+			{
+				continue;
+			}
+			renderers.push_back(spriteRenderer);
+		}
+
+		//##Have Renderers. Sort Them
+		std::sort(renderers.begin(), renderers.end(), sortByZ);
+
+		//##Have Sorted Renderers. Prepare Rendering Info Objects
+		for (size_t i = 0; i < renderers.size(); i++) {
+			std::shared_ptr<SpriteRenderer> spriteRenderer = renderers[i];
+
 			Transform* transform = spriteRenderer->getGameObject()->getTransform();
 			
-			if (camera->isOnScreen(transform)) 
+			RenderingObject ro;
+
+			Shader *shader = spriteRenderer->getShader();
+			if (shader == nullptr)
 			{
-				RenderingObject ro;
-
-				Shader *shader = spriteRenderer->getShader();
-				if (shader == nullptr)
-				{
-					continue;
-				}
-				GLuint roShader = shader->program;
-				ro.sprite = spriteRenderer->getSprite();
-
-				if (lastShader == lastShaderUnset)
-				{
-					lastShader = roShader;
-					rg.shaderProgram = roShader;
-					rg.shaderID = shader->getID();
-				}
-
-				if (roShader != lastShader)
-				{
-					m_renderingGroups.push_back(rg);
-					lastShader = roShader;
-					rg = RenderingShaderGroup();
-					rg.shaderProgram = roShader;
-					rg.shaderID = shader->getID();
-				}
-
-				//Pass in transform
-				ro.transform = transform;
-
-				ro.spriteRenderer = spriteRenderer;
-
-				if (ro.isValid())
-				{
-					rg.children.push_back(ro);
-				}
+				continue;
 			}
-			//if (isRenderingLayerEnabled(spriteRenderer->getLayer()))
-			//{
-				
-			//}
+			GLuint roShader = shader->program;
+			ro.sprite = spriteRenderer->getSprite();
+
+			if (lastShader == lastShaderUnset)
+			{
+				lastShader = roShader;
+				rg.shaderProgram = roShader;
+				rg.shaderID = shader->getID();
+			}
+
+			if (roShader != lastShader)
+			{
+				m_renderingGroups.push_back(rg);
+				lastShader = roShader;
+				rg = RenderingShaderGroup();
+				rg.shaderProgram = roShader;
+				rg.shaderID = shader->getID();
+			}
+
+			//Pass in transform
+			ro.transform = transform;
+
+			ro.spriteRenderer = spriteRenderer;
+
+			if (ro.isValid())
+			{
+				rg.children.push_back(ro);
+			}
 		}
 		m_renderingGroups.push_back(rg);
 	}
@@ -414,7 +455,7 @@ void SpriteRendererManager::renderPass(int layerToRender, bool clearFirst)
 {
 	if (clearFirst)
 	{
-		glClearColor(1.0, 0.0, 0.0, 0.0);
+		glClearColor(0.0, 0.0, 0.0, 0.0);
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
@@ -474,6 +515,9 @@ void SpriteRendererManager::renderPass(int layerToRender, bool clearFirst)
 						int hit = 0;
 					}
 					glUniform3i(spriteSheetLocation, spriteSheet->getColumnCount(), spriteSheet->getRowCount(), spriteSheet->getCurrentIndex());
+				}
+				else {
+					int hit = 1;
 				}
 			}
 
@@ -640,9 +684,12 @@ void SpriteRendererManager::applyEndProcessing(FrameBufferObject mainTexture, Fr
 	//Draw mainTexture with postProcessingOverlay overlayed
 }
 
-void SpriteRendererManager::addSpriteForRendering(SpriteRenderer *sprite)
+void SpriteRendererManager::addSpriteForRendering(SpriteRenderer* sprite)
 {
-	m_activeSprites.push_back(sprite);
+	if (sprite != nullptr)
+	{
+		m_spritesToSubscribe.push_back(sprite); //Have to lazy load it into a spritesToAdd list because sprite->getGameObject->getId() is not set when SpriteRenderer's constructor is called
+	}
 }
 
 void SpriteRendererManager::disableRenderingLayer(int layer)
@@ -665,9 +712,9 @@ bool SpriteRendererManager::isRenderingLayerEnabled(int layer)
 	return m_disabledLayers.find(layer) == m_disabledLayers.end();
 }
 
-void SpriteRendererManager::removeSpriteFromRendering(SpriteRenderer *sprite)
+void SpriteRendererManager::removeSpriteFromRendering(int objectID)
 {
-	m_activeSprites.erase(std::remove(m_activeSprites.begin(), m_activeSprites.end(), sprite), m_activeSprites.end());
+	m_activeSprites[objectID] = nullptr;
 }
 
 void SpriteRendererManager::purge()

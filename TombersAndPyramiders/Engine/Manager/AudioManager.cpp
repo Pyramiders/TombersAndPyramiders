@@ -1,10 +1,14 @@
+/*
+	Audio Manager
+
+	*Last update - March 18, 2018
+		- Changed to a channel oriented system
+		- Added distance sound effects functionality
+
+	@author Kevin Han
+*/
+
 #include "AudioManager.h"
-#include <SDL.h>
-#include <SDL_mixer.h>
-#include <iostream>
-#include <string>
-#include "SpriteRendererManager.h"
-#include "HelperFunctions.h"
 
 AudioManager* AudioManager::s_instance;
 
@@ -25,10 +29,17 @@ AudioManager::AudioManager()
 {
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 		std::cout << "ERROR: " << Mix_GetError() << std::endl;
-	m_hit = Mix_LoadWAV(BuildPath("Game/Assets/Audio/hit.mp3").c_str());
-	m_shootArrow = Mix_LoadWAV(BuildPath("Game/Assets/Audio/shootarrow.mp3").c_str());
-	m_swordSwing = Mix_LoadWAV(BuildPath("Game/Assets/Audio/swordswing.mp3").c_str());
-	m_valiantWind = Mix_LoadWAV(BuildPath("Game/Assets/Audio/valiantwind.mp3").c_str());
+
+	Mix_AllocateChannels(MAX_CHANNELS);
+	m_audioFiles[MUSIC_MENU] = Mix_LoadWAV(BuildPath(PATH_MUSIC_MENU).c_str());
+	m_audioFiles[MUSIC_LEVEL_1] = Mix_LoadWAV(BuildPath(PATH_MUSIC_LEVEL_1).c_str());
+	m_audioFiles[SFX_BOW] = Mix_LoadWAV(BuildPath(PATH_SFX_BOW).c_str());
+	m_audioFiles[SFX_HIT] = Mix_LoadWAV(BuildPath(PATH_SFX_HIT).c_str());
+	m_audioFiles[SFX_SWORD] = Mix_LoadWAV(BuildPath(PATH_SFX_SWORD).c_str());
+	m_audioFiles[SFX_SHIELD] = Mix_LoadWAV(BuildPath(PATH_SFX_SHIELD).c_str());
+	m_audioFiles[SFX_DASH] = Mix_LoadWAV(BuildPath(PATH_SFX_DASH).c_str());
+	m_audioFiles[SFX_DOOR] = Mix_LoadWAV(BuildPath(PATH_SFX_DASH).c_str());
+	m_audioFiles[SFX_BUTTON_HOVER] = Mix_LoadWAV(BuildPath(PATH_SFX_BUTTON_HOVER).c_str());
 }
 
 AudioManager::~AudioManager()
@@ -36,49 +47,23 @@ AudioManager::~AudioManager()
 	Mix_Quit();
 }
 
-
-void AudioManager::playMusic(int loop, float volumeFactor)
+void AudioManager::setListener(GameObject* listenerObject)
 {
-	Mix_PlayChannel(1, m_valiantWind, 0);
-	Mix_Volume(1, 128 * volumeFactor);
+	m_listener = listenerObject;
 }
 
-void AudioManager::playHitSFX(int loop, float volumeFactor)
+//Music will be looped on Channel 0
+void AudioManager::playMusic(int musicInput)
 {
-	Mix_PlayChannel(2, m_hit, 0);
-	Mix_Volume(2, 128 * volumeFactor);
+	if (!Mix_Volume(0, MAX_VOLUME))
+	{
+		printf("Mix_Volume: %s\n", Mix_GetError());
+	}
+	if (!Mix_PlayChannel(0, m_audioFiles[musicInput], -1))
+	{
+		printf("Mix_PlayChannel: %s\n", Mix_GetError());
+	}
 }
-
-void AudioManager::playShootArrowSFX(int loop, float volumeFactor)
-{
-	Mix_PlayChannel(3, m_shootArrow, 0);
-	Mix_Volume(3, 128 * volumeFactor);
-}
-
-void AudioManager::playSwordSwingSFX(int loop, float volumeFactor)
-{
-	Mix_PlayChannel(4, m_swordSwing, 0);
-	Mix_Volume(4, 128 * volumeFactor);
-}
-
-/*void AudioManager::playMusic(std::string filename, int loops, float volumeFactor)
-{
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
-		std::cout << "ERROR: " << Mix_GetError() << std::endl;
-	Mix_Chunk *bgm = Mix_LoadWAV(filename.c_str());
-	Mix_PlayChannel(1, bgm, 0);
-	Mix_Volume(1, 10 * volumeFactor);
-}
-void AudioManager::playSEFshoot(std::string filename, int loops, float volumeFactor)
-{
-	//Mix_PlayMusic(mGameObj->GetMusic(filename), loops);
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
-		std::cout << "ERROR: " << Mix_GetError() << std::endl;
-	Mix_Chunk *SEF = Mix_LoadWAV(filename.c_str());
-	Mix_PlayChannel(2, SEF, 0);
-	Mix_Volume(2, 128 * volumeFactor);
-}*/
-
 void AudioManager::pauseMusic()
 {
 	if (Mix_PlayingMusic() != 0)
@@ -91,7 +76,63 @@ void AudioManager::resumeMusic()
 		Mix_ResumeMusic();
 }
 
-void AudioManager::stopMusic()
+//Sound effects has a pool of 15 channels to play on
+void AudioManager::playSound(int sfxInput, float sourceX, float sourceY)
+{
+	//loop through channels to find first available
+	for (int i = 1; i < MAX_CHANNELS; ++i)
+	{
+		if (!Mix_Playing(i))
+		{
+			//checks for listener
+			if (m_listener != nullptr)
+			{
+				m_listenerX = m_listener->getTransform()->getX();
+				m_listenerY = m_listener->getTransform()->getY();
+				//checks distance between player and source
+				m_distance = sqrt(pow((sourceX - m_listenerX), 2.0) + pow((sourceY - m_listenerY), 2.0));
+			}
+			else
+			{
+				//std::cout << "No listener found!" << endl;
+				m_distance = 0;
+				//break;
+			}
+
+			//play normally when source is withing range of the player
+			if (m_distance < MIN_DISTANCE)
+			{
+				playChannel(i, MAX_VOLUME, m_distance, sfxInput);
+				break;
+			}
+			//set the distance and volume of the channel when the source is further away
+			else if (m_distance < MAX_DISTANCE)
+			{
+				m_distance *= DISTANCE_OFFSET;
+				playChannel(i, DISTANCE_VOLUME, m_distance, sfxInput);
+				break;
+			}
+		}
+	}
+}
+
+void AudioManager::playChannel(int channel, int volume, int distance, int sfxInput)
+{
+	if (!Mix_Volume(channel, volume))
+	{
+		printf("Mix_Volume: %s\n", Mix_GetError());
+	}
+	if (!Mix_SetDistance(channel, distance))
+	{
+		printf("Mix_Volume: %s\n", Mix_GetError());
+	}
+	if (!Mix_PlayChannel(channel, m_audioFiles[sfxInput], 0))
+	{
+		printf("Mix_PlayChannel: %s\n", Mix_GetError());
+	}
+}
+
+void AudioManager::closeAudio()
 {
 	Mix_CloseAudio();
 }

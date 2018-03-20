@@ -2,7 +2,7 @@
 
 ### Game
 
-Tombers and Pyramiders is a 2.5D top down 16 person online ‘battle arena’ like game. Every player begins the game as an undead character with no weapons at the bottom of a pyramid. At the top of the pyramid is a treasure that brings your character back to life, but there is only one of these treasures and sixteen players! Players race to the top of the pyramid, solving puzzles, avoiding booby-traps and fighting other players along the way.
+Pyramid Panic is a 2.5D top down 16 person online ‘battle arena’ like game. Every player begins the game as an undead character with no weapons at the bottom of a pyramid. At the top of the pyramid is a treasure that brings your character back to life, but there is only one of these treasures and sixteen players. Players race to the top of the pyramid, solving puzzles, avoiding booby-traps and fighting other players along the way.
 
 The combat system allows for five types of equippable items: Weapons, Shields, Greaves, Helmets and Chestplates. Weapons, Shields and Greaves are activatables, each with unique affects. The items you equip determine what your character’s fighting abilities are. The pyramid is filled with other undead enemies that can kill players, as well as puzzle rooms which may require multiple characters working together to solve. 
 
@@ -50,4 +50,4 @@ The final milestone will be for April. This final release will include completin
 
 ## Team
 
-The team consists of nine members. The project manager, Dustin Linnington, as well as eight other members: Carson Roscoe, Chen Li, Erick Fernandez de Arteaga, Evgeni Manseyeu, Jaegar Sarauer, Kevin Han, Michael Nation, and Tanja Tong. We are all senior students completing our Bachelor of Technology in Computer Systems who came together to create an awesome game together.
+The team consists of seven members. The project manager, Dustin Limington, as well as eight other members, Carson Roscoe, Chen Li, Erick Fernandez de Arteaga, Evgeni Maiseyeu, Jaegar Sarauer, Kevin Han, Michael Nation, and Tanja Tong. We are all senior students completing our Bachelor of Technology in Computer Systems who came together to create an awesome game together.

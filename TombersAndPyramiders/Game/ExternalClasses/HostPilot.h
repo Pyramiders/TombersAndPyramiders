@@ -1,8 +1,8 @@
 #pragma once
 
 #include "BasePilot.h"
+#include "Vector2.h"
 class CharacterController;
-class Vector2;
 
 /*========================================================================================
 PlayerPilot
@@ -32,6 +32,7 @@ public:
 	/*----------------------------------------------------------------------------------------
 	Instance Setter Methods
 	----------------------------------------------------------------------------------------*/
+	Vector2 m_lastNetworkVector;
 public:
 	/**
 	This method assumes that the controller being passed is a CharacterController.
@@ -51,6 +52,8 @@ public:
 
 	void onEnd();
 
+	void setMovement (Vector2 vec, int updates);
+
 private:
 	/**
 	Determine how the character should move this frame based on player input.
@@ -61,4 +64,7 @@ private:
 	Returns whether there is input to use the character's weapon.
 	*/
 	bool getWeaponInput();
+
+	int updatesSinceNewMovement = 0;
+	int updatesUntilInvalid = 0;
 };

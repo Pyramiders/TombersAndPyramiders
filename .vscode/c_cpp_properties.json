@@ -1,0 +1,100 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1",
+                "/usr/local/include",
+                "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include",
+                "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+                "/usr/include",
+                "${workspaceRoot}/MacLibraries/SDl2.framework",
+                "${workspaceRoot}",
+                "${workspaceRoot}/TombersAndPyramiders/Engine",
+                "${workspaceRoot}/TombersAndPyramiders/Engine/Component",
+                "${workspaceRoot}/TombersAndPyramiders/Engine/Component/AI",
+                "${workspaceRoot}/TombersAndPyramiders/Engine/Component/Collision",
+                "${workspaceRoot}/TombersAndPyramiders/Engine/Component/Networking",
+                "${workspaceRoot}/TombersAndPyramiders/Engine/Component/Render",
+                "${workspaceRoot}/TombersAndPyramiders/Engine/External",
+                "${workspaceRoot}/TombersAndPyramiders/Engine/External/Math",
+                "${workspaceRoot}/TombersAndPyramiders/Engine/External/Render",
+                "${workspaceRoot}/TombersAndPyramiders/Engine/GameObjects",
+                "${workspaceRoot}/TombersAndPyramiders/Engine/Manager",
+                "${workspaceRoot}/TombersAndPyramiders/Game",
+                "${workspaceRoot}/TombersAndPyramiders/Game/Components",
+                "${workspaceRoot}/TombersAndPyramiders/Game/ExternalClasses",
+                "${workspaceRoot}/TombersAndPyramiders/Game/ExternalClasses/Possession",
+                "${workspaceRoot}/TombersAndPyramiders/Game/GameObjects",
+                "${workspaceRoot}/TombersAndPyramiders/Game/GameObjects/Doors",
+                "${workspaceRoot}/TombersAndPyramiders/Game/Managers",
+                "${workspaceRoot}/TombersAndPyramiders/Game/Scenes"
+            ],
+            "defines": [],
+            "intelliSenseMode": "clang-x64",
+            "browse": {
+                "path": [
+                    "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1",
+                    "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.0.0/include",
+                    "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+                    "/usr/include",
+                    "${workspaceRoot}",
+                    "${workspaceRoot}/TombersAndPyramiders",
+                    "${workspaceRoot}/TombersAndPyramiders/Engine",
+                    "${workspaceRoot}/TombersAndPyramiders/Engine/Component",
+                    "${workspaceRoot}/TombersAndPyramiders/Engine/Component/Render",
+                    "${workspaceRoot}/TombersAndPyramiders/Engine/Component/Networking",
+                    "${workspaceRoot}/TombersAndPyramiders/Engine/Manager",
+                    "${workspaceRoot}/TombersAndPyramiders/Game"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "macFrameworkPath": [
+                "${workspaceRoot}/MacLibraries/SDl2.framework",
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
+            ]
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "/usr/include",
+                "/usr/local/include",
+                "${workspaceRoot}"
+            ],
+            "defines": [],
+            "intelliSenseMode": "clang-x64",
+            "browse": {
+                "path": [
+                    "/usr/include",
+                    "/usr/local/include",
+                    "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include",
+                "${workspaceRoot}"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE"
+            ],
+            "intelliSenseMode": "msvc-x64",
+            "browse": {
+                "path": [
+                    "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include/*",
+                    "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        }
+    ],
+    "version": 3
+}

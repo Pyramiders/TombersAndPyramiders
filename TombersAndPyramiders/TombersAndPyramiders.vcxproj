@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0D909B57-AFD6-44B4-B192-3F9AD4D73850}</ProjectGuid>
-    <RootNamespace>BlizzardBallBattle</RootNamespace>
+    <RootNamespace>PyramidPanic</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -81,9 +81,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)TombersAndPyramiders;$(SolutionDir)TombersAndPyramiders\Game\Managers;$(SolutionDir)TombersAndPyramiders\Game\GameObjects;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses;$(SolutionDir)TombersAndPyramiders\Game\Scenes;$(SolutionDir)TombersAndPyramiders\Game\Scenes\MenuScenes;$(SolutionDir)TombersAndPyramiders\Game\Scenes\GameScenes;$(SolutionDir)TombersAndPyramiders\Game\Components;$(SolutionDir)TombersAndPyramiders\Game\GameObjects\Projectile;$(SolutionDir)TombersAndPyramiders\Game;$(SolutionDir)TombersAndPyramiders\Engine\Component\Collision;$(SolutionDir)TombersAndPyramiders\Engine\Component\Networking;$(SolutionDir)TombersAndPyramiders\Engine\Component\Transform;$(SolutionDir)TombersAndPyramiders\Engine\Component\Physics;$(SolutionDir)TombersAndPyramiders\Engine\Component\Render;$(SolutionDir)TombersAndPyramiders\Engine\External\Render;$(SolutionDir)TombersAndPyramiders\Engine\External\Math;$(SolutionDir)TombersAndPyramiders\Engine\External;$(SolutionDir)TombersAndPyramiders\Engine\Component;$(SolutionDir)TombersAndPyramiders\Engine\GameObjects;$(SolutionDir)TombersAndPyramiders\Engine\Manager;$(SolutionDir)TombersAndPyramiders\Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)TombersAndPyramiders;$(SolutionDir)TombersAndPyramiders\Game\Managers;$(SolutionDir)TombersAndPyramiders\Game\GameObjects\Doors;$(SolutionDir)TombersAndPyramiders\Game\GameObjects;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses\Invokable;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses\Possession;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses;$(SolutionDir)TombersAndPyramiders\Game\Scenes;$(SolutionDir)TombersAndPyramiders\Game\Scenes\MenuScenes;$(SolutionDir)TombersAndPyramiders\Game\Scenes\GameScenes;$(SolutionDir)TombersAndPyramiders\Engine\Component\Audio;$(SolutionDir)TombersAndPyramiders\Game\Components;$(SolutionDir)TombersAndPyramiders\Game\GameObjects\Projectile;$(SolutionDir)TombersAndPyramiders\Game;$(SolutionDir)TombersAndPyramiders\Engine\Component\Collision;$(SolutionDir)TombersAndPyramiders\Engine\Component\Networking;$(SolutionDir)TombersAndPyramiders\Engine\Component\Transform;$(SolutionDir)TombersAndPyramiders\Engine\Component\Physics;$(SolutionDir)TombersAndPyramiders\Engine\Component\Render;$(SolutionDir)TombersAndPyramiders\Engine\External\Render;$(SolutionDir)TombersAndPyramiders\Engine\External\Math;$(SolutionDir)TombersAndPyramiders\Engine\External;$(SolutionDir)TombersAndPyramiders\Engine\Component;$(SolutionDir)TombersAndPyramiders\Engine\GameObjects;$(SolutionDir)TombersAndPyramiders\Engine\Manager;$(SolutionDir)TombersAndPyramiders\Engine;$(SolutionDir)TombersAndPyramiders\Engine\External\LevelGeneration;$(SolutionDir)TombersAndPyramiders\Game\GameObjects\Doors;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ObjectFileName>$(IntDir)/%(RelativeDir)/</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;glew32.lib;glew32s.lib;freeglut.lib;SDL2_image.lib;SDL2_net.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -135,12 +136,21 @@
     <ClCompile Include="Engine\Component\AI\NeuralNet.cpp" />
     <ClCompile Include="Engine\Component\AI\Neuron.cpp" />
     <ClCompile Include="Engine\Component\AI\TrainingData.cpp" />
+    <ClCompile Include="Engine\Component\Audio\AudioListener.cpp" />
+    <ClCompile Include="Engine\Component\Audio\AudioSource.cpp" />
     <ClCompile Include="Engine\Component\Collision\BoxCollider.cpp" />
     <ClCompile Include="Engine\Component\Collision\CircleCollider.cpp" />
     <ClCompile Include="Engine\Component\Collision\Collider.cpp" />
     <ClCompile Include="Engine\Component\Collision\Rigidbody.cpp" />
     <ClCompile Include="Engine\Component\Networking\Receiver.cpp" />
     <ClCompile Include="Engine\Component\Networking\Sender.cpp" />
+    <ClCompile Include="Engine\External\LevelGeneration\BinaryTree.cpp" />
+    <ClCompile Include="Engine\External\LevelGeneration\Codec.cpp" />
+    <ClCompile Include="Engine\External\LevelGeneration\Corridor.cpp" />
+    <ClCompile Include="Engine\External\LevelGeneration\Doorway.cpp" />
+    <ClCompile Include="Engine\External\LevelGeneration\Room.cpp" />
+    <ClCompile Include="Engine\Manager\GeneratorManager.cpp" />
+    <ClCompile Include="Engine\External\QuadTree.cpp" />
     <ClCompile Include="Engine\External\Render\FrameBufferObject.cpp" />
     <ClCompile Include="Engine\External\Render\ISprite.cpp" />
     <ClCompile Include="Engine\External\Render\Sprite.cpp" />
@@ -149,11 +159,16 @@
     <ClCompile Include="Engine\GameObjects\ComplexSprite.cpp" />
     <ClCompile Include="Engine\GameObjects\DayNightCamera.cpp" />
     <ClCompile Include="Engine\GameObjects\SimpleSprite.cpp" />
+    <ClCompile Include="Engine\GameObjects\Tiles\ConnectorTile.cpp" />
+    <ClCompile Include="Engine\GameObjects\Tiles\CornerTile.cpp" />
+    <ClCompile Include="Engine\GameObjects\Tiles\DoorTile.cpp" />
+    <ClCompile Include="Engine\GameObjects\Tiles\FloorTile.cpp" />
+    <ClCompile Include="Engine\GameObjects\Tiles\Tile.cpp" />
+    <ClCompile Include="Engine\GameObjects\Tiles\WallTile.cpp" />
     <ClCompile Include="Engine\Manager\AudioManager.cpp" />
     <ClCompile Include="Engine\Manager\NetworkingManager.cpp" />
     <ClCompile Include="Engine\Manager\PhysicsManager.cpp" />
     <ClCompile Include="Engine\Manager\SceneManager.cpp" />
-    <ClCompile Include="Engine\Monster.cpp" />
     <ClCompile Include="Engine\PathFinding.cpp" />
     <ClCompile Include="Engine\Scene.cpp" />
     <ClCompile Include="Engine\Updateable.cpp" />
@@ -163,6 +178,7 @@
     <ClCompile Include="Game\Components\BaseController.cpp" />
     <ClCompile Include="Game\Components\CameraFollow.cpp" />
     <ClCompile Include="Game\Components\CharacterController.cpp" />
+    <ClCompile Include="Game\Components\DoorController.cpp" />
     <ClCompile Include="Game\Components\Inventory.cpp" />
     <ClCompile Include="Game\ExternalClasses\AiPilot.cpp" />
     <ClCompile Include="Game\ExternalClasses\BaseChestplate.cpp" />
@@ -181,7 +197,15 @@
     <ClCompile Include="Game\ExternalClasses\HostPilot.cpp" />
     <ClCompile Include="Game\ExternalClasses\DummyPilot.cpp" />
     <ClCompile Include="Game\ExternalClasses\PlayerPilot.cpp" />
+    <ClCompile Include="Game\ExternalClasses\Possession\BasePossessableController.cpp" />
+    <ClCompile Include="Game\ExternalClasses\Possession\GhostController.cpp" />
+    <ClCompile Include="Game\ExternalClasses\Possession\GhostPilot.cpp" />
+    <ClCompile Include="Game\ExternalClasses\Possession\BoulderController.cpp" />
+    <ClCompile Include="Game\ExternalClasses\WoodenChestplate.cpp" />
+    <ClCompile Include="Game\ExternalClasses\WoodenGreaves.cpp" />
+    <ClCompile Include="Game\ExternalClasses\WoodenHelmet.cpp" />
     <ClCompile Include="Game\ExternalClasses\WoodenLongbow.cpp" />
+    <ClCompile Include="Game\ExternalClasses\WoodenShield.cpp" />
     <ClCompile Include="Game\ExternalClasses\WoodenShortsword.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Engine\Component\Component.cpp" />
@@ -196,14 +220,21 @@
     <ClCompile Include="Engine\Manager\GameManager.cpp" />
     <ClCompile Include="Engine\Manager\SpriteRendererManager.cpp" />
     <ClCompile Include="Game\Components\ComponentTemplate.cpp" />
+    <ClCompile Include="Game\GameObjects\Button.cpp" />
     <ClCompile Include="Game\GameObjects\Character.cpp" />
     <ClCompile Include="Game\GameObjects\ClientCharacter.cpp" />
     <ClCompile Include="Game\GameObjects\DamagingRegion.cpp" />
+    <ClCompile Include="Game\GameObjects\Doors\Door.cpp" />
+    <ClCompile Include="Game\GameObjects\Doors\SingleDoor.cpp" />
     <ClCompile Include="Game\GameObjects\GameObjectTemplate.cpp" />
+    <ClCompile Include="Game\GameObjects\GhostCharacter.cpp" />
     <ClCompile Include="Game\GameObjects\HostCharacter.cpp" />
     <ClCompile Include="Game\GameObjects\NetworkCharacter.cpp" />
+    <ClCompile Include="Game\GameObjects\Panel.cpp" />
     <ClCompile Include="Game\GameObjects\Projectile.cpp" />
+    <ClCompile Include="Game\GameObjects\Boulder.cpp" />
     <ClCompile Include="Game\Scenes\LaunchScene.cpp" />
+    <ClCompile Include="Game\Scenes\MainMenuScene.cpp" />
     <ClCompile Include="Game\Scenes\NetworkedGameScene.cpp" />
     <ClCompile Include="Game\GameObjects\MiscSquare.cpp" />
     <ClCompile Include="Game\GameObjects\MovingSquare.cpp" />
@@ -212,12 +243,11 @@
     <ClCompile Include="Game\Managers\SpawnManager.cpp" />
     <ClCompile Include="Game\Scenes\CameraTestScene.cpp" />
     <ClCompile Include="Game\Scenes\CharacterTestScene.cpp" />
+    <ClCompile Include="Game\Scenes\PossessionTestScene.cpp" />
     <ClCompile Include="Game\Scenes\SceneTemplate.cpp" />
     <ClCompile Include="Health.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\GameObjects\Monster.cpp" />
-    <ClCompile Include="Paper.cpp" />
-    <ClCompile Include="PathFinding.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Component\AI\AI.h" />
@@ -225,12 +255,22 @@
     <ClInclude Include="Engine\Component\AI\NeuralNet.h" />
     <ClInclude Include="Engine\Component\AI\Neuron.h" />
     <ClInclude Include="Engine\Component\AI\TrainingData.h" />
+    <ClInclude Include="Engine\Component\Audio\AudioBank.h" />
+    <ClInclude Include="Engine\Component\Audio\AudioListener.h" />
+    <ClInclude Include="Engine\Component\Audio\AudioSource.h" />
     <ClInclude Include="Engine\Component\Collision\BoxCollider.h" />
     <ClInclude Include="Engine\Component\Collision\CircleCollider.h" />
     <ClInclude Include="Engine\Component\Collision\Collider.h" />
     <ClInclude Include="Engine\Component\Collision\Rigidbody.h" />
     <ClInclude Include="Engine\Component\Networking\Receiver.h" />
     <ClInclude Include="Engine\Component\Networking\Sender.h" />
+    <ClInclude Include="Engine\External\LevelGeneration\BinaryTree.h" />
+    <ClInclude Include="Engine\External\LevelGeneration\Codec.h" />
+    <ClInclude Include="Engine\External\LevelGeneration\Corridor.h" />
+    <ClInclude Include="Engine\External\LevelGeneration\Doorway.h" />
+    <ClInclude Include="Engine\External\LevelGeneration\Room.h" />
+    <ClInclude Include="Engine\Manager\GeneratorManager.h" />
+    <ClInclude Include="Engine\External\QuadTree.h" />
     <ClInclude Include="Engine\External\Render\FrameBufferObject.h" />
     <ClInclude Include="Engine\External\Render\ISprite.h" />
     <ClInclude Include="Engine\External\Render\Sprite.h" />
@@ -242,12 +282,17 @@
     <ClInclude Include="Engine\GameObjects\ComplexSprite.h" />
     <ClInclude Include="Engine\GameObjects\DayNightCamera.h" />
     <ClInclude Include="Engine\GameObjects\SimpleSprite.h" />
+    <ClInclude Include="Engine\GameObjects\Tiles\ConnectorTile.h" />
+    <ClInclude Include="Engine\GameObjects\Tiles\CornerTile.h" />
+    <ClInclude Include="Engine\GameObjects\Tiles\DoorTile.h" />
+    <ClInclude Include="Engine\GameObjects\Tiles\FloorTile.h" />
+    <ClInclude Include="Engine\GameObjects\Tiles\Tile.h" />
+    <ClInclude Include="Engine\GameObjects\Tiles\WallTile.h" />
     <ClInclude Include="Engine\Manager\AudioManager.h" />
     <ClInclude Include="Engine\Manager\MessageManager.h" />
     <ClInclude Include="Engine\Manager\NetworkingManager.h" />
     <ClInclude Include="Engine\Manager\PhysicsManager.h" />
     <ClInclude Include="Engine\Manager\SceneManager.h" />
-    <ClInclude Include="Engine\Monster.h" />
     <ClInclude Include="Engine\PathFinding.h" />
     <ClInclude Include="Engine\Scene.h" />
     <ClInclude Include="Engine\SearchCell.h" />
@@ -255,6 +300,7 @@
     <ClInclude Include="Game\Components\BaseController.h" />
     <ClInclude Include="Game\Components\CameraFollow.h" />
     <ClInclude Include="Game\Components\CharacterController.h" />
+    <ClInclude Include="Game\Components\DoorController.h" />
     <ClInclude Include="Game\Components\Inventory.h" />
     <ClInclude Include="Game\ExternalClasses\AiPilot.h" />
     <ClInclude Include="Game\ExternalClasses\BaseChestplate.h" />
@@ -272,9 +318,19 @@
     <ClInclude Include="Game\ExternalClasses\Damageable.h" />
     <ClInclude Include="Game\ExternalClasses\HostPilot.h" />
     <ClInclude Include="Game\ExternalClasses\DummyPilot.h" />
+    <ClInclude Include="Game\ExternalClasses\Invokable.h" />
     <ClInclude Include="Game\ExternalClasses\PlayerPilot.h" />
+    <ClInclude Include="Game\ExternalClasses\Possession\BasePossessableController.h" />
+    <ClInclude Include="Game\ExternalClasses\Possession\GhostController.h" />
+    <ClInclude Include="Game\ExternalClasses\Possession\GhostPilot.h" />
+    <ClInclude Include="Game\ExternalClasses\Possession\BoulderController.h" />
+    <ClInclude Include="Game\ExternalClasses\RandomHelper.h" />
     <ClInclude Include="Game\ExternalClasses\UserDefinedRenderLayers.h" />
+    <ClInclude Include="Game\ExternalClasses\WoodenChestplate.h" />
+    <ClInclude Include="Game\ExternalClasses\WoodenGreaves.h" />
+    <ClInclude Include="Game\ExternalClasses\WoodenHelmet.h" />
     <ClInclude Include="Game\ExternalClasses\WoodenLongbow.h" />
+    <ClInclude Include="Game\ExternalClasses\WoodenShield.h" />
     <ClInclude Include="Game\ExternalClasses\WoodenShortsword.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Engine\Component\Component.h" />
@@ -292,15 +348,22 @@
     <ClInclude Include="Engine\Manager\InputManager.h" />
     <ClInclude Include="Engine\Manager\SpriteRendererManager.h" />
     <ClInclude Include="Game\Components\ComponentTemplate.h" />
+    <ClInclude Include="Game\GameObjects\Button.h" />
     <ClInclude Include="Game\GameObjects\Character.h" />
     <ClInclude Include="Game\GameObjects\ClientCharacter.h" />
     <ClInclude Include="Game\GameObjects\DamagingRegion.h" />
+    <ClInclude Include="Game\GameObjects\Doors\Door.h" />
     <ClInclude Include="Game\GameObjects\GameObjectTemplate.h" />
+    <ClInclude Include="Game\GameObjects\GhostCharacter.h" />
     <ClInclude Include="Game\GameObjects\HostCharacter.h" />
     <ClInclude Include="Game\GameObjects\NetworkCharacter.h" />
+    <ClInclude Include="Game\GameObjects\Panel.h" />
     <ClInclude Include="Game\GameObjects\PlayerCharacter.h" />
     <ClInclude Include="Game\GameObjects\Projectile.h" />
+    <ClInclude Include="Game\GameObjects\Boulder.h" />
+    <ClInclude Include="Game\GameObjects\Doors\SingleDoor.h" />
     <ClInclude Include="Game\Scenes\LaunchScene.h" />
+    <ClInclude Include="Game\Scenes\MainMenuScene.h" />
     <ClInclude Include="Game\Scenes\NetworkedGameScene.h" />
     <ClInclude Include="Game\GameObjects\MiscSquare.h" />
     <ClInclude Include="Game\GameObjects\MovingSquare.h" />
@@ -309,6 +372,7 @@
     <ClInclude Include="Game\Managers\SpawnManager.h" />
     <ClInclude Include="Game\Scenes\CameraTestScene.h" />
     <ClInclude Include="Game\Scenes\CharacterTestScene.h" />
+    <ClInclude Include="Game\Scenes\PossessionTestScene.h" />
     <ClInclude Include="Game\Scenes\SceneTemplate.h" />
     <ClInclude Include="Game\GameObjects\Monster.h" />
     <ClInclude Include="Health.h" />
@@ -325,6 +389,44 @@
   <ItemGroup>
     <Text Include="Engine\External\Render\contrastFragment.txt" />
     <Text Include="Engine\External\Render\contrastVertex.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Game\Assets\Audio\hit.mp3" />
+    <Media Include="Game\Assets\Audio\hit1.mp3" />
+    <Media Include="Game\Assets\Audio\hit2.mp3" />
+    <Media Include="Game\Assets\Audio\hit3.mp3" />
+    <Media Include="Game\Assets\Audio\mario_.mp3" />
+    <Media Include="Game\Assets\Audio\mario_.wav" />
+    <Media Include="Game\Assets\Audio\shootarrow.mp3" />
+    <Media Include="Game\Assets\Audio\swordswing.mp3" />
+    <Media Include="Game\Assets\Audio\valiantwind.mp3" />
+    <Media Include="Game\Assets\Audio\victory.wav" />
+    <Media Include="Game\Assets\hit.wav" />
+    <Media Include="Game\Assets\mario_.wav" />
+    <Media Include="Game\Assets\shoot.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Game\Assets\.DS_Store" />
+    <None Include="Game\Assets\Shaders\fragment_shader.fs" />
+    <None Include="Game\Assets\Shaders\glow.fs" />
+    <None Include="Game\Assets\Shaders\glow.vs" />
+    <None Include="Game\Assets\Shaders\ppAmbientColour.fs" />
+    <None Include="Game\Assets\Shaders\ppBloom.fs" />
+    <None Include="Game\Assets\Shaders\ppExtractBrightness.fs" />
+    <None Include="Game\Assets\Shaders\ppExtractBrightnessDirectional.fs" />
+    <None Include="Game\Assets\Shaders\ppExtractBrightnessDirectional.vs" />
+    <None Include="Game\Assets\Shaders\ppGaussianBlur.fs" />
+    <None Include="Game\Assets\Shaders\ppHorizontalGaussianBlur.vs" />
+    <None Include="Game\Assets\Shaders\ppPassThrough.fs" />
+    <None Include="Game\Assets\Shaders\ppPassThrough.vs" />
+    <None Include="Game\Assets\Shaders\ppVerticalGaussianBlur.vs" />
+    <None Include="Game\Assets\Shaders\shadow.fs" />
+    <None Include="Game\Assets\Shaders\shadow.vs" />
+    <None Include="Game\Assets\Shaders\shadow_SpriteSheet.vs" />
+    <None Include="Game\Assets\Shaders\sprite_sheet.vs" />
+    <None Include="Game\Assets\Shaders\tile.vs" />
+    <None Include="Game\Assets\Shaders\vertex_shader.vs" />
+    <None Include="Game\Assets\Shaders\voxel.fs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

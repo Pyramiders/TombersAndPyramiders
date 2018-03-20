@@ -17,11 +17,11 @@ private:
 
 public:
 	int Subscribe(std::string event, Callback callback, void* owner);
-	Receiver(GameObject* gameObject, std::string netID);
+	Receiver(GameObject* gameObject, int netID);
 	~Receiver(); //Could be death message later
 	//void ReceiveUpdate(TransformState* equivalentTransform);
 	void onStart() {};
 	void onUpdate(int ticks) {};
 	void onEnd() {};
-	std::string netID;
+	int netID;
 };

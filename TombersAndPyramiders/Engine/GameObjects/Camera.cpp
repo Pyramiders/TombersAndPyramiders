@@ -45,6 +45,7 @@ void Camera::ensureInit()
 
 void Camera::init() {}
 
+
 bool Camera::isOnScreen(float transformX, float transformY, float transformScale)
 {
 	Transform* cameraTransform = s_activeCamera->getTransform();

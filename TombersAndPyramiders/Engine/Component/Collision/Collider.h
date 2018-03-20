@@ -13,6 +13,8 @@ private:
 	std::vector<GameObject*> m_colliders;
 	bool m_disabled;
 	bool m_isTrigger = false;
+protected:
+	float m_xOffset, m_yOffset;
 public:
 	Collider(GameObject* gameObject/*, float radius*/);
 	bool doesCollide(GameObject* other);
@@ -26,6 +28,10 @@ public:
 	bool getDisabled();
 	void setIsTrigger(bool isNowTrigger);
 	bool isTrigger();
+	float getXOffset();
+	float getYOffset();
+	void setXOffset(float xPos);
+	void setYOffset(float yPos);
 
 	GameObject* getColliderObj();
 	void setColliderObj(GameObject* collider);

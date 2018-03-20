@@ -3,6 +3,7 @@
 
 SpriteRenderer::SpriteRenderer(GameObject* gameObject) : Renderer(gameObject)
 {
+
 	SpriteRendererManager::getInstance()->addSpriteForRendering(this); //.subscribe(gameObject.id, this); NOTE: Not subscribing/unsubscribing for now
 	m_activeShader = Shader::getShader();
 }
@@ -35,5 +36,5 @@ std::shared_ptr<ISprite> SpriteRenderer::getSprite()
 
 SpriteRenderer::~SpriteRenderer()
 {
-	SpriteRendererManager::getInstance()->removeSpriteFromRendering(this);
+	SpriteRendererManager::getInstance()->removeSpriteFromRendering(gameObject->getId());
 }

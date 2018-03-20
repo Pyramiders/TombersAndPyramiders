@@ -5,6 +5,7 @@
 
 void HostPilot::setController(BaseController* controller)
 {
+	m_lastNetworkVector = Vector2 (0, 0);
 	BasePilot::setController(controller);
 
 	/* Store a correctly typed pointer to the controller for convenience. */
@@ -19,12 +20,13 @@ void HostPilot::onStart()
 
 void HostPilot::onUpdate(int ticks)
 {
-	/*
-	if (m_characterController != nullptr)
+	
+	if (m_characterController != nullptr && updatesSinceNewMovement < updatesUntilInvalid)
 	{
 		m_characterController->move(getMovement());
+		updatesSinceNewMovement++;
 	}
-
+	/*
 	if (getWeaponInput())
 	{
 		m_characterController->useWeapon();
@@ -35,38 +37,18 @@ void HostPilot::onUpdate(int ticks)
 void HostPilot::onEnd()
 {}
 
+void HostPilot::setMovement (Vector2 vec, int updates) {
+	m_lastNetworkVector = vec;
+	updatesUntilInvalid = updates;
+	updatesSinceNewMovement = 0;
+}
+
 Vector2 HostPilot::getMovement()
 {
-	Vector2 movement = Vector2(0, 0);
-
-	/* Move up. */
-	if (InputManager::getInstance()->onKey(SDLK_w))
-	{
-		movement.setY(movement.getY() + 1);
-	}
-
-	/* Move down. */
-	if (InputManager::getInstance()->onKey(SDLK_s))
-	{
-		movement.setY(movement.getY() - 1);
-	}
-
-	/* Move left. */
-	if (InputManager::getInstance()->onKey(SDLK_a))
-	{
-		movement.setX(movement.getX() - 1);
-	}
-
-	/* Move right. */
-	if (InputManager::getInstance()->onKey(SDLK_d))
-	{
-		movement.setX(movement.getX() + 1);
-	}
-
-	return movement;
+	return m_lastNetworkVector;
 }
 
 bool HostPilot::getWeaponInput()
 {
-	return InputManager::getInstance()->onKey(SDLK_i);
+	return false;
 }

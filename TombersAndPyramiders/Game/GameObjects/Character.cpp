@@ -65,40 +65,59 @@ std::shared_ptr<ComplexSpriteinfo> Character::generateComplexSpriteInfo()
 	return spriteInfo;
 }
 
-// Changes the sprite animation to running
-void Character::playRunAnimation()
+// Changes the sprite to the specified ID
+bool Character::playAnimation (int animID, int animReturn)
 {
-	if (getCurrentSprite() == ANIMATION_IDLE)
-	{
-		changeSprite(ANIMATION_RUN);
+	if (animReturn != -1) {
+		changeSprite (animID, animReturn);
 	}
+	else {
+		changeSprite (animID);
+	}
+	return true;
+}
+
+// Changes the sprite animation to running
+bool Character::playRunAnimation ()
+{
+	if (getCurrentSprite () == ANIMATION_IDLE)
+	{
+		changeSprite (ANIMATION_RUN);
+		return true;
+	}
+	return false;
 }
 
 
 // Changes the sprite animation to idling
-void Character::endRunAnimation()
+bool Character::endRunAnimation()
 {
 	if (getCurrentSprite() == ANIMATION_RUN) 
 	{
 		changeSprite(ANIMATION_IDLE);
+		return true;
 	}
+	return false;
 }
 
 
 // Changes the sprite animation to the melee attack for one animation then returns back to idle
-void Character::playMeleeAttackAnimation()
+bool Character::playMeleeAttackAnimation()
 {
 	changeSprite(ANIMATION_ATTACK_MELEE, ANIMATION_IDLE);
+	return true;
 }
 
 
 // Changes the sprite animation to the range attack for one animation then returns back to idle
-void Character::playRangeAttackAnimation()
+bool Character::playRangeAttackAnimation()
 {
 	changeSprite(ANIMATION_ATTACK_RANGE, ANIMATION_IDLE);
+	return true;
 }
 
-void Character::playHurtAnimation()
+bool Character::playHurtAnimation()
 {
 	changeSprite(ANIMATION_HURT, ANIMATION_IDLE);
+	return true;
 }

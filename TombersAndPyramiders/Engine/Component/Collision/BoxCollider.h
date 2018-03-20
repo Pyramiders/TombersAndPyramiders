@@ -8,6 +8,7 @@ private:
 	float m_width, m_height;
 public:
 	BoxCollider(GameObject* parentGameObject, float width, float height);
+	BoxCollider(GameObject* parentGameObject, float width, float height, float xPos, float yPos);
 	float getWidth();
 	float getHeight();
 	void setWidth(float width);

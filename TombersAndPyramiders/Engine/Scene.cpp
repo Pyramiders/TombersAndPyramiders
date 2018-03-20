@@ -4,6 +4,8 @@
 #include "SpriteRendererManager.h"
 #include "PhysicsManager.h"
 #include "GameObject.h"
+#include "Camera.h"
+#include "CameraFollow.h"
 
 void Scene::addGameObject(int id, std::shared_ptr<GameObject> obj)
 {
@@ -42,4 +44,10 @@ void Scene::onObjectsUpdate(int ticks)
 void Scene::purge()
 {
 	sceneObjects.clear();
+}
+
+
+void Scene::setCameraFollow(std::shared_ptr<GameObject> toFollow)
+{
+	Camera::getActiveCamera()->getComponent<CameraFollow>()->setToFollow(toFollow);
 }

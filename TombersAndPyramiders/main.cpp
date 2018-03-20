@@ -6,8 +6,7 @@
 #include "SpriteRendererManager.h"
 #include "GameObject.h"
 #include "AudioManager.h"
-#include <SDL.h>
-#include <SDL_mixer.h>
+#include "GLHeaders.h"
 #include "NetworkingManager.h"
 
 void RunGame();
@@ -15,11 +14,11 @@ void RunGame();
 int main(int argc, char *argv[])
 {
 	//For Visual Studio std::cout outputs
-/*#if defined _WIN32 || defined _WIN64
+#if defined _WIN32 || defined _WIN64
 	AllocConsole();
 	freopen("CONOUT$", "w", stdout);
 	freopen("CONOUT$", "w", stderr);
-#endif*/
+#endif
 
   //AudioManager audioManager;
   //audioManager.PlaySoundEffect("mario_.mp3");

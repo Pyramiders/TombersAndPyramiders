@@ -12,7 +12,7 @@
 
 
 template<int> //template parameter could be anything!
-void dynamic_pointer_cast(); //ADD this. NO NEED TO DEFINE IT
+void dynamic_pointer_cast(); //ADD this. NO NEED TO DEFINE IT. Required for compiler due to some weird bug about not knowing which prototype is available in certain circumstances
 
 class GameObject : public Updateable
 {
@@ -35,7 +35,7 @@ public:
 	{
 		return m_id;
 	}
-	void GameObject::setInitialState(bool isGlobal, int id);
+	void setInitialState(bool isGlobal, int id);
 
 
 	template <class T>
@@ -58,6 +58,23 @@ public:
 	{
 		return (T)m_components[getClassName<T>()];
 	}
+	template <typename T, typename TParent, class... _Types>
+	std::shared_ptr<T> addComponentAsParent(_Types&&... args)
+	{
+		std::shared_ptr<T> component = std::make_shared<T>(args...);
+		std::string id = getClassName<TParent>();
+		if (!hasComponent(id))
+		{
+			std::vector<std::shared_ptr<Component>> typeList;
+			typeList.push_back(component);
+			m_components.insert(std::pair<std::string, std::vector<std::shared_ptr<Component>>>(id, typeList));
+		}
+		else
+		{
+			m_components[id].push_back(component);
+		}
+		return component;
+	}
 	template <typename T, class... _Types>
 	std::shared_ptr<T> addComponent(_Types&&... args)
 	{
@@ -79,12 +96,6 @@ public:
 	template <typename T>
 	void removeComponents()
 	{
-		std::vector<std::shared_ptr<Component>> componentList = m_components[getClassName<T>()];
-		for (size_t i = componentList.size() - 1; i >= 0; i--)
-		{
-			delete componentList[i];
-		}
-
 		m_components[getClassName<T>()].clear();
 	}
 

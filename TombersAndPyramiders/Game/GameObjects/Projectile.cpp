@@ -1,7 +1,7 @@
 /*===================================================================================*//**
 	Projectile
 	
-	A Damaging region that is fired by a projectile weapon, moves, and destroys itself 
+	A DamagingRegion that is fired by a projectile weapon, moves, and destroys itself 
 	after a set duration or after hitting something.
     
     @author Erick Fernandez de Arteaga
@@ -19,13 +19,15 @@
 /*----------------------------------------------------------------------------------------
 	Resource Management
 ----------------------------------------------------------------------------------------*/
-Projectile::Projectile(string imageName, float colliderWidth, float colliderHeight, 
-	float spawnXPosition, float spawnYPosition, float spriteScale, float xVelociy, float yVelocity, float lifespan) :
-	DamagingRegion{ imageName, colliderWidth, colliderHeight, spawnXPosition, spawnYPosition, spriteScale }, 
+Projectile::Projectile(int damage, string imageName, float colliderWidth, float colliderHeight, 
+	float criticalHitChance, 
+	bool destroyOnCollision, 
+	float spawnXPosition, float spawnYPosition, float spawnRotation, float spriteScale, float xVelociy, float yVelocity, float lifespan) :
+	DamagingRegion{ damage, imageName, colliderWidth, colliderHeight, criticalHitChance, destroyOnCollision, spawnXPosition, spawnYPosition, spriteScale },
 	m_velocity{ Vector2(xVelociy, yVelocity) },
 	m_lifespan{ lifespan }
 {
-	m_destroyOnCollision = true;
+	GameObject::getTransform()->setRotation(spawnRotation);
 }
 
 Projectile::~Projectile()
@@ -41,16 +43,23 @@ void Projectile::onUpdate(int ticks)
 	updateLifespan(ticks);
 }
 
+/**
+	Handles collisions for projectile damaging regions.
+*/
 void Projectile::handleSingleCollision(GameObject* other)
 {
+	auto otherId = other->getId();
+
 	/* Ensure you don't collide with the thing that created you. */
-	if (other->getId() != m_ownerId)
+	if (otherId != m_ownerId)
 	{
 		/* If the other thing is a character, damage it. */
 		std::shared_ptr<CharacterController> ccOther = other->getComponent<CharacterController>();
 		if (ccOther != nullptr)
 		{
-			ccOther->takeDamage(m_damage);
+			m_hitList.insert(otherId);
+
+			ccOther->takeDamage(m_damage, isCriticalHit());
 
 			if (m_destroyOnCollision)
 			{
@@ -60,14 +69,17 @@ void Projectile::handleSingleCollision(GameObject* other)
 			return;
 		}
 
-		/* TODO Handle collisions with walls? */
-		destroy(getId());
+		/* In all other collisions, destroy if appropriate. */
+		if (m_destroyOnCollision)
+		{
+			destroy(getId());
+		}
 	}
 }
 
 void Projectile::updatePosition(int ticks)
 {
-	float deltaTime = ticks / BaseItem::TICKS_PER_SECOND;
+	float deltaTime = (float)ticks / 1000.0f;
 	float xDelta = m_velocity.getX() * deltaTime;
 	float yDelta = m_velocity.getY() * deltaTime;
 
@@ -79,7 +91,7 @@ void Projectile::updatePosition(int ticks)
 
 void Projectile::updateLifespan(int ticks)
 {
-	m_lifespan -= ticks / BaseItem::TICKS_PER_SECOND;
+	m_lifespan -= (float) ticks / 1000.0f;
 
 	if (m_lifespan <= 0)
 	{

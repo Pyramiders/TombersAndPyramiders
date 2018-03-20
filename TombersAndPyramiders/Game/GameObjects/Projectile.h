@@ -1,7 +1,7 @@
 /*===================================================================================*//**
 	Projectile
 	
-	A Damaging region that is fired by a projectile weapon, moves, and destroys itself 
+	A DamagingRegion that is fired by a projectile weapon, moves, and destroys itself 
 	after a set duration or after hitting something.
     
     @author Erick Fernandez de Arteaga
@@ -33,9 +33,11 @@ class Projectile : public DamagingRegion
 	public:
 		explicit Projectile() = delete;
 
-		explicit Projectile(string imageName, float colliderWidth, float colliderHeight, 
-			float spawnXPosition, float spawnYPosition, float spriteScale, 
-			float xVelocity, float yVelocity, 
+		explicit Projectile(int damage, string imageName, float colliderWidth, float colliderHeight, 
+			float criticalHitChance,
+			bool destroyOnCollision, 
+			float spawnXPosition, float spawnYPosition, float spawnRotation, float spriteScale, 
+			float xVelocity, float yVelocity,
 			float lifespan);
 
 		virtual ~Projectile();

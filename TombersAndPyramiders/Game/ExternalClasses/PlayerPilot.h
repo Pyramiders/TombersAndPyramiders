@@ -13,8 +13,8 @@
 	Dependencies
 ========================================================================================*/
 #include "BasePilot.h"
+#include "Vector2.h"
 class CharacterController;
-class Vector2;
 
 /*========================================================================================
 	PlayerPilot	
@@ -40,7 +40,7 @@ class PlayerPilot : public BasePilot
         /** Default constructor. */
         explicit PlayerPilot() = default;
 
-	
+		Vector2 m_lastMoveVector;
 	/*----------------------------------------------------------------------------------------
 		Instance Setter Methods
 	----------------------------------------------------------------------------------------*/
@@ -73,4 +73,19 @@ class PlayerPilot : public BasePilot
 			Returns whether there is input to use the character's weapon.
 		*/
 		bool getWeaponInput();
+		
+		/**
+			Tries to see if there is a triggerable object within range and trigger it if so
+		*/
+		void tryInvokeTrigger();
+
+		/**
+			Returns whether there is input to use the character's shield.
+		*/
+		bool getShieldInput();
+
+		/**
+			Returns whether there is input to use the character's greaves.
+		*/
+		bool getGreavesInput();
 };

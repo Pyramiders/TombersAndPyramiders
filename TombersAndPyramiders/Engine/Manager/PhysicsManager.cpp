@@ -100,7 +100,7 @@ bool PhysicsManager::checkCircleCollision(CircleCollider* c1, CircleCollider* c2
 {
 	Transform* c1transform = c1->getGameObject()->getTransform();
 	Transform* c2transform = c2->getGameObject()->getTransform();
-	float radiusDistance = sqrt(pow(c1transform->getX() - c2transform->getX(), 2) + pow(c1transform->getY() - c2transform->getY(), 2));
+	float radiusDistance = sqrt(pow(c1transform->getX() + c1->getXOffset() - (c2transform->getX() + c2->getXOffset()), 2) + pow(c1transform->getY() + c1->getYOffset() - (c2transform->getY() + c2->getYOffset()), 2));
 
 	return radiusDistance < (c1->getRadius() - 0.2f + c2->getRadius());
 }
@@ -109,18 +109,18 @@ bool PhysicsManager::checkBoxCollision(BoxCollider* c1, BoxCollider* c2)
 {
 	Transform* c1transform = c1->getGameObject()->getTransform();
 	Transform* c2transform = c2->getGameObject()->getTransform();
-	return !(c1transform->getX() + c1->getWidth() / 2 < c2transform->getX() - c2->getWidth() / 2
-		|| c1transform->getX() - c1->getWidth() / 2 > c2transform->getX() + c2->getWidth() / 2
-		|| c1transform->getY() - c1->getHeight() / 2 > c2transform->getY() + c2->getHeight() / 2
-		|| c1transform->getY() + c1->getHeight() / 2 < c2transform->getY() - c2->getHeight() / 2);
+	return !(c1transform->getX() + c1->getXOffset() + c1->getWidth() / 2 < c2transform->getX() + c2->getXOffset() - c2->getWidth() / 2
+		|| c1transform->getX() + c1->getXOffset() - c1->getWidth() / 2 > c2transform->getX() + c2->getXOffset() + c2->getWidth() / 2
+		|| c1transform->getY() + c1->getYOffset() - c1->getHeight() / 2 > c2transform->getY() + c2->getYOffset() + c2->getHeight() / 2
+		|| c1transform->getY() + c1->getYOffset() + c1->getHeight() / 2 < c2transform->getY() + c2 ->getYOffset() - c2->getHeight() / 2);
 }
 
 bool PhysicsManager::checkCircleBoxCollision(CircleCollider* c, BoxCollider* b)
 {
 	Transform* ctransform = c->getGameObject()->getTransform();
 	Transform* btransform = b->getGameObject()->getTransform();
-	float distanceX = abs(ctransform->getX() - btransform->getX());
-	float distanceY = abs(ctransform->getY() - btransform->getY());
+	float distanceX = abs(ctransform->getX() + c->getXOffset() - (btransform->getX() + b->getXOffset()));
+	float distanceY = abs(ctransform->getY() + c->getYOffset() - (btransform->getY() + b->getYOffset()));
 
 	if (distanceX > b->getWidth() / 2 + c->getRadius()
 		|| distanceY > b->getHeight() / 2 + c->getRadius())

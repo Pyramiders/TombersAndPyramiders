@@ -30,5 +30,8 @@ public:
 	//Remove a game object from the scene
 	void removeGameObject(int id);
 
+	/* Set the main camera to follow the given object. */
+	void setCameraFollow(std::shared_ptr<GameObject> toFollow);
+
 	void purge();
 };

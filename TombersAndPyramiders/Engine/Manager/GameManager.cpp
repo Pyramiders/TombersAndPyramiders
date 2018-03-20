@@ -9,6 +9,8 @@
 #include "PhysicsManager.h"
 #include "AudioManager.h"
 #include <memory>
+#include "Camera.h"
+#include "SharedConstants.h"
 
 GameManager* GameManager::s_instance;
 
@@ -21,12 +23,12 @@ GameManager* GameManager::getInstance()
 
 GameManager::GameManager()
 {
-
+	reinstantiateQuadTree(getGameWidth() / 2.0f, getGameHeight() / 2.0f, getGameWidth(), getGameHeight());
 }
 
 void GameManager::onStart()
 {
-
+	resizeQuadTree(12 * 5 / 2.0f, -12 * 5 / 2.0f, 12 * 5 * 1.25f, 12 * 5 * 1.25f);
 	m_lastTime = SDL_GetTicks();
 	m_game = new Game();
 	m_game->onStart();
@@ -74,10 +76,19 @@ void GameManager::onUpdate(int ticks)
 		{
 			NetworkingManager::getInstance()->handleParsingEvents(tmp);
 		}
-
-		NetworkingManager::getInstance()->sendQueuedEvents();
+		NetworkingManager::getInstance ()->sendQueuedEvents ();
 	}
 
+	for (auto it = m_toCallOnStart.begin(); it != m_toCallOnStart.end(); ++it)
+	{
+		if (*it != nullptr)
+		{
+			(*it)->onStart();
+		}
+	}
+	m_toCallOnStart.clear();
+
+	updateQuadTree();
 	PhysicsManager::getInstance()->onUpdate(ticks);
 	SpriteRendererManager::getInstance()->onUpdate(ticks);
 
@@ -92,6 +103,38 @@ void GameManager::onUpdate(int ticks)
 	m_game->onUpdate(ticks);
 
 
+}
+
+void GameManager::reinstantiateQuadTree(float x, float y, float width, float height)
+{
+	m_quadTree.reset(new QuadTree(QuadTreeBounds(x, y, width, height))); //Width/Height of playable world
+}
+
+void GameManager::resizeQuadTree(float x, float y, float width, float height) 
+{
+	std::set<std::shared_ptr<GameObject>> toMove = m_quadTree->getAll();
+	reinstantiateQuadTree(x, y, width, height);
+	for(auto it = toMove.begin(); it != toMove.end(); it++)
+	{
+		m_quadTree->insert(*it);
+	}
+}
+
+void GameManager::updateQuadTree() {
+	if (m_quadTree->reconstruct() > 50)
+	{
+ 		resizeQuadTree(m_quadTree->getBounds().getX(), m_quadTree->getBounds().getY(),m_quadTree->getBounds().getWidth(), m_quadTree->getBounds().getHeight());
+	}
+}
+
+
+std::vector<std::shared_ptr<GameObject>> GameManager::getObjectsInBounds(float x, float y, float width, float height)
+{
+	std::vector<std::shared_ptr<GameObject>> result;
+	auto tempBounds = QuadTreeBounds(x, y, width, height);
+	m_quadTree->populateList(tempBounds, result);
+	result.erase(std::unique(result.begin(), result.end()), result.end());
+	return result;
 }
 
 void GameManager::onEnd()
@@ -138,7 +181,7 @@ void GameManager::clearObjectsToRemove()
 			std::shared_ptr<SpriteRenderer> renderer = object->getComponent<SpriteRenderer>();
 			if (renderer != nullptr) 
 			{
-				SpriteRendererManager::getInstance()->removeSpriteFromRendering(renderer.get());
+				SpriteRendererManager::getInstance()->removeSpriteFromRendering(id);
 			}
 			std::shared_ptr<BoxCollider> collider = object->getComponent<BoxCollider>();
 			if (collider != nullptr)

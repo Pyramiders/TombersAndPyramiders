@@ -306,3 +306,5 @@ __pycache__/
 OpenCover/
 a.out
 a.out.dSYM/Contents/Resources/DWARF/a.out
+game
+game.dSYM/Contents/Resources/DWARF/game

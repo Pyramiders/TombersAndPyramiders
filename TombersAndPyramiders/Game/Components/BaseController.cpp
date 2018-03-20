@@ -31,7 +31,7 @@ BaseController::BaseController(GameObject* parentGameobject, BasePilot* pilot) :
 }
 
 /*----------------------------------------------------------------------------------------
-	Instance Setter Methods
+	Instance Setter / Getter Methods
 ----------------------------------------------------------------------------------------*/
 void BaseController::setPilot(BasePilot* pilot)
 {
@@ -41,6 +41,31 @@ void BaseController::setPilot(BasePilot* pilot)
 	{
 		m_pilot.get()->setController(this);
 	}
+}
+
+void BaseController::swapPilots(BaseController* otherController)
+{
+	if (otherController != nullptr) 
+	{
+		BasePilot* otherPilot = otherController->getAndReleasePilot();
+		BasePilot* myPilot = m_pilot.release();
+		otherController->setPilot(myPilot);
+		setPilot(otherPilot);
+	}
+	else
+	{
+		throw "ERROR::BaseController::swapPilots::Parameter for other controller was a nullptr";
+	}
+}
+
+BasePilot* BaseController::getAndReleasePilot ()
+{
+	return m_pilot.release ();
+}
+
+BasePilot* BaseController::getPilot ()
+{
+	return m_pilot.get();
 }
 
 /*----------------------------------------------------------------------------------------

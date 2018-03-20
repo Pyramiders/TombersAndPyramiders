@@ -23,8 +23,7 @@ class BaseHelmet : public BaseEquippableItem, public std::enable_shared_from_thi
 		Instance Fields
     ----------------------------------------------------------------------------------------*/
     private:
-		int m_durability; /* TODO: Decide if this is a number of headshots or an amount of damage to absorb. */
-		float m_absorptionChance;
+		float m_criticalResistChance;	/* Chance of ignoring the extra damage from a critical hit. */
 
     /*----------------------------------------------------------------------------------------
 		Resource Management
@@ -33,7 +32,7 @@ class BaseHelmet : public BaseEquippableItem, public std::enable_shared_from_thi
         /** Default constructor. */
         explicit BaseHelmet() = delete;
 
-		explicit BaseHelmet(int durability, float absorptionChance);
+		explicit BaseHelmet(float criticalResistChance);
 
 		virtual ~BaseHelmet() {};
 
@@ -41,11 +40,8 @@ class BaseHelmet : public BaseEquippableItem, public std::enable_shared_from_thi
 		Instance Methods
 	----------------------------------------------------------------------------------------*/
     public:
-		virtual int absorbHeadshot(int damage);
+		virtual bool doesAvoidCriticalHit();
 
 	protected:
 		std::shared_ptr<BaseItem> addSubclassToInventory();
-
-    private:
-		virtual void destroy();
 };

@@ -66,11 +66,14 @@ class Character : public ComplexSprite
 	----------------------------------------------------------------------------------------*/
     public:
 		void onUpdate(int ticks);
-		void playRunAnimation();
-		void endRunAnimation();
-		void playMeleeAttackAnimation();
-		void playRangeAttackAnimation();
-		void playHurtAnimation();
+		virtual void onEnd () {};
+		virtual void onNetworkEnd () {};
+		bool playAnimation (int animID, int animReturn = -1);
+		bool playRunAnimation ();
+		bool endRunAnimation();
+		bool playMeleeAttackAnimation();
+		bool playRangeAttackAnimation();
+		bool playHurtAnimation();
 
     private:
 		/*--------------------

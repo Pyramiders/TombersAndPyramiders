@@ -41,10 +41,13 @@ class BaseController : public Component
 		virtual ~BaseController() {};
 		
 	/*----------------------------------------------------------------------------------------
-		Instance Setter Methods
+		Instance Setter/Getter Methods
 	----------------------------------------------------------------------------------------*/
 	public:
 		void setPilot(BasePilot* pilot);
+		void swapPilots(BaseController* otherController);
+		BasePilot* getAndReleasePilot();
+		BasePilot* getPilot ();
 
 	/*----------------------------------------------------------------------------------------
 		Instance Methods

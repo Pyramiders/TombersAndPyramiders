@@ -5,11 +5,6 @@
 #include "BasePilot.h"
 #include "Character.h"
 
-#define ANIMATION_IDLE 0
-#define ANIMATION_RUN 1
-#define ANIMATION_ATTACK_MELEE 2
-#define ANIMATION_ATTACK_RANGE 2
-
 class NetworkCharacter : public Character
 {
 	/*----------------------------------------------------------------------------------------
@@ -23,7 +18,7 @@ private:
 	----------------------------------------------------------------------------------------*/
 public:
 	/** Default constructor. */
-	explicit NetworkCharacter(BasePilot* basePilot);
+	explicit NetworkCharacter(BasePilot* basePilot, int networkingID);
 
 	/*----------------------------------------------------------------------------------------
 	Instance Getter Methods
@@ -42,14 +37,6 @@ public:
 	----------------------------------------------------------------------------------------*/
 public:
 	void onUpdate(int ticks);
-	void playRunAnimation();
-	void endRunAnimation();
-	void playMeleeAttackAnimation();
-	void playRangeAttackAnimation();
-
+	void onNetworkEnd ();
 private:
-	/*--------------------
-	Player Animation Logic
-	--------------------*/
-	std::shared_ptr<ComplexSpriteinfo> generateComplexSpriteInfo();
 };

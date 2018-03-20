@@ -11,6 +11,7 @@ MessageManager* MessageManager::getInstance()
 
 int MessageManager::subscribe(std::string event, Callback callback, void* owner)
 {
+	std::cout << "Event subbed: " << event << std::endl;
 	MessageManager* self = MessageManager::getInstance();
 	CallbackReceiver callbackReceiver;
 	callbackReceiver.callback = callback;
@@ -35,8 +36,10 @@ void MessageManager::unSubscribe(std::string event, int id)
 	MessageManager* self = MessageManager::getInstance();
 
 	std::map<std::string, std::map<int, CallbackReceiver> >::iterator it = self->m_subs.find(event);
-	if (it != self->m_subs.end())
-		it->second.erase(id);
+	if (it != self->m_subs.end ()) {
+		std::map<int, CallbackReceiver>::iterator it2 = it->second.find(id);
+		it2->second.callback = nullptr;
+	}
 }
 
 void MessageManager::sendEvent(std::string event, std::map<std::string, void*> data)
@@ -47,8 +50,14 @@ void MessageManager::sendEvent(std::string event, std::map<std::string, void*> d
 	if (it != self->m_subs.end())
 		for (std::map<int, CallbackReceiver>::iterator it2 = it->second.begin(); it2 != it->second.end(); ++it2)
 		{
-			data["this"] = (void*)it2->second.owner;
-			it2->second.callback(data);
+			if (it2->second.callback == nullptr) {
+				it->second.erase (it2);
+				--it;
+			}
+			else {
+				data["this"] = (void*)it2->second.owner;
+				it2->second.callback (data);
+			}
 		}
 	//TODO: Clear all void* data that isn't "this"
 }

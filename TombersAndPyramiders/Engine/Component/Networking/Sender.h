@@ -10,15 +10,21 @@
 class Sender : public Component
 {
 private:
-	std::string m_id;
+	int m_id;
+	int m_lastUpdate = 0;
 
 public:
-	Sender(GameObject* gameObject, std::string ID);
+	Sender(GameObject* gameObject, int ID);
 	void sendCreate();
 	void sendDestroy();
 	void sendUpdate();
 	void sendAttack();
-	void sendNetworkMessage(std::string messageKey, std::map<std::string, std::string> payload);
+	void sendAnimation (int animID, int animReturn = -1);
+	void sendSwappedItem ();
+	void sendTrySwapItem ();
+	void sendHurt (int newHP);
+	void sendTrigger();
+	void sendNetworkMessage(std::string messageKey, std::map<std::string, std::string> payload, bool useTCP = true);
 	void spawnPlayers(float p1x, float p1y, float p2x, float p2y);
 	void onStart() {};
 	void onUpdate(int ticks);

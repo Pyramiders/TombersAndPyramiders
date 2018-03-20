@@ -80,6 +80,26 @@ bool Collider::isTrigger()
 	return m_isTrigger;
 }
 
+float Collider::getXOffset()
+{
+	return m_xOffset;
+}
+
+float Collider::getYOffset()
+{
+	return m_yOffset;
+}
+
+void Collider::setXOffset(float xPos)
+{
+	m_xOffset = xPos;
+}
+
+void Collider::setYOffset(float yPos)
+{
+	m_yOffset = yPos;
+}
+
 /*float Collider::getRadius()
 {
 	return m_radius;
