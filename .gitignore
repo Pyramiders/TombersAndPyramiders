@@ -304,7 +304,11 @@ __pycache__/
 
 # OpenCover UI analysis results
 OpenCover/
-a.out
-a.out.dSYM/Contents/Resources/DWARF/a.out
-game
-game.dSYM/Contents/Resources/DWARF/game
+
+MacRunner/
+
+# Boost
+boost/
+
+# Release
+Release/

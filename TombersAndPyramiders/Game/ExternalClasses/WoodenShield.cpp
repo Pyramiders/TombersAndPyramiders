@@ -24,4 +24,6 @@ const float WoodenShield::WOODEN_SHIELD_COOLDOWN_TIME = 0.5f;
 ----------------------------------------------------------------------------------------*/
 WoodenShield::WoodenShield() :
 	BaseShield(WOODEN_SHIELD_IMAGE_NAME, WOODEN_SHIELD_DAMAGE_MULT, WOODEN_SHIELD_COOLDOWN_TIME)
-{}
+{
+	m_itemIcon = "AddMeLater.png";
+}

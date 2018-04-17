@@ -16,12 +16,11 @@
 #include "BoxCollider.h"
 #include "CharacterController.h"
 #include "Damageable.h"
-#include "RandomHelper.h"
+#include "Randomize.h"
 
 /*----------------------------------------------------------------------------------------
 	Resource Management
 ----------------------------------------------------------------------------------------*/
-RandomHelper DamagingRegion::s_random = RandomHelper();
 
 /*----------------------------------------------------------------------------------------
 	Resource Management
@@ -108,5 +107,5 @@ void DamagingRegion::handleSingleCollision(GameObject* other)
 
 bool DamagingRegion::isCriticalHit()
 {
-	return (s_random.random0to1() < m_criticalHitChance);
+	return (Randomize::RandomFloat() < m_criticalHitChance);
 }

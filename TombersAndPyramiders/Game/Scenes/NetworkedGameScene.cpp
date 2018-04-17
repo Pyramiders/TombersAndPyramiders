@@ -10,9 +10,11 @@
 #include "CameraFollow.h"
 #include "NetworkingManager.h"
 #include <memory>
-#include "WoodenShortsword.h"
 #include "GeneratorManager.h"
 #include "GameManager.h"
+#include "FogOfWarCamera.h"
+#include "GhostCamera.h"
+#include "EquipmentIncludes.h"
 
 std::map<int, shared_ptr<Character>> players;
 std::shared_ptr<Character> Ai = nullptr;
@@ -27,7 +29,10 @@ NetworkedGameScene::NetworkedGameScene ()
 
 void NetworkedGameScene::onStart ()
 {
-	GameManager::getInstance()->resizeQuadTree(0, 0, 200, 200);
+
+	GameManager::getInstance()->resizeQuadTree(0, 0, PYRAMID_HEIGHT * LEVEL_OFFSET * 2, 200);
+
+	Camera::getActiveCamera()->setActiveCamera(GameManager::getInstance()->createGameObject<FogOfWarCamera>(true));
 
 
 	//time_t mapSeedID = time(NULL);
@@ -36,7 +41,7 @@ void NetworkedGameScene::onStart ()
 	
 	//GeneratorManager::getInstance()->drawLevel(0);
 
-	SpawnManager::getInstance()->generateMiscSquare(25, -25, -100, 200, "sandBG.png", false);
+	SpawnManager::getInstance()->generateMiscSquare(25, -25, -100, 1000, "sandBG.png", false);
 	/*
 	const float scale = 5;
 
@@ -105,14 +110,16 @@ void NetworkedGameScene::onStart ()
 	const float size = 12;
 	const float scale = 5;
 
+<<<<<<< HEAD
 
 	SpawnManager::getInstance ()->generateMiscSquare (25, -25, -100, 115, "sandBG.png", false);
 =======
 	
 
+=======
+>>>>>>> 695e64bd65f0ada673fba6bee0a2bc68d0f8c344
 	SpawnManager::getInstance()->generateMiscSquare(25, -25, -100, 115, "sandBG.png", false);
 	AudioManager::getInstance()->playMusic(MUSIC_LEVEL_1);
->>>>>>> 5c2ae033902e886b31a700b29d0dcc98fa50e94e
 
 	for (float x = 0; x <= size; x++)
 	{
@@ -123,56 +130,24 @@ void NetworkedGameScene::onStart ()
 			float floorOffset = 0.56f;
 			float wallOffset = 0.0f;
 
-<<<<<<< HEAD
-			// Create a floor tile. 
-			SpawnManager::getInstance ()->generateMiscSquare (column, row - (y * floorOffset), (y * -1) - 50, scale, "stoneTile.png", false);
-
-			int xMod = (int)x % 3;
-			int yMod = (int)y % 3;
-
-
-			if (xMod == 0 && yMod == 0 && x != 0 && y != 0 && x != size && y != -size)
-			{
-				SpawnManager::getInstance ()->generateMiscSquare (column, row - (y * floorOffset), 50, scale, "table.png", true);
-			}
-
-			// Create our walls. A wall is half the size of a tile, so we need two. Each wall that gets created south of a previous wall
-			// needs to have a higher z value so it ovelaps the previous wall.
-			// Create top walls.
-=======
 			SpawnManager::getInstance()->generateMiscSquare(column, row - (y * floorOffset), (y * -1) - 50, scale, "stoneTile.png", false);
 
->>>>>>> 5c2ae033902e886b31a700b29d0dcc98fa50e94e
 			if (y == 0)
 			{
 				// Create top left wall.
 				if (x == 0)
 				{
-<<<<<<< HEAD
-					SpawnManager::getInstance ()->generateMiscSquare (column, row + (scale / 2) + floorOffset, y * -1, scale, "wallTopLeft.png", true);
-					SpawnManager::getInstance ()->generateMiscSquare (column - scale + wallOffset, row + floorOffset, (y * -1) + 0.5, scale, "wallLeft.png", true);
-=======
 					SpawnManager::getInstance()->generateMiscSquare(column, row, y * -1, scale, "wallTopLeft_Edge.png", true);
->>>>>>> 5c2ae033902e886b31a700b29d0dcc98fa50e94e
 				}
 				// Create top right wall.
 				else if (x == size)
 				{
-<<<<<<< HEAD
-					SpawnManager::getInstance ()->generateMiscSquare (column, row + (scale / 2) + floorOffset, y * -1, scale, "wallTopRight.png", true);
-					SpawnManager::getInstance ()->generateMiscSquare (column + scale - wallOffset, row + floorOffset, (y * -1) + 0.5, scale, "wallRight.png", true);
-					SpawnManager::getInstance ()->generateMiscSquare (column - floorOffset, row + floorOffset, (y * -1) + 0.5, scale, "barrels.png", true);
-				}
-				else
-				{
-					SpawnManager::getInstance ()->generateMiscSquare (column, row + scale, y * -1, scale, "wallTop.png", true);
-=======
+
 					SpawnManager::getInstance()->generateMiscSquare(column, row, y * -1, scale, "wallTopRight_Edge.png", true);
 				}
 				else
 				{
 					SpawnManager::getInstance()->generateMiscSquare(column, row, y * -1, scale, "wallHorizontal.png", true);
->>>>>>> 5c2ae033902e886b31a700b29d0dcc98fa50e94e
 				}
 			}
 			// Create bottom walls.
@@ -188,44 +163,34 @@ void NetworkedGameScene::onStart ()
 				}
 				else
 				{
-<<<<<<< HEAD
-					SpawnManager::getInstance ()->generateMiscSquare (column - 3, row + scale * 2, y * -1, scale, "woodPile.png", true);
-				}
-				SpawnManager::getInstance ()->generateMiscSquare (column, row + (scale / 2), y * -1, scale, "wallBottom.png", true);
-=======
 					SpawnManager::getInstance()->generateMiscSquare(column, row, y * -1, scale, "wallHorizontal.png", true);
 				}
->>>>>>> 5c2ae033902e886b31a700b29d0dcc98fa50e94e
 			}
 			// Create a left wall
 			else if (x == 0)
 			{
-<<<<<<< HEAD
-				SpawnManager::getInstance ()->generateMiscSquare (column - scale + wallOffset, row + floorOffset + scale / 2, y * -1, scale, "wallLeft.png", true);
-				SpawnManager::getInstance ()->generateMiscSquare (column - scale + wallOffset, row + floorOffset, (y * -1) + 0.5, scale, "wallLeft.png", true);
-=======
 				SpawnManager::getInstance()->generateMiscSquare(column, row, y * -1, scale, "wallVerticalBothEdge.png", true);
->>>>>>> 5c2ae033902e886b31a700b29d0dcc98fa50e94e
 			}
 			// Create a right wall.
 			else if (x == size)
 			{
 				float wallHorizontalOffset = 0.0f;
 
-<<<<<<< HEAD
+
 				SpawnManager::getInstance ()->generateMiscSquare (column + scale - wallOffset, row + floorOffset + scale / 2, y * -1, scale, "wallRight.png", true);
 				SpawnManager::getInstance ()->generateMiscSquare (column + scale - wallOffset, row + floorOffset, (y * -1) + 0.5, scale, "wallRight.png", true);
 			}
 		}
 	}
 	SpawnManager::getInstance ()->generateWorldItem (5, -5, std::make_shared<WoodenShortsword> ());
-=======
 				SpawnManager::getInstance()->generateMiscSquare(column, row, y * -1, scale, "wallVerticalBothEdge.png", true);
 			}
 		}
 	}
 	*/
-	SpawnManager::getInstance()->generateWorldItem(5, -5, std::make_shared<WoodenShortsword>());
+	SpawnManager::getInstance()->generateWorldItem(5, -5, std::make_shared<BaseShortsword>(
+		BaseShortsword::WOODEN_SHORTSWORD_DAMAGE, BaseShortsword::WOODEN_SHORTSWORD_IMAGE_NAME,
+		BaseShortsword::WOODEN_SHORTSWORD_DESTROY_ON_COLLISION));
 
 	//Ai = SpawnManager::getInstance()->generateAiCharacter(14, -18);
 	//Ai2 = SpawnManager::getInstance()->generateAiCharacter(13, -40);
@@ -234,7 +199,7 @@ void NetworkedGameScene::onStart ()
 
 
 
-	Camera::getActiveCamera ()->addComponent<CameraFollow> (Camera::getActiveCamera ().get ());
+	Camera::getActiveCamera ()->addComponent<CameraFollow> (Camera::getActiveCamera ().get ()); //players
 	AudioManager::getInstance ()->playMusic (MUSIC_LEVEL_1);
 }
 

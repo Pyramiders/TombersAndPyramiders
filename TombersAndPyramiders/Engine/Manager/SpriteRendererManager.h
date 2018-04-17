@@ -102,6 +102,7 @@ public:
 	void cleanup();
 	void render();
 	GLuint generateTexture(std::string textureFileName);
+	GLuint generateTexture(int width, int height, unsigned char* rawBytes, GLuint* texture);
 	void addSpriteForRendering(SpriteRenderer* sprite);
 
 	void disableRenderingLayer(int layer);
@@ -116,6 +117,7 @@ public:
 	void renderPass(int layer = 0, bool clearFirst = true);
 	void renderFBO(FrameBufferObject fboToRender, Shader* shader, FrameBufferObject* toFbo = nullptr); //Default "FBOShader" type assumes it takes a texture to draw
 
+	void renderFogOfWar(GLuint fogOfWarMask, FrameBufferObject gameRendering, FrameBufferObject* toFbo = nullptr);
 	void renderGaussianBlur(FrameBufferObject fboToBlur, FrameBufferObject* toFbo = nullptr); //Blurs then draws
 	void renderBloom(FrameBufferObject fboToBloom, FrameBufferObject* toFbo = nullptr); //Takes input, extracts light, stores that, blurrs, stores that
 	void renderDirectionalBloom(FrameBufferObject fboToBloom, float xSourceDirection, float ySourceDirection, float bloomIntensity, FrameBufferObject* toFbo = nullptr); //Takes input, extracts light, stores that, blurrs, stores that

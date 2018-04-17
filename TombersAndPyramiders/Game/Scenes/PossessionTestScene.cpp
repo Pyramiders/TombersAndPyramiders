@@ -125,9 +125,11 @@ void PossessionTestScene::onStart()
 		SpawnManager::getInstance()->generateMiscSquare(x, 5, 0, 1, "stoneTile.png", true, 1.0f);
 		SpawnManager::getInstance()->generateMiscSquare(x, -5, 0, 1, "stoneTile.png", true, 1.0f);
 	}*/
-	auto ghostCharacter = SpawnManager::getInstance()->generateGhost(0, 0);
+	auto playerCharacter = SpawnManager::getInstance()->generatePlayerCharacter(5, 0);
+	//auto ghostCharacter = SpawnManager::getInstance()->generateGhost(5, 0);
+	SpawnManager::getInstance()->generateSingleDoor(20, -5, Door::Direction::West, Door::Mode::Closed);
 	SpawnManager::getInstance()->generateBoulder(5, 0);
-	SpawnManager::getInstance()->generateAiCharacter(-10, 0);
+	//SpawnManager::getInstance()->generateAiCharacter(-10, 0);
 	//SpawnManager::getInstance()->generateAiCharacter(15, 5);
 
 	//SpawnManager::getInstance()->generateSingleDoor(-15, 0, Door::Direction::West, Door::Mode::Closed);
@@ -135,7 +137,7 @@ void PossessionTestScene::onStart()
 	//SpawnManager::getInstance()->generateSingleDoor(5, 3, Door::Direction::North, Door::Mode::Closed);
 	//SpawnManager::getInstance()->generateSingleDoor(15, -3, Door::Direction::South, Door::Mode::Closed);
 
-	Camera::getActiveCamera()->addComponent<CameraFollow>((GameObject*)Camera::getActiveCamera().get())->setToFollow(ghostCharacter);
+	Camera::getActiveCamera()->addComponent<CameraFollow>((GameObject*)Camera::getActiveCamera().get())->setToFollow(playerCharacter);
 	AudioManager::getInstance()->playMusic(MUSIC_LEVEL_1);
 }
 

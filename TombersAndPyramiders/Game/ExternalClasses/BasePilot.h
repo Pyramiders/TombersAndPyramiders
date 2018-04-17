@@ -42,7 +42,7 @@ protected:
 	----------------------------------------------------------------------------------------*/
 	public:
 		virtual void setController(BaseController* controller);
-		virtual BaseController* BasePilot::getController ();
+		virtual BaseController* getController ();
 
 	/*----------------------------------------------------------------------------------------
 		Instance Methods

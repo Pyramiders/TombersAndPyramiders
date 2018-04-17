@@ -1,6 +1,7 @@
 #pragma
 
 #include "AiPilot.h"
+#include "Randomize.h"
 
 
 
@@ -13,7 +14,7 @@ void AiPilot::shouldFire()
 	attackCount = attackCount + 1;
 	if (attackCount == 120)
 	{
-		attackNumber = rand();
+		attackNumber = Randomize::Random();
 		attackCount = 0;
 	}
 	if (attackNumber == 1)
@@ -37,7 +38,6 @@ void AiPilot::setController(BaseController* controller)
 void AiPilot::onStart()
 {
 	currentState = walk;
-	srand(time(NULL));
 	//currentState = run;
 }
 
@@ -47,7 +47,7 @@ void AiPilot::onUpdate(int ticks)
 	switch (currentState)
 	{
 	case walk:
-		m_characterController->move(getMovement());
+		m_characterController->move(*(getMovement() * ((float)ticks / (float)1000)));
 		shouldFire();
 		//currentState = run;
 		break;
@@ -73,7 +73,7 @@ Vector2 AiPilot::getMovement()
 	coun++;
 	if (coun == 30)
 	{
-		randomNumber = rand() % 22;
+		randomNumber = Randomize::Random(0, 21);
 		coun = 0;
 	}
 	if (randomNumber == 1)

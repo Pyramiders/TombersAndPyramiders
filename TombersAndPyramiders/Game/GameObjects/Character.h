@@ -18,6 +18,7 @@
 #include "BoxCollider.h"
 #include "ComplexSprite.h"
 #include "BasePilot.h"
+#include <string>
 
 /*========================================================================================
 Character Types
@@ -30,31 +31,15 @@ enum CharacterType
 };
 
 /*========================================================================================
-	Player Animation Defines
-========================================================================================*/
-#define ANIMATION_WALK_UP 0
-#define ANIMATION_WALK_RIGHT 1
-#define ANIMATION_WALK_DOWN 2
-#define ANIMATION_WALK_LEFT 3
-#define ANIMATION_IDLE_UP 4
-#define ANIMATION_IDLE_RIGHT 5
-#define ANIMATION_IDLE_DOWN 6
-#define ANIMATION_IDLE_LEFT 7
-#define ANIMATION_HURT_UP 8
-#define ANIMATION_HURT_RIGHT 9
-#define ANIMATION_HURT_DOWN 10
-#define ANIMATION_HURT_LEFT 11
-#define ANIMATION_ATTACK_MELEE 12
-#define ANIMATION_ATTACK_RANGE 13
-#define ANIMATION_HURT 14
-#define ANIMATION_WALK 15
-#define ANIMATION_IDLE 16
-
-/*========================================================================================
 	Character	
 ========================================================================================*/
 class Character : public ComplexSprite
 {
+	#define ANIMATION_HURT 0
+	#define ANIMATION_WALK 1
+	#define ANIMATION_IDLE 2
+	#define ANIMATION_ATTACK_MELEE 3
+	#define ANIMATION_ATTACK_RANGE 4
     /*----------------------------------------------------------------------------------------
 		Instance Fields
     ----------------------------------------------------------------------------------------*/
@@ -92,11 +77,50 @@ class Character : public ComplexSprite
 		bool playRangeAttackAnimation();
 		bool playHurtAnimation();
 		virtual void onEnd () {};
-		virtual void onNetworkEnd () {};
+		virtual void onNetworkEnd ();
 
     private:
 		/*--------------------
 		Player Animation Logic
 		--------------------*/
-		std::shared_ptr<ComplexSpriteinfo> generateComplexSpriteInfo(CharacterType type = player);
+		enum State
+		{
+			WALK_UP = 0,
+			WALK_LEFT = 1,
+			WALK_DOWN = 2,
+			WALK_RIGHT = 3,
+			IDLE_UP = 4,
+			IDLE_LEFT = 5,
+			IDLE_DOWN = 6,
+			IDLE_RIGHT = 7,
+			HURT_UP = 8,
+			HURT_LEFT = 9,
+			HURT_DOWN = 10,
+			HURT_RIGHT = 11,
+			ATTACK_MELEE = 12,
+			ATTACK_RANGE = 13,
+			ENUM_MAX
+		}currentState;
+
+		std::string m_walk;
+		std::string m_shoot;
+		std::string m_slash;
+		std::string m_walkUp = "WalkUp";
+		std::string m_walkLeft = "WalkLeft";
+		std::string m_walkDown = "WalkDown";
+		std::string m_walkRight = "WalkRight";
+		std::string m_shootUp = "ShootUp";
+		std::string m_shootLeft = "ShootLeft";;
+		std::string m_shootDown = "ShootDown";
+		std::string m_shootRight = "ShootRight";
+		std::string m_slashUp = "SlashUp";
+		std::string m_slashLeft = "SlashLeft";
+		std::string m_slashDown = "SlashDown";
+		std::string m_slashRight = "SlashRight";
+		std::string m_idleUp = "IdleUp";
+		std::string m_idleLeft = "IdleLeft";
+		std::string m_idleDown = "IdleDown";
+		std::string m_idleRight = "IdleRight";
+
+		std::shared_ptr<ComplexSpriteInfo> generateComplexSpriteInfo(CharacterType type = player);
 };

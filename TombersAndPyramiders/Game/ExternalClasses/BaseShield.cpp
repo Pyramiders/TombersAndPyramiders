@@ -14,16 +14,36 @@
 #include "Inventory.h"
 #include "GameManager.h"
 
+
+/*----------------------------------------------------------------------------------------
+	Static Fields
+----------------------------------------------------------------------------------------*/
+const string BaseShield::WOODEN_SHIELD_ICON_NAME = "WoodenShieldIcon.png";
+const string BaseShield::WOODEN_SHIELD_IMAGE_NAME = "TempWoodenShield.png";
+const float BaseShield::WOODEN_SHIELD_DAMAGE_MULT = 0.9f;
+const float BaseShield::WOODEN_SHIELD_COOLDOWN_TIME = 0.5f;
+
+const string BaseShield::SILVER_SHIELD_ICON_NAME = "SilverShieldIcon.png";
+const string BaseShield::SILVER_SHIELD_IMAGE_NAME = "TempSilverShield.png";
+const float BaseShield::SILVER_SHIELD_DAMAGE_MULT = 0.7f;
+const float BaseShield::SILVER_SHIELD_COOLDOWN_TIME = 0.4f;
+
+const string BaseShield::GOLD_SHIELD_ICON_NAME = "GoldShieldIcon.png";
+const string BaseShield::GOLD_SHIELD_IMAGE_NAME = "TempGoldShield.png";
+const float BaseShield::GOLD_SHIELD_DAMAGE_MULT = 0.5f;
+const float BaseShield::GOLD_SHIELD_COOLDOWN_TIME = 0.3f;
+
 /*----------------------------------------------------------------------------------------
 	Instance Methods
 ----------------------------------------------------------------------------------------*/
-BaseShield::BaseShield(string imageName, float damageMultiplier, float cooldownTime) :
-	m_damageMultiplier{  }, 
-	m_blockCooldownTime{ 0.5f },
+BaseShield::BaseShield(string imageName, string iconName, float damageMultiplier, float cooldownTime) :
+	m_damageMultiplier{ damageMultiplier }, 
+	m_blockCooldownTime{ cooldownTime },
 	m_isBlocking{ false },
 	m_offsetFromHolder{ Vector2(1, 0) }
 {
 	m_sprite = GameManager::getInstance()->createGameObject<SimpleSprite>(false, imageName, 0, 0, 0, 0);
+	m_itemIcon = iconName;
 }
 
 std::shared_ptr<BaseItem> BaseShield::addSubclassToInventory()
@@ -70,6 +90,15 @@ bool BaseShield::isBlocking()
 int BaseShield::calculateRealDamage(int damage)
 {
 	return (int)((float)damage * m_damageMultiplier);
+}
+
+void BaseShield::setProperties(string imageName, string iconImageName, float damageMultiplier, float cooldownTime)
+{
+	m_damageMultiplier = damageMultiplier;
+	m_blockCooldownTime = cooldownTime;
+	m_sprite->destroy(m_sprite);
+	m_sprite = GameManager::getInstance()->createGameObject<SimpleSprite>(false, imageName, 0, 0, 0, 0);
+	m_itemIcon = iconImageName;
 }
 
 void BaseShield::updatePosition()

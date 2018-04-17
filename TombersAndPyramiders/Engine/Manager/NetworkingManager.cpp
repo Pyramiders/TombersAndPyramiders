@@ -302,7 +302,7 @@ void NetworkingManager::pollMessagesThreadTCP(int id)
 	int result;
 	char msg[MAXLEN_TCP];
 
-	while (m_socket != NULL)
+	do
 	{ 
 		if (m_clients.find(id) != m_clients.end())
 			result = SDLNet_TCP_Recv(m_clients[id].second, msg, MAXLEN_TCP);
@@ -320,7 +320,7 @@ void NetworkingManager::pollMessagesThreadTCP(int id)
 		std::string newMsg = msg;
 		//std::cout << "RECIEVING: " << msg << std::endl;
 		m_messageQueue->push(newMsg);
-	}
+	} while (result > 0);
 	if (isHost ()) {
 		closeClientAsHost (id);
 	}
@@ -459,7 +459,7 @@ void NetworkingManager::sendQueuedEventsTCP ()
 			--it;
 		}
 		else if (m_assignedID != it->first) {
-			send (it->first, new std::string (packet));
+			send (it->first, &packet);
 		}
 	}
 }
@@ -479,7 +479,7 @@ void NetworkingManager::sendQueuedEventsUDP ()
 	//Submit it
 	m_messagesToSendUDP.clear ();
 
-	sendUDP (new std::string (packet));
+	sendUDP (&packet);
 }
 
 void NetworkingManager::sendEventToReceiver(std::map<std::string, void*> data)
@@ -587,7 +587,7 @@ std::map<std::string, void*> NetworkingManager::deserializeMessage (std::string 
 			data[currentKey] = (void*)new std::string (currentValue);
 			break;
 		}
-		if (!isspace (curChar))
+		if (!::isspace (curChar))
 		{
 			if (readingKey)
 			{

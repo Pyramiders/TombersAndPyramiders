@@ -3,6 +3,7 @@
 #include <time.h>
 #include <math.h>
 #include "GeneratorManager.h"
+#include "Randomize.h"
 
 BinaryTree::BinaryTree(int width, int height)
 {
@@ -82,8 +83,12 @@ void BinaryTree::makeCorridors(std::shared_ptr<BTNode> node)
 			}
 			xCoord = node->left->m_cornerX + node->left->m_boundsWidth / 2;
 			yCoord = node->left->m_cornerY - node->left->m_boundsHeight / 2;
-			node->corridor = std::make_shared<Corridor>(width, height, xCoord, yCoord);
+			node->corridor = std::make_shared<Corridor>(width, height, xCoord, yCoord, m_level);
 			GeneratorManager::getInstance()->levels[m_level]->corridors.push_back(node->corridor);
+
+			//draw corridor on matrix
+
+			GeneratorManager::getInstance()->recordCorridor(node->corridor);
 			makeCorridors(node->left);
 			makeCorridors(node->right);
 			//connect center
@@ -98,20 +103,21 @@ void BinaryTree::partition(int depth, std::shared_ptr<BTNode> node)
 	{
 		// make room
 		//60%-80% of box
-		int roomHeight = rand() % (int)ceil((0.1f * node->m_boundsHeight)) + (int)ceil((0.8f * node->m_boundsHeight));
-		int roomWidth = rand() % (int)ceil((0.1f * node->m_boundsWidth)) + (int)ceil((0.8f * node->m_boundsWidth));
+		int roomHeight = Randomize::Random() % (int)ceil((0.1f * node->m_boundsHeight)) + (int)ceil((0.8f * node->m_boundsHeight));
+		int roomWidth = Randomize::Random() % (int)ceil((0.1f * node->m_boundsWidth)) + (int)ceil((0.8f * node->m_boundsWidth));
 		int xOffset = 0;
 		int yOffset = 0;
 		if (node->m_boundsHeight - roomHeight != 0) 
 		{
-			yOffset = rand() % (node->m_boundsHeight - roomHeight);
+			yOffset = Randomize::Random() % (node->m_boundsHeight - roomHeight);
 		}
 		if (node->m_boundsWidth - roomWidth != 0)
 		{
-			xOffset = rand() % (node->m_boundsWidth - roomWidth);
+			xOffset = Randomize::Random() % (node->m_boundsWidth - roomWidth);
 		}
-		node->room = std::make_shared<Room>(roomWidth, roomHeight, node->m_cornerX + xOffset, node->m_cornerY - yOffset, false);
+		node->room = std::make_shared<Room>(roomWidth, roomHeight, node->m_cornerX + xOffset, node->m_cornerY - yOffset, false, m_level);
 		GeneratorManager::getInstance()->levels[m_level]->rooms.push_back(node->room);
+		GeneratorManager::getInstance()->recordRoom(node->room);
 		return;
 	}
 
@@ -138,13 +144,13 @@ void BinaryTree::partition(int depth, std::shared_ptr<BTNode> node)
 		else
 		{
 			//choose random direction
-			direction = rand() % 2;
+			direction = Randomize::Random(0, 1);
 		}
-
+		
 		//choose random position x for vertical, y for horizontal
 		if (direction == 1)
 		{ //horizontal split
-			int position = rand() % (int)ceil((0.4f * node->m_boundsHeight)) + (int)ceil((0.3f * node->m_boundsHeight));
+			int position = Randomize::Random() % (int)ceil((0.4f * node->m_boundsHeight)) + (int)ceil((0.3f * node->m_boundsHeight));
 			node->left = std::make_shared<BTNode>(node->m_boundsWidth, position, node->m_cornerX, node->m_cornerY);
 			node->right = std::make_shared<BTNode>(node->m_boundsWidth, node->m_boundsHeight - position, node->m_cornerX, node->m_cornerY - position);
 			partition(depth - 1, node->left);
@@ -152,7 +158,9 @@ void BinaryTree::partition(int depth, std::shared_ptr<BTNode> node)
 		}
 		else if (direction == 0)
 		{ //vertical split
-			int position = rand() % (int)ceil((0.4f * node->m_boundsWidth)) + (int)ceil((0.3f * node->m_boundsWidth));
+
+			int position = Randomize::Random() % (int)ceil((0.4f * node->m_boundsWidth)) + (int)ceil((0.3f * node->m_boundsWidth));
+
 			node->left = std::make_shared<BTNode>(position, node->m_boundsHeight, node->m_cornerX, node->m_cornerY);
 			node->right = std::make_shared<BTNode>(node->m_boundsWidth - position, node->m_boundsHeight, node->m_cornerX + position, node->m_cornerY);
 			partition(depth - 1, node->left);

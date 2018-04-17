@@ -1,2 +1,2 @@
 rm out.txt
-./game > out.txt
+./MacRunner/runnable > out.txt

@@ -3,6 +3,8 @@
 #include "GLHeaders.h"
 #include <map>
 #include <iostream>
+#include <memory>
+#include "Vector2.h"
 
 class InputManager
 {
@@ -23,6 +25,8 @@ public:
 	KeyAction getKeyState(SDL_Keycode code);
 	void handlePolledEvent(SDL_Event event);
 	void updateKeys();
+	std::shared_ptr<Vector2> getMousePosition();
+	KeyAction getMouseLeftButtonState();
 
 private:
 

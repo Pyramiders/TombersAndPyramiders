@@ -2,7 +2,6 @@
 	BaseLongbow
 	
 	Abstract class for a base longbow.
-
     @author Erick Fernandez de Arteaga
 	
 *//*====================================================================================*/
@@ -34,6 +33,22 @@ class BaseLongbow : public BaseProjectileWeapon
 		static const float LONGBOW_PROJECTILE_Y_VELOCITY;
 		static const float LONGBOW_CRITICAL_HIT_CHANCE;
 		static const float LONGBOW_ATTACK_COOLDOWN_TIME;
+		
+	public:
+		static const int WOODEN_LONGBOW_DAMAGE;
+		static const std::string WOODEN_LONGBOW_IMAGE_NAME;
+		static const std::string WOODEN_LONGBOW_PROJECTILE_IMAGE_NAME;
+		static const bool WOODEN_LONGBOW_DESTROY_PROJECTILES_ON_COLLISION;
+
+		static const int SILVER_LONGBOW_DAMAGE;
+		static const std::string SILVER_LONGBOW_IMAGE_NAME;
+		static const std::string SILVER_LONGBOW_PROJECTILE_IMAGE_NAME;
+		static const bool SILVER_LONGBOW_DESTROY_PROJECTILES_ON_COLLISION;
+
+		static const int GOLD_LONGBOW_DAMAGE;
+		static const std::string GOLD_LONGBOW_IMAGE_NAME;
+		static const std::string GOLD_LONGBOW_PROJECTILE_IMAGE_NAME;
+		static const bool GOLD_LONGBOW_DESTROY_PROJECTILES_ON_COLLISION;
 
     /*----------------------------------------------------------------------------------------
 		Resource Management
@@ -42,10 +57,15 @@ class BaseLongbow : public BaseProjectileWeapon
         /** Default constructor. */
         explicit BaseLongbow() = delete;
 
-		explicit BaseLongbow(int damage, std::string projectileImageName,
-			Vector2 projectileColliderSize, bool destroyProjectilesOnCollision,
-			Vector2 projectileSpawnOffsetFromHolder, float projectileSpriteScale, 
-			Vector2 projectileVelocity, float projectileLifespan);
+		explicit BaseLongbow(int damage, std::string bowImageName, std::string projectileImageName, bool destroyProjectilesOnCollision);
 
 		virtual ~BaseLongbow() {};
+
+	
+    /*----------------------------------------------------------------------------------------
+		Instance Methods
+    ----------------------------------------------------------------------------------------*/
+    public:
+		void setProperties(int damage, std::string bowImageName, 
+			std::string projectileImageName, bool destroyProjectilesOnCollision);
 };

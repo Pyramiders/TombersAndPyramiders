@@ -71,7 +71,7 @@ void BoulderController::trigger()
 		if (m_damagingRegion == nullptr)
 		{
 			auto collider = gameObject->getComponent<BoxCollider>();
-			m_damagingRegion = GameManager::getInstance()->createGameObject<DamagingRegion>(false, 20, "IceTile.png", collider->getWidth(), collider->getHeight(), false, 0, 0, 0.0f);
+			m_damagingRegion = GameManager::getInstance()->createGameObject<DamagingRegion>(false, 20, "ghost.png", collider->getWidth(), collider->getHeight(), false, 0, 0, 0.0f);
 		}
 	}
 }

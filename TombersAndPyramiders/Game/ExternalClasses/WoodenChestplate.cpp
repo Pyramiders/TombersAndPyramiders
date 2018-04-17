@@ -22,4 +22,6 @@ const float WoodenChestplate::WOODEN_CHESTPLATE_DAMAGE_MULTIPLIER = 0.95;
 ----------------------------------------------------------------------------------------*/
 WoodenChestplate::WoodenChestplate() :
 	BaseChestplate(WOODEN_CHESTPLATE_DAMAGE_MULTIPLIER)
-{}
+{
+	m_itemIcon = "AddMeLater.png";
+}

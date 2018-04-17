@@ -1,6 +1,7 @@
 #include "GhostController.h"
 #include "BasePossessableController.h"
 #include "GhostCharacter.h"
+#include "GameManager.h"
 
 const float GhostController::MAX_POSSESSION_DISTANCE = 3.0f;
 Vector2 GhostController::DEFAULT_MOVE_SPEED = Vector2(0.2f, 0.2f);
@@ -26,6 +27,33 @@ void GhostController::onUpdate(int ticks)
 	{
 		gameObject->getTransform()->setPosition(m_toFollow->getGameObject()->getTransform()->getX(), m_toFollow->getGameObject()->getTransform()->getY());
 	}
+}
+
+bool GhostController::tryPossessClosest(std::shared_ptr<BasePossessableController>& toCheck) {
+	Transform* transform = getGameObject()->getTransform();
+	std::vector<std::shared_ptr<GameObject>> gameObjects = GameManager::getInstance()->getObjectsInBounds(transform->getX(), transform->getY(), 3.0f, 3.0f); //Get all objects within 2x2 of our Ghost
+	std::shared_ptr<BasePossessableController> closest = nullptr;
+	float distance = 1000;
+
+	for (auto it = gameObjects.begin(); it != gameObjects.end(); it++)
+	{
+		std::shared_ptr<BasePossessableController> possessionController = (*it)->getComponent<BasePossessableController>();
+		if (possessionController != nullptr)
+		{
+			float newDistance = (*it)->getTransform()->getDistance(transform);
+			if (newDistance < distance)
+			{
+				distance = newDistance;
+				closest = possessionController;
+			}
+		}
+	}
+
+	if (closest != nullptr) {
+		toCheck = closest;
+		return tryPossess(closest);
+	}
+	return false;
 }
 
 //Try to possess an object. If they are close enough to possess, possess them and follow the object
@@ -62,6 +90,11 @@ void GhostController::stopPossessing()
 void GhostController::follow(std::shared_ptr<BasePossessableController>  toFollow)
 {
 	m_toFollow = toFollow;
+}
+
+std::shared_ptr<BasePossessableController> GhostController::getPossessingItem()
+{
+	return m_toFollow;
 }
 
 //Take in a delta vector, turn it into a direcitonal movespeed vector and determine which direction to move

@@ -1,6 +1,9 @@
 #include "Sender.h"
 #include "NetworkingManager.h"
 #include "CharacterController.h"
+#include "GhostController.h"
+#include "GhostPilot.h"
+#include "BasePossessableController.h"
 
 Sender::Sender(GameObject* gameObject, int ID) : Component(gameObject)
 {
@@ -17,7 +20,6 @@ void Sender::sendCreate()
 	payload["rotation"] = std::to_string(transform->getRotation());
 	payload["scale"] = std::to_string(transform->getScale());
 	sendNetworkMessage("CREATE", payload);
-
 }
 
 void Sender::sendDestroy()
@@ -33,15 +35,49 @@ void Sender::sendUpdate()
 		return;
 	std::map<std::string, std::string> payload;
 	Transform* transform = gameObject->getTransform ();
-	std::shared_ptr<CharacterController> cc = gameObject->getComponent<CharacterController> ();
-	PlayerPilot* pp = (PlayerPilot*)cc->getPilot ();
+
+	// Handle Generic Transform
 	payload["x"] = std::to_string(transform->getX());
 	payload["y"] = std::to_string(transform->getY());
-	payload["z"] = std::to_string (transform->getZ ());
-	payload["vecX"] = std::to_string (pp->m_lastMoveVector.getX());
-	payload["vecY"] = std::to_string (pp->m_lastMoveVector.getY());
+	payload["z"] = std::to_string(transform->getZ());
 	payload["rotation"] = std::to_string(transform->getRotation());
 	payload["scale"] = std::to_string(transform->getScale());
+
+	// Handle Velocity/Movement
+
+	Vector2 lastMovementVector;
+	std::shared_ptr<CharacterController> cc = gameObject->getComponent<CharacterController> ();
+	if (cc != nullptr) 
+	{
+		PlayerPilot* pp = (PlayerPilot*)cc->getPilot();
+		lastMovementVector = Vector2(pp->m_lastMoveVector.getX(), pp->m_lastMoveVector.getY());
+	}
+	else {
+		std::shared_ptr<GhostController> gc = gameObject->getComponent<GhostController>();
+		auto gp = (GhostPilot*)gc->getPilot();
+		if (gp != nullptr)
+		{
+			lastMovementVector = Vector2(gp->getLastMovement().getX(), gp->getLastMovement().getY());
+		}
+		else {
+			//Ghost is possessing something other than its body
+			auto possessable = gc->getPossessingItem();
+			if (possessable != nullptr)
+			{
+				payload["x"] = std::to_string(possessable->getGameObject()->getTransform()->getX());
+				payload["y"] = std::to_string(possessable->getGameObject()->getTransform()->getY());
+			}
+			else {
+				std::cout << "ERROR: Updating non Character/Ghost or can't find it" << std::endl;
+			}
+		}
+		
+	}
+
+	payload["vecX"] = std::to_string (lastMovementVector.getX());
+	payload["vecY"] = std::to_string (lastMovementVector.getY());
+
+	//Send Update Message
 	sendNetworkMessage("UPDATE", payload, false);
 }
 
@@ -96,10 +132,36 @@ void Sender::sendTrigger()
 	sendNetworkMessage("TRIGGER", payload);
 }
 
+void Sender::sendGhostMovePossession(Vector2 movement)
+{
+	std::map<std::string, std::string> payload;
+	payload["xVel"] = std::to_string(movement.getX());
+	payload["yVel"] = std::to_string(movement.getY());
+	sendNetworkMessage("GHOSTMOVEPOSSESSION", payload);
+}
+
+void Sender::sendGhostTrigger()
+{
+	std::map<std::string, std::string> payload;
+	sendNetworkMessage("GHOSTTRIGGER", payload);
+}
+
+void Sender::sendGhostPossess()
+{
+	std::map<std::string, std::string> payload;
+	sendNetworkMessage("GHOSTPOSSESS", payload);
+}
+
+void Sender::sendGhostUnpossess()
+{
+	std::map<std::string, std::string> payload;
+	sendNetworkMessage("GHOSTUNPOSSESS", payload);
+}
+
 void Sender::sendNetworkMessage(std::string messageKey, std::map<std::string, std::string> payload, bool useTCP)
 {
 	if (NetworkingManager::getInstance ()->inGame ()) {
-		std::remove_if (messageKey.begin (), messageKey.end (), isspace);
+		std::remove_if (messageKey.begin (), messageKey.end (), ::isspace); //::isspace lets it know to use std::isspace override as theres multiple
 		if (useTCP)
 			NetworkingManager::getInstance ()->prepareMessageForSendingTCP (m_id, messageKey, payload);
 		else
@@ -119,4 +181,8 @@ void Sender::onUpdate (int ticks)
 		sendUpdate ();
 		m_lastUpdate = 0;
 	}
+}
+
+int Sender::getNetworkID() {
+	return m_id;
 }

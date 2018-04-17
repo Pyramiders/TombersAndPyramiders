@@ -27,34 +27,34 @@ Vector2* SingleDoor::createColliderOffset(Direction direction, float scale)
 	return offset;
 }
 
-std::shared_ptr<ComplexSpriteinfo> SingleDoor::createSpriteInfo(Direction direction)
+std::shared_ptr<ComplexSpriteInfo> SingleDoor::createSpriteInfo(Direction direction)
 {
-	std::shared_ptr<ComplexSpriteinfo> spriteInfo = std::make_shared<ComplexSpriteinfo>();
+	std::shared_ptr<ComplexSpriteInfo> spriteInfo = std::make_shared<ComplexSpriteInfo>();
 	switch (direction)
 	{
 	case Door::West:
-		spriteInfo->addInfo("stoneWallGateOpen_W.png", 1, 1);
-		spriteInfo->addInfo("stoneWallGateClosed_W.png", 1, 1);
-		spriteInfo->addInfo("stoneWallGateOpen_W.png", 1, 1); //Opening
-		spriteInfo->addInfo("stoneWallGateClosed_W.png", 1, 1); //Closing
+		spriteInfo->addSprite("stoneWallGateOpen_W.png", "stoneWallGateOpen_W", 1, 1);
+		spriteInfo->addSprite("stoneWallGateClosed_W.png", "stoneWallGateClosed_W", 1, 1);
+		spriteInfo->addSprite("stoneWallGateOpen_W.png", "stoneWallGateOpen_W", 1, 1); //Opening
+		spriteInfo->addSprite("stoneWallGateClosed_W.png", "stoneWallGateClosed_W", 1, 1); //Closing
 		break;
 	case Door::East:
-		spriteInfo->addInfo("stoneWallGateOpen_E.png", 1, 1);
-		spriteInfo->addInfo("stoneWallGateClosed_E.png", 1, 1);
-		spriteInfo->addInfo("stoneWallGateOpen_E.png", 1, 1); //Opening
-		spriteInfo->addInfo("stoneWallGateClosed_E.png", 1, 1); //Closing
+		spriteInfo->addSprite("stoneWallGateOpen_E.png", "stoneWallGateOpen_E", 1, 1);
+		spriteInfo->addSprite("stoneWallGateClosed_E.png", "stoneWallGateClosed_E", 1, 1);
+		spriteInfo->addSprite("stoneWallGateOpen_E.png", "stoneWallGateOpen_E", 1, 1); //Opening
+		spriteInfo->addSprite("stoneWallGateClosed_E.png", "stoneWallGateClosed_E", 1, 1); //Closing
 		break;
 	case Door::North:
-		spriteInfo->addInfo("stoneWallGateOpen_N.png", 1, 1);
-		spriteInfo->addInfo("stoneWallGateClosed_N.png", 1, 1);
-		spriteInfo->addInfo("stoneWallGateOpen_N.png", 1, 1); //Opening
-		spriteInfo->addInfo("stoneWallGateClosed_N.png", 1, 1); //Closing
+		spriteInfo->addSprite("stoneWallGateOpen_N.png", "stoneWallGateOpen_N", 1, 1);
+		spriteInfo->addSprite("stoneWallGateClosed_N.png", "stoneWallGateClosed_N", 1, 1);
+		spriteInfo->addSprite("stoneWallGateOpen_N.png", "stoneWallGateOpen_N", 1, 1); //Opening
+		spriteInfo->addSprite("stoneWallGateClosed_N.png", "stoneWallGateClosed_N", 1, 1); //Closing
 		break;
 	case Door::South:
-		spriteInfo->addInfo("stoneWallGateOpen_S.png", 1, 1);
-		spriteInfo->addInfo("stoneWallGateClosed_S.png", 1, 1);
-		spriteInfo->addInfo("stoneWallGateOpen_S.png", 1, 1); //Opening
-		spriteInfo->addInfo("stoneWallGateClosed_S.png", 1, 1); //Closing
+		spriteInfo->addSprite("stoneWallGateOpen_S.png", "stoneWallGateOpen_S", 1, 1);
+		spriteInfo->addSprite("stoneWallGateClosed_S.png", "stoneWallGateClosed_S", 1, 1);
+		spriteInfo->addSprite("stoneWallGateOpen_S.png", "stoneWallGateOpen_S", 1, 1); //Opening
+		spriteInfo->addSprite("stoneWallGateClosed_S.png", "stoneWallGateClosed_S", 1, 1); //Closing
 		break;
 	default:
 		break;

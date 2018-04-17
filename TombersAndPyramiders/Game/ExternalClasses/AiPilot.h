@@ -6,6 +6,7 @@
 #include "CharacterController.h"
 #include "Vector2.h"
 #include "Inventory.h"
+
 class CharacterController;
 class Vector2;
 

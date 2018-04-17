@@ -8,6 +8,7 @@
 #include "GameManager.h"
 #include "Panel.h"
 #include "AudioSource.h"
+#include <iostream>
 
 #define BUTTON 0
 #define BUTTON_HOVER 1
@@ -23,49 +24,13 @@ private:
 public:
 	Button(float x, float y, float z, float width, float height, string type);
 	~Button();
-	std::shared_ptr<ComplexSpriteinfo> generateComplexSpriteInfo(string type);
+	std::shared_ptr<ComplexSpriteInfo> generateComplexSpriteInfo(string type);
 	void virtual OnClicked();
 	void OnHover();
 	bool CheckHovering();
 
 	void onStart() {};
-	void onUpdate(int ticks) {
-
-		std::ostringstream message;
-		if (CheckHovering())
-		{
-			if (!m_isHovering)
-			{
-				m_isHovering = true;
-				changeSprite(BUTTON_HOVER);
-				OnHover();
-
-				if (m_type == "Info")
-				{
-					m_controlPanel->setVisible(true);
-				}
-			}
-		}
-		else
-		{
-			if (m_isHovering)
-			{
-				m_isHovering = false;
-				changeSprite(BUTTON);
-
-				if (m_type == "Info")
-				{
-					m_controlPanel->setVisible(false);
-				}
-			}
-		}
-
-		if (CheckHovering() && (GetKeyState(VK_LBUTTON) & 0x80) != 0)
-		{
-			// Do something when clicked
-			OnClicked();
-		}
-	};
+	void onUpdate(int ticks);
 	void onEnd() {};
 
 };

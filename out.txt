@@ -1,0 +1,1039 @@
+Networking Join Directed to IP 127.0.0.1:9999
+1280
+
+0x7fa2e193b6c8
+8
+Hosting server.
+---- 1
+Client: 0 IP: 0
+0x7fa2e193b438
+8
+Server start game!
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+CompontentTemplate Constructor Invoked
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+-13 14
+15 12
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+3 14
+9 12
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+-14 0
+12 12
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+0 0
+12 12
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+Event subbed: 0|SWAPPEDITEM
+Unknown touch device id -537408240, cannot reset
+Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: Unknown touch device id -537408240, cannot reset
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0
+SDL ERROR: ERROR: NumPoints = 0

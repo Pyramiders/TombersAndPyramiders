@@ -1,6 +1,5 @@
 {
-    "configurations": [
-        {
+    "configurations": [{
             "name": "Mac",
             "includePath": [
                 "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1",
@@ -9,22 +8,28 @@
                 "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
                 "/usr/include",
                 "${workspaceRoot}/MacLibraries/SDl2.framework",
+                "${workspaceRoot}/MacLibraries/SDl2_mixer.framework",
+                "${workspaceRoot}/MacLibraries/SDl2_net.framework",
                 "${workspaceRoot}",
                 "${workspaceRoot}/TombersAndPyramiders/Engine",
                 "${workspaceRoot}/TombersAndPyramiders/Engine/Component",
                 "${workspaceRoot}/TombersAndPyramiders/Engine/Component/AI",
+                "${workspaceRoot}/TombersAndPyramiders/Engine/Component/Audio",
                 "${workspaceRoot}/TombersAndPyramiders/Engine/Component/Collision",
                 "${workspaceRoot}/TombersAndPyramiders/Engine/Component/Networking",
                 "${workspaceRoot}/TombersAndPyramiders/Engine/Component/Render",
                 "${workspaceRoot}/TombersAndPyramiders/Engine/External",
                 "${workspaceRoot}/TombersAndPyramiders/Engine/External/Math",
                 "${workspaceRoot}/TombersAndPyramiders/Engine/External/Render",
+                "${workspaceRoot}/TombersAndPyramiders/Engine/External/LevelGeneration",
                 "${workspaceRoot}/TombersAndPyramiders/Engine/GameObjects",
                 "${workspaceRoot}/TombersAndPyramiders/Engine/Manager",
                 "${workspaceRoot}/TombersAndPyramiders/Game",
                 "${workspaceRoot}/TombersAndPyramiders/Game/Components",
                 "${workspaceRoot}/TombersAndPyramiders/Game/ExternalClasses",
                 "${workspaceRoot}/TombersAndPyramiders/Game/ExternalClasses/Possession",
+                "${workspaceRoot}/TombersAndPyramiders/Game/ExternalClasses/EquipmentGoldSet",
+                "${workspaceRoot}/TombersAndPyramiders/Game/ExternalClasses/EquipmentSilverSet",
                 "${workspaceRoot}/TombersAndPyramiders/Game/GameObjects",
                 "${workspaceRoot}/TombersAndPyramiders/Game/GameObjects/Doors",
                 "${workspaceRoot}/TombersAndPyramiders/Game/Managers",
@@ -54,7 +59,10 @@
                 "${workspaceRoot}/MacLibraries/SDl2.framework",
                 "/System/Library/Frameworks",
                 "/Library/Frameworks"
-            ]
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
         },
         {
             "name": "Linux",

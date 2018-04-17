@@ -8,7 +8,7 @@ private:
 	float m_lastX;
 	float m_lastY;
 	float m_distTraveled;
-	std::shared_ptr<ComplexSpriteinfo> createSpriteInfo();
+	std::shared_ptr<ComplexSpriteInfo> createSpriteInfo();
 
 public:
 	Boulder(BasePilot* pilot);

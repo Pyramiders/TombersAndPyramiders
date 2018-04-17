@@ -76,12 +76,16 @@
     <IncludePath>$(SolutionDir)WinLibraries\glew-2.1.0\include;$(SolutionDir)WinLibraries\freeglut\include;$(SolutionDir)WinLibraries\SDL2-2.0.5\include;$(SolutionDir)WinLibraries\SDL2_image-2.0.1\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)WinLibraries\freeglut\lib;$(SolutionDir)WinLibraries\glew-2.1.0\lib\Release\Win32;$(SolutionDir)WinLibraries\SDL2-2.0.5\lib\x86;$(SolutionDir)WinLibraries\SDL2_image-2.0.1\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(SolutionDir)WinLibraries\SDL2_mixer-devel-2.0.1-VC\SDL2_mixer-2.0.1\include;$(SolutionDir)WinLibraries\SDL2_net-2.0.1\include;$(SolutionDir)WinLibraries\SDL2_image-2.0.1\include;$(SolutionDir)WinLibraries\SDL2-2.0.5\include;$(SolutionDir)WinLibraries\freeglut\include;$(SolutionDir)WinLibraries\glew-2.1.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)WinLibraries\SDL2_mixer-devel-2.0.1-VC\SDL2_mixer-2.0.1\lib\x86;$(SolutionDir)WinLibraries\SDL2_net-2.0.1\lib\x86;$(SolutionDir)WinLibraries\SDL2_image-2.0.1\lib\x86;$(SolutionDir)WinLibraries\glew-2.1.0\lib\Release\Win32;$(SolutionDir)WinLibraries\freeglut\lib;$(SolutionDir)WinLibraries\SDL2-2.0.5\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)TombersAndPyramiders;$(SolutionDir)TombersAndPyramiders\Game\Managers;$(SolutionDir)TombersAndPyramiders\Game\GameObjects\Doors;$(SolutionDir)TombersAndPyramiders\Game\GameObjects;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses\Invokable;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses\Possession;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses;$(SolutionDir)TombersAndPyramiders\Game\Scenes;$(SolutionDir)TombersAndPyramiders\Game\Scenes\MenuScenes;$(SolutionDir)TombersAndPyramiders\Game\Scenes\GameScenes;$(SolutionDir)TombersAndPyramiders\Engine\Component\Audio;$(SolutionDir)TombersAndPyramiders\Game\Components;$(SolutionDir)TombersAndPyramiders\Game\GameObjects\Projectile;$(SolutionDir)TombersAndPyramiders\Game;$(SolutionDir)TombersAndPyramiders\Engine\Component\Collision;$(SolutionDir)TombersAndPyramiders\Engine\Component\Networking;$(SolutionDir)TombersAndPyramiders\Engine\Component\Transform;$(SolutionDir)TombersAndPyramiders\Engine\Component\Physics;$(SolutionDir)TombersAndPyramiders\Engine\Component\Render;$(SolutionDir)TombersAndPyramiders\Engine\External\Render;$(SolutionDir)TombersAndPyramiders\Engine\External\Math;$(SolutionDir)TombersAndPyramiders\Engine\External;$(SolutionDir)TombersAndPyramiders\Engine\Component;$(SolutionDir)TombersAndPyramiders\Engine\GameObjects;$(SolutionDir)TombersAndPyramiders\Engine\Manager;$(SolutionDir)TombersAndPyramiders\Engine;$(SolutionDir)TombersAndPyramiders\Engine\External\LevelGeneration;$(SolutionDir)TombersAndPyramiders\Game\GameObjects\Doors;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)TombersAndPyramiders;$(SolutionDir)TombersAndPyramiders\Game\Managers;$(SolutionDir)TombersAndPyramiders\Game\GameObjects\Doors;$(SolutionDir)TombersAndPyramiders\Game\GameObjects;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses\Invokable;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses\Possession;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses\EquipmentGoldSet;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses\EquipmentSilverSet;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses;$(SolutionDir)TombersAndPyramiders\Game\Scenes;$(SolutionDir)TombersAndPyramiders\Game\Scenes\MenuScenes;$(SolutionDir)TombersAndPyramiders\Game\Scenes\GameScenes;$(SolutionDir)TombersAndPyramiders\Game\Components;$(SolutionDir)TombersAndPyramiders\Game\GameObjects\Projectile;$(SolutionDir)TombersAndPyramiders\Game;$(SolutionDir)TombersAndPyramiders\Engine\Component\Collision;$(SolutionDir)TombersAndPyramiders\Engine\Component\Networking;$(SolutionDir)TombersAndPyramiders\Engine\Component\Transform;$(SolutionDir)TombersAndPyramiders\Engine\Component\Physics;$(SolutionDir)TombersAndPyramiders\Engine\Component\Audio;$(SolutionDir)TombersAndPyramiders\Engine\Component\Render;$(SolutionDir)TombersAndPyramiders\Engine\External\Render;$(SolutionDir)TombersAndPyramiders\Engine\External\LevelGeneration;$(SolutionDir)TombersAndPyramiders\Engine\External\Math;$(SolutionDir)TombersAndPyramiders\Engine\External;$(SolutionDir)TombersAndPyramiders\Engine\Component;$(SolutionDir)TombersAndPyramiders\Engine\GameObjects;$(SolutionDir)TombersAndPyramiders\Engine\Manager;$(SolutionDir)TombersAndPyramiders\Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ObjectFileName>$(IntDir)/%(RelativeDir)/</ObjectFileName>
@@ -111,10 +115,15 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)TombersAndPyramiders;$(SolutionDir)TombersAndPyramiders\Game\Managers;$(SolutionDir)TombersAndPyramiders\Game\GameObjects\Doors;$(SolutionDir)TombersAndPyramiders\Game\GameObjects;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses\Invokable;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses\Possession;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses\EquipmentGoldSet;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses\EquipmentSilverSet;$(SolutionDir)TombersAndPyramiders\Game\ExternalClasses;$(SolutionDir)TombersAndPyramiders\Game\Scenes;$(SolutionDir)TombersAndPyramiders\Game\Scenes\MenuScenes;$(SolutionDir)TombersAndPyramiders\Game\Scenes\GameScenes;$(SolutionDir)TombersAndPyramiders\Game\Components;$(SolutionDir)TombersAndPyramiders\Game\GameObjects\Projectile;$(SolutionDir)TombersAndPyramiders\Game;$(SolutionDir)TombersAndPyramiders\Engine\Component\Collision;$(SolutionDir)TombersAndPyramiders\Engine\Component\Networking;$(SolutionDir)TombersAndPyramiders\Engine\Component\Transform;$(SolutionDir)TombersAndPyramiders\Engine\Component\Physics;$(SolutionDir)TombersAndPyramiders\Engine\Component\Audio;$(SolutionDir)TombersAndPyramiders\Engine\Component\Render;$(SolutionDir)TombersAndPyramiders\Engine\External\Render;$(SolutionDir)TombersAndPyramiders\Engine\External\LevelGeneration;$(SolutionDir)TombersAndPyramiders\Engine\External\Math;$(SolutionDir)TombersAndPyramiders\Engine\External;$(SolutionDir)TombersAndPyramiders\Engine\Component;$(SolutionDir)TombersAndPyramiders\Engine\GameObjects;$(SolutionDir)TombersAndPyramiders\Engine\Manager;$(SolutionDir)TombersAndPyramiders\Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;SDL2.lib;SDL2main.lib;glew32.lib;glew32s.lib;freeglut.lib;SDL2_image.lib;SDL2_net.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,20 +153,21 @@
     <ClCompile Include="Engine\Component\Collision\Rigidbody.cpp" />
     <ClCompile Include="Engine\Component\Networking\Receiver.cpp" />
     <ClCompile Include="Engine\Component\Networking\Sender.cpp" />
+    <ClCompile Include="Engine\Component\Render\Light.cpp" />
     <ClCompile Include="Engine\External\LevelGeneration\BinaryTree.cpp" />
     <ClCompile Include="Engine\External\LevelGeneration\Codec.cpp" />
     <ClCompile Include="Engine\External\LevelGeneration\Corridor.cpp" />
     <ClCompile Include="Engine\External\LevelGeneration\Doorway.cpp" />
     <ClCompile Include="Engine\External\LevelGeneration\Room.cpp" />
-    <ClCompile Include="Engine\Manager\GeneratorManager.cpp" />
     <ClCompile Include="Engine\External\QuadTree.cpp" />
+    <ClCompile Include="Engine\External\Randomize.cpp" />
     <ClCompile Include="Engine\External\Render\FrameBufferObject.cpp" />
     <ClCompile Include="Engine\External\Render\ISprite.cpp" />
     <ClCompile Include="Engine\External\Render\Sprite.cpp" />
     <ClCompile Include="Engine\External\Render\SpriteSheet.cpp" />
     <ClCompile Include="Engine\GameObjects\Camera.cpp" />
     <ClCompile Include="Engine\GameObjects\ComplexSprite.cpp" />
-    <ClCompile Include="Engine\GameObjects\DayNightCamera.cpp" />
+    <ClCompile Include="Game\GameObjects\FogOfWarCamera.cpp" />
     <ClCompile Include="Engine\GameObjects\SimpleSprite.cpp" />
     <ClCompile Include="Engine\GameObjects\Tiles\ConnectorTile.cpp" />
     <ClCompile Include="Engine\GameObjects\Tiles\CornerTile.cpp" />
@@ -166,6 +176,7 @@
     <ClCompile Include="Engine\GameObjects\Tiles\Tile.cpp" />
     <ClCompile Include="Engine\GameObjects\Tiles\WallTile.cpp" />
     <ClCompile Include="Engine\Manager\AudioManager.cpp" />
+    <ClCompile Include="Engine\Manager\GeneratorManager.cpp" />
     <ClCompile Include="Engine\Manager\NetworkingManager.cpp" />
     <ClCompile Include="Engine\Manager\PhysicsManager.cpp" />
     <ClCompile Include="Engine\Manager\SceneManager.cpp" />
@@ -201,12 +212,7 @@
     <ClCompile Include="Game\ExternalClasses\Possession\GhostController.cpp" />
     <ClCompile Include="Game\ExternalClasses\Possession\GhostPilot.cpp" />
     <ClCompile Include="Game\ExternalClasses\Possession\BoulderController.cpp" />
-    <ClCompile Include="Game\ExternalClasses\WoodenChestplate.cpp" />
-    <ClCompile Include="Game\ExternalClasses\WoodenGreaves.cpp" />
-    <ClCompile Include="Game\ExternalClasses\WoodenHelmet.cpp" />
-    <ClCompile Include="Game\ExternalClasses\WoodenLongbow.cpp" />
-    <ClCompile Include="Game\ExternalClasses\WoodenShield.cpp" />
-    <ClCompile Include="Game\ExternalClasses\WoodenShortsword.cpp" />
+    <ClCompile Include="Game\ExternalClasses\Possession\GhostReceiverPilot.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Engine\Component\Component.cpp" />
     <ClCompile Include="Engine\Component\GameObject.cpp" />
@@ -227,6 +233,7 @@
     <ClCompile Include="Game\GameObjects\Doors\Door.cpp" />
     <ClCompile Include="Game\GameObjects\Doors\SingleDoor.cpp" />
     <ClCompile Include="Game\GameObjects\GameObjectTemplate.cpp" />
+    <ClCompile Include="Game\GameObjects\GhostCamera.cpp" />
     <ClCompile Include="Game\GameObjects\GhostCharacter.cpp" />
     <ClCompile Include="Game\GameObjects\HostCharacter.cpp" />
     <ClCompile Include="Game\GameObjects\NetworkCharacter.cpp" />
@@ -243,6 +250,7 @@
     <ClCompile Include="Game\Managers\SpawnManager.cpp" />
     <ClCompile Include="Game\Scenes\CameraTestScene.cpp" />
     <ClCompile Include="Game\Scenes\CharacterTestScene.cpp" />
+    <ClCompile Include="Game\Scenes\OldTestScene.cpp" />
     <ClCompile Include="Game\Scenes\PossessionTestScene.cpp" />
     <ClCompile Include="Game\Scenes\SceneTemplate.cpp" />
     <ClCompile Include="main.cpp" />
@@ -263,13 +271,14 @@
     <ClInclude Include="Engine\Component\Collision\Rigidbody.h" />
     <ClInclude Include="Engine\Component\Networking\Receiver.h" />
     <ClInclude Include="Engine\Component\Networking\Sender.h" />
+    <ClInclude Include="Engine\Component\Render\Light.h" />
     <ClInclude Include="Engine\External\LevelGeneration\BinaryTree.h" />
     <ClInclude Include="Engine\External\LevelGeneration\Codec.h" />
     <ClInclude Include="Engine\External\LevelGeneration\Corridor.h" />
     <ClInclude Include="Engine\External\LevelGeneration\Doorway.h" />
     <ClInclude Include="Engine\External\LevelGeneration\Room.h" />
-    <ClInclude Include="Engine\Manager\GeneratorManager.h" />
     <ClInclude Include="Engine\External\QuadTree.h" />
+    <ClInclude Include="Engine\External\Randomize.h" />
     <ClInclude Include="Engine\External\Render\FrameBufferObject.h" />
     <ClInclude Include="Engine\External\Render\ISprite.h" />
     <ClInclude Include="Engine\External\Render\Sprite.h" />
@@ -279,7 +288,8 @@
     <ClInclude Include="Engine\Component\Render\Renderer.h" />
     <ClInclude Include="Engine\GameObjects\Camera.h" />
     <ClInclude Include="Engine\GameObjects\ComplexSprite.h" />
-    <ClInclude Include="Engine\GameObjects\DayNightCamera.h" />
+    <ClInclude Include="Game\Assets\Shaders\grayscale.fs" />
+    <ClInclude Include="Game\GameObjects\FogOfWarCamera.h" />
     <ClInclude Include="Engine\GameObjects\SimpleSprite.h" />
     <ClInclude Include="Engine\GameObjects\Tiles\ConnectorTile.h" />
     <ClInclude Include="Engine\GameObjects\Tiles\CornerTile.h" />
@@ -288,6 +298,7 @@
     <ClInclude Include="Engine\GameObjects\Tiles\Tile.h" />
     <ClInclude Include="Engine\GameObjects\Tiles\WallTile.h" />
     <ClInclude Include="Engine\Manager\AudioManager.h" />
+    <ClInclude Include="Engine\Manager\GeneratorManager.h" />
     <ClInclude Include="Engine\Manager\MessageManager.h" />
     <ClInclude Include="Engine\Manager\NetworkingManager.h" />
     <ClInclude Include="Engine\Manager\PhysicsManager.h" />
@@ -315,22 +326,18 @@
     <ClInclude Include="Game\ExternalClasses\BaseShortsword.h" />
     <ClInclude Include="Game\ExternalClasses\BaseWeapon.h" />
     <ClInclude Include="Game\ExternalClasses\Damageable.h" />
+    <ClInclude Include="Game\ExternalClasses\EquipmentIncludes.h" />
     <ClInclude Include="Game\ExternalClasses\HostPilot.h" />
     <ClInclude Include="Game\ExternalClasses\DummyPilot.h" />
     <ClInclude Include="Game\ExternalClasses\Invokable.h" />
     <ClInclude Include="Game\ExternalClasses\PlayerPilot.h" />
     <ClInclude Include="Game\ExternalClasses\Possession\BasePossessableController.h" />
     <ClInclude Include="Game\ExternalClasses\Possession\GhostController.h" />
+    <ClInclude Include="Game\ExternalClasses\Possession\GhostReceiverPilot.h" />
     <ClInclude Include="Game\ExternalClasses\Possession\GhostPilot.h" />
     <ClInclude Include="Game\ExternalClasses\Possession\BoulderController.h" />
     <ClInclude Include="Game\ExternalClasses\RandomHelper.h" />
     <ClInclude Include="Game\ExternalClasses\UserDefinedRenderLayers.h" />
-    <ClInclude Include="Game\ExternalClasses\WoodenChestplate.h" />
-    <ClInclude Include="Game\ExternalClasses\WoodenGreaves.h" />
-    <ClInclude Include="Game\ExternalClasses\WoodenHelmet.h" />
-    <ClInclude Include="Game\ExternalClasses\WoodenLongbow.h" />
-    <ClInclude Include="Game\ExternalClasses\WoodenShield.h" />
-    <ClInclude Include="Game\ExternalClasses\WoodenShortsword.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Engine\Component\Component.h" />
     <ClInclude Include="Engine\Component\GameObject.h" />
@@ -353,6 +360,7 @@
     <ClInclude Include="Game\GameObjects\DamagingRegion.h" />
     <ClInclude Include="Game\GameObjects\Doors\Door.h" />
     <ClInclude Include="Game\GameObjects\GameObjectTemplate.h" />
+    <ClInclude Include="Game\GameObjects\GhostCamera.h" />
     <ClInclude Include="Game\GameObjects\GhostCharacter.h" />
     <ClInclude Include="Game\GameObjects\HostCharacter.h" />
     <ClInclude Include="Game\GameObjects\NetworkCharacter.h" />
@@ -371,6 +379,7 @@
     <ClInclude Include="Game\Managers\SpawnManager.h" />
     <ClInclude Include="Game\Scenes\CameraTestScene.h" />
     <ClInclude Include="Game\Scenes\CharacterTestScene.h" />
+    <ClInclude Include="Game\Scenes\OldTestScene.h" />
     <ClInclude Include="Game\Scenes\PossessionTestScene.h" />
     <ClInclude Include="Game\Scenes\SceneTemplate.h" />
     <ClInclude Include="Game\GameObjects\Monster.h" />
@@ -402,6 +411,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Game\Assets\.DS_Store" />
+    <None Include="Game\Assets\Shaders\fogOfWar.fs" />
+    <None Include="Game\Assets\Shaders\fogOfWar.vs" />
     <None Include="Game\Assets\Shaders\fragment_shader.fs" />
     <None Include="Game\Assets\Shaders\glow.fs" />
     <None Include="Game\Assets\Shaders\glow.vs" />
@@ -422,8 +433,16 @@
     <None Include="Game\Assets\Shaders\tile.vs" />
     <None Include="Game\Assets\Shaders\vertex_shader.vs" />
     <None Include="Game\Assets\Shaders\voxel.fs" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\boost.1.66.0.0\build\native\boost.targets" Condition="Exists('..\packages\boost.1.66.0.0\build\native\boost.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\boost.1.66.0.0\build\native\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.66.0.0\build\native\boost.targets'))" />
+  </Target>
 </Project>

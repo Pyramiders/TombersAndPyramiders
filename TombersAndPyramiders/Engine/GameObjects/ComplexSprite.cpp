@@ -5,8 +5,10 @@
 #include "Shader.h"
 #include "HelperFunctions.h"
 
-ComplexSprite::ComplexSprite(std::shared_ptr<ComplexSpriteinfo> info, float x, float y, float z, float scale, Shader* nonDefaultShader, int framesPerSecond) : GameObject()
+ComplexSprite::ComplexSprite(std::shared_ptr<ComplexSpriteInfo> info, float x, float y, float z, float scale, Shader* nonDefaultShader, int framesPerSecond) : GameObject()
 {
+	m_spriteInfo = info;
+
 	std::shared_ptr<SpriteRenderer> spriteRenderer = addComponent<SpriteRenderer>(this);
 	spriteRenderer->setActiveShader(Shader::getShader(SHADER_SPRITESHEET));
 
@@ -16,7 +18,7 @@ ComplexSprite::ComplexSprite(std::shared_ptr<ComplexSpriteinfo> info, float x, f
 		GLuint texture = SpriteRendererManager::getInstance()->generateTexture(BuildPath((char*)totalPath.c_str()));
 		int columns = info->getColumnCount(i);
 		int rows = info->getRowCount(i);
-		m_sprites.push_back(std::make_shared<SpriteSheet>(texture, columns, rows));
+		m_spriteSheets.push_back(std::make_shared<SpriteSheet>(texture, columns, rows));
 	}
 
 	if (nonDefaultShader != nullptr)
@@ -25,16 +27,16 @@ ComplexSprite::ComplexSprite(std::shared_ptr<ComplexSpriteinfo> info, float x, f
 		spriteRenderer->setActiveShader(m_shader);
 	}
 
-	m_currentSpriteSheet = 0;
-	spriteRenderer->setActiveSprite(m_sprites[m_currentSpriteSheet]);
+	m_currentSpriteSheetIndex = 0;
+	spriteRenderer->setActiveSprite(m_spriteSheets[m_currentSpriteSheetIndex]);
 
 	Transform* transform = getTransform();
 	transform->setPosition(x, y, z);
 	transform->setScale(scale);
 
+	m_currentAnimationIndex = -1;
 	m_framesTilReturn = -1;
 	this->m_framesPerSecond = framesPerSecond;
-
 }
 
 void ComplexSprite::setFPS(int fps)
@@ -54,41 +56,134 @@ void ComplexSprite::updateFrames(float delta)
 	m_timeAlive += delta;
 }
 
-
 void ComplexSprite::nextFrame()
 {
-	m_sprites[m_currentSpriteSheet]->nextIndex();
+	m_spriteSheets[m_currentSpriteSheetIndex]->nextIndex();
 	if (m_framesTilReturn > -1)
 	{
 		if (--m_framesTilReturn == 0)
 		{
-			changeSprite(m_spriteToReturnTo);
+			if (m_spriteSheetToReturnTo != -1 && m_animationtoReturnTo != -1)
+			{
+				changeSpriteSheet(m_spriteSheetToReturnTo);
+				changeAnimation(m_animationtoReturnTo);
+			}
+			else if (m_spriteSheetToReturnTo != -1)
+			{
+				changeSpriteSheet(m_spriteSheetToReturnTo);
+			}
+			else if (m_animationtoReturnTo != -1)
+			{
+				changeAnimation(m_animationtoReturnTo);
+			}
 			m_framesTilReturn = -1;
 		}
 	}
 }
 
-void ComplexSprite::changeSprite(int spriteIndexInComplexInfo)
+bool ComplexSprite::changeSpriteSheet(int spriteIndexInComplexInfo)
 {
-	if (spriteIndexInComplexInfo != m_currentSpriteSheet && m_currentSpriteSheet >= 0)
+	if (spriteIndexInComplexInfo < 0 || spriteIndexInComplexInfo > m_spriteSheets.size() - 1)
 	{
-		m_sprites[m_currentSpriteSheet]->resetIndex();
-		m_currentSpriteSheet = spriteIndexInComplexInfo;
-		getComponent<SpriteRenderer>()->setActiveSprite(m_sprites[spriteIndexInComplexInfo]);
+		return false;
 	}
+	if (spriteIndexInComplexInfo != m_currentSpriteSheetIndex && m_currentSpriteSheetIndex >= 0)
+	{
+		m_spriteSheets[m_currentSpriteSheetIndex]->resetIndex();
+		m_currentSpriteSheetIndex = spriteIndexInComplexInfo;
+		getComponent<SpriteRenderer>()->setActiveSprite(m_spriteSheets[spriteIndexInComplexInfo]);
+		m_currentAnimationIndex = -1;
+
+		return true;
+	}
+
+	return false;
 }
 
-int ComplexSprite::getCurrentSprite()
+int ComplexSprite::getCurrentSpriteSheetIndex()
 {
-	return m_currentSpriteSheet;
+	return m_currentSpriteSheetIndex;
 }
 
-void ComplexSprite::changeSprite(int spriteIndexInComplexInfo, int returnSprite)
+std::string ComplexSprite::getCurrentSpriteSheetName()
 {
-	if (m_sprites.size() > 0)
+	return m_currentSpriteSheetName;
+}
+
+bool ComplexSprite::changeSpriteSheet(std::string spriteName)
+{
+	int index = m_spriteInfo->getSpriteIndex(spriteName);
+	return changeSpriteSheet(index);
+}
+
+bool ComplexSprite::changeSpriteSheet(int spriteIndexInComplexInfo, int returnSprite)
+{
+	if (spriteIndexInComplexInfo < 0 || spriteIndexInComplexInfo > m_spriteSheets.size() - 1)
 	{
-		changeSprite(spriteIndexInComplexInfo);
-		m_spriteToReturnTo = returnSprite;
-		m_framesTilReturn = m_sprites[returnSprite]->getColumnCount() * m_sprites[returnSprite]->getRowCount();
+		return false;
 	}
+
+	if (m_spriteSheets.size() > 0)
+	{
+		changeSpriteSheet(spriteIndexInComplexInfo);
+		m_spriteSheetToReturnTo = returnSprite;
+		m_framesTilReturn = m_spriteSheets[returnSprite]->getColumnCount() * m_spriteSheets[returnSprite]->getRowCount();
+		m_currentAnimationIndex = -1;
+
+		return true;
+	}
+
+	return false;
+}
+
+bool ComplexSprite::changeAnimation(std::string animationName, int animationIndexToReturnTo)
+{
+	// If an animation with that name already exists, return false.
+	int animationIndex = m_spriteInfo->getAnimationIndex(m_currentSpriteSheetIndex, animationName);
+
+	if (animationIndex != -1)
+	{
+		return changeAnimation(animationIndex, animationIndexToReturnTo);
+	}
+
+	return true;
+}
+
+bool ComplexSprite::changeAnimation(std::string animationName, std::string animationNameToReturnTo)
+{
+	int animationIndex = m_spriteInfo->getAnimationIndex(m_currentSpriteSheetIndex, animationNameToReturnTo);
+	return changeAnimation(animationName, animationIndex);
+}
+
+bool ComplexSprite::changeAnimation(int animationIndex, int animationIndexToReturnTo)
+{
+	if (animationIndex == m_currentAnimationIndex)
+	{
+		return false;
+	}
+
+	if (animationIndex < 0 || animationIndex >= m_spriteInfo->m_animations[m_currentSpriteSheetIndex].size())
+	{
+		return false;
+	}
+	m_currentAnimationIndex = animationIndex;
+	if (animationIndexToReturnTo != -1 && animationIndexToReturnTo >= 0 && animationIndexToReturnTo < m_spriteInfo->m_animations[m_currentSpriteSheetIndex].size())
+	{
+		m_animationtoReturnTo = animationIndexToReturnTo;
+		int endFrame = m_spriteInfo->m_animations[m_currentSpriteSheetIndex][m_currentAnimationIndex].m_endFrameIndex;
+		int startFrame = m_spriteInfo->m_animations[m_currentSpriteSheetIndex][m_currentAnimationIndex].m_startFrameIndex;
+
+		m_framesTilReturn = endFrame - startFrame;
+	}
+
+	updateSpriteSheetAnimation(m_currentAnimationIndex);
+	return true;
+}
+
+void ComplexSprite::updateSpriteSheetAnimation(int animationIndex)
+{
+	int startFrame = m_spriteInfo->m_animations[m_currentSpriteSheetIndex][animationIndex].m_startFrameIndex;
+	int endFrame = m_spriteInfo->m_animations[m_currentSpriteSheetIndex][animationIndex].m_endFrameIndex;
+
+	m_spriteSheets[m_currentSpriteSheetIndex]->changeAnimation(startFrame, endFrame);
 }

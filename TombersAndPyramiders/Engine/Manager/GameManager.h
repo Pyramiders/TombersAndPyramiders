@@ -10,6 +10,7 @@
 #include "Scene.h"
 #include "SceneManager.h"
 #include "QuadTree.h"
+#include "Randomize.h"
 
 class GameManager : public Updateable
 {
@@ -30,7 +31,7 @@ public:
 	std::shared_ptr<T> createGameObject(bool isGlobal, _Types&&... args)
 	{
 		std::shared_ptr<T> result = std::make_shared<T>(args...);
-		int id = rand() + rand();
+		int id = Randomize::Random();
 
 		std::shared_ptr<GameObject> gameObject = std::dynamic_pointer_cast<GameObject, T>(result);
 

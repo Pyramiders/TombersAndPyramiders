@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ComplexSprite.h"
-#include "Audio\AudioListener.h"
+#include "AudioListener.h"
 
 extern class BasePilot;
 
@@ -29,5 +29,5 @@ private:
 
 	float m_sizeChange;
 
-	std::shared_ptr<ComplexSpriteinfo> createSpriteInfo();
+	std::shared_ptr<ComplexSpriteInfo> createSpriteInfo();
 };

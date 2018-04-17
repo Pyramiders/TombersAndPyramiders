@@ -22,4 +22,6 @@ const float WoodenHelmet::WOODEN_HELMET_CRITICAL_RESIST_CHANCE = 0.05f;
 ----------------------------------------------------------------------------------------*/
 WoodenHelmet::WoodenHelmet() :
 	BaseHelmet{ WOODEN_HELMET_CRITICAL_RESIST_CHANCE }
-{}
+{
+	m_itemIcon = "AddMeLater.png";
+}

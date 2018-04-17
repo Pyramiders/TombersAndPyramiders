@@ -22,5 +22,8 @@ public:
 	void move(Vector2 moveInput);
 	void follow(std::shared_ptr<BasePossessableController> toFollow);
 	bool tryPossess(std::shared_ptr<BasePossessableController> toPossess);
+	bool tryPossessClosest(std::shared_ptr<BasePossessableController>& toPopulate);
+	bool tryTrigger();
 	void stopPossessing();
+	std::shared_ptr<BasePossessableController> getPossessingItem();
 };

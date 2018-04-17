@@ -11,10 +11,10 @@ private:
 	int m_y;
 	int m_tileType;
 	int m_tilePosition;
-	std::vector<unsigned __int32> encodedTiles;
+	std::vector<int> encodedTiles;
 public:
 	void encode(std::vector<std::vector<int>> level);
-	void decode(unsigned __int32);
+	void decode(int);
 	void sendLevel();
 	int getX();
 	int getY();

@@ -51,15 +51,19 @@ void PlayerPilot::onUpdate (int ticks)
 	{
 		/* Move the character. */
 		m_lastMoveVector = getMovement ();
-		m_characterController->move (m_lastMoveVector);
+		m_characterController->move (*(m_lastMoveVector * ((float)ticks / 1000.0f)));
 
 		/* TODO Make character face mouse position. */
 
 		/* Use weapon. */
 		if (getWeaponInput ())
 		{
-			m_characterController->useWeapon ();
-			m_characterController->getGameObject ()->getComponent<Sender> ()->sendAttack ();
+			m_characterController->useWeapon();
+			auto sender = m_characterController->getGameObject()->getComponent<Sender>();
+			if (sender != nullptr)
+			{
+				sender->sendAttack();
+			}
 		}
 		else
 		{
@@ -103,8 +107,12 @@ void PlayerPilot::tryInvokeTrigger ()
 {
 	if (InputManager::getInstance ()->onKeyPressed (SDLK_z))
 	{
-		if (m_characterController->tryInvokeTrigger ()) {
-			m_characterController->getGameObject ()->getComponent<Sender> ()->sendTrigger ();
+		if (m_characterController->tryInvokeTrigger()) {
+			auto sender = m_characterController->getGameObject()->getComponent<Sender>();
+			if (sender != nullptr)
+			{
+				sender->sendTrigger();
+			}
 		}
 	}
 }
