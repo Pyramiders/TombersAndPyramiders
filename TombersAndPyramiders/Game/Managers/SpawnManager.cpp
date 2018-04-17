@@ -76,13 +76,13 @@ void SpawnManager::sendStartPacket()
 
 	int id = 0, x = 0, y = 0;
 	int room = rand() % (GeneratorManager::getInstance()->levels[0]->rooms.size() - 1);
-
+	/*
 	for (int i = 0; i < 5; i++) {
 		x = ((rand() % (GeneratorManager::getInstance()->levels[0]->rooms[room]->m_width - 2) + 1) + GeneratorManager::getInstance()->levels[0]->rooms[room]->m_xCoord) * 5;
 		y = (GeneratorManager::getInstance()->levels[0]->rooms[room]->m_yCoord - (rand() % (GeneratorManager::getInstance()->levels[0]->rooms[room]->m_height - 2) + 1)) * 5;
 		SpawnManager::getInstance()->generateAiCharacter(x, y);
 	}
-
+	*/
 	payload["playerSpawns"] = std::to_string(NetworkingManager::getInstance()->m_clients.size());
 
 	id = 0, x = 0, y = 0;

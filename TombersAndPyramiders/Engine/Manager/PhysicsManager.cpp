@@ -109,10 +109,13 @@ bool PhysicsManager::checkBoxCollision(BoxCollider* c1, BoxCollider* c2)
 {
 	Transform* c1transform = c1->getGameObject()->getTransform();
 	Transform* c2transform = c2->getGameObject()->getTransform();
-	return !(c1transform->getX() + c1->getXOffset() + c1->getWidth() / 2 < c2transform->getX() + c2->getXOffset() - c2->getWidth() / 2
-		|| c1transform->getX() + c1->getXOffset() - c1->getWidth() / 2 > c2transform->getX() + c2->getXOffset() + c2->getWidth() / 2
-		|| c1transform->getY() + c1->getYOffset() - c1->getHeight() / 2 > c2transform->getY() + c2->getYOffset() + c2->getHeight() / 2
-		|| c1transform->getY() + c1->getYOffset() + c1->getHeight() / 2 < c2transform->getY() + c2 ->getYOffset() - c2->getHeight() / 2);
+	/*return !(c1transform->getX() + c1->getXOffset() + c1->getWidth() / 2 <= c2transform->getX() + c2->getXOffset() - c2->getWidth() / 2
+		|| c1transform->getX() + c1->getXOffset() - c1->getWidth() / 2 >= c2transform->getX() + c2->getXOffset() + c2->getWidth() / 2
+		|| c1transform->getY() + c1->getYOffset() - c1->getHeight() / 2 >= c2transform->getY() + c2->getYOffset() + c2->getHeight() / 2
+		|| c1transform->getY() + c1->getYOffset() + c1->getHeight() / 2 <= c2transform->getY() + c2 ->getYOffset() - c2->getHeight() / 2);*/
+
+	return	(abs(c1transform->getX() - c2transform->getX()) * 2 < (c1->getWidth() + c2->getWidth())) &&
+			(abs(c1transform->getY() - c2transform->getY()) * 2 < (c1->getHeight() + c2->getHeight()));
 }
 
 bool PhysicsManager::checkCircleBoxCollision(CircleCollider* c, BoxCollider* b)
