@@ -40,10 +40,10 @@ void Rigidbody::BlockMovement()
 					float ourRight = ourX + ourCollider->getWidth() / 2.0f;
 					float ourLeft = ourX - ourCollider->getWidth() / 2.0f;
 
-					bool collidingOnBlockingsLeft = ourRight >= blockingLeft;
+					/*bool collidingOnBlockingsLeft = ourRight >= blockingLeft;
 					bool collidingOnBlockingsRight = ourLeft <= blockingRight;
 					bool collidingOnBlockingsTop = ourBottom <= blockingTop;
-					bool collidingOnBlockingsBottom = ourTop >= blockingBottom;
+					bool collidingOnBlockingsBottom = ourTop >= blockingBottom;*/
 
 					float penetrationLeft = -(ourRight - blockingLeft);
 					float penetrationRight = blockingRight - ourLeft;
@@ -63,7 +63,7 @@ void Rigidbody::BlockMovement()
 
 					// Push left up
 					/*if (m_velocity.getX() > 0 && m_velocity.getY() < 0 && abs(penetrationLeft) == abs(penetrationTop)) {
-						gameObject->getTransform()->setX(blockingGameObject->getTransform()->getX() + blockingCollider->getXOffset() - blockingCollider->getWidth() / 2 - m_boxCollider->getWidth() / 2 - m_boxCollider->getXOffset());
+						gameObject->getTransform()->setX(blockingGameObject->getTransform()->getX() + blockingCollider->getX () - blockingCollider->getWidth() / 2 - m_boxCollider->getWidth() / 2 - m_boxCollider->getXOffset());
 						gameObject->getTransform()->setY(blockingY + blockingCollider->getHeight() / 2 + m_boxCollider->getHeight() / 2 + m_boxCollider->getYOffset());
 						std::cout << "Push left up" << std::endl;
 					}
@@ -87,26 +87,26 @@ void Rigidbody::BlockMovement()
 					}*/
 					// Push left
 					if (m_velocity.getX() > 0 && abs(penetrationLeft) < abs(penetrationRight) && abs(penetrationLeft) < abs(penetrationBottom) && abs(penetrationLeft) < abs(penetrationTop)) {
-						//gameObject->getTransform()->addTranslation(penetrationLeft, 0);
-						gameObject->getTransform()->setX(blockingX + blockingCollider->getXOffset() - blockingCollider->getWidth() / 2 - m_boxCollider->getWidth() / 2 - m_boxCollider->getXOffset());
+						gameObject->getTransform()->addTranslation(penetrationLeft, 0);
+						//gameObject->getTransform()->setX(blockingX + blockingCollider->getXOffset() - blockingCollider->getWidth() / 2 - m_boxCollider->getWidth() / 2 - m_boxCollider->getXOffset());
 						std::cout << "Push left" << std::endl;
 					}
 					// Push right
 					else if (m_velocity.getX() < 0 && abs(penetrationRight) < abs(penetrationLeft) && abs(penetrationRight) < abs(penetrationBottom) && abs(penetrationRight) < abs(penetrationTop)) {
-						//gameObject->getTransform()->addTranslation(penetrationRight, 0);
-						gameObject->getTransform()->setX(blockingX + blockingCollider->getXOffset() + blockingCollider->getWidth() / 2 + m_boxCollider->getWidth() / 2 + m_boxCollider->getXOffset());
+						gameObject->getTransform()->addTranslation(penetrationRight, 0);
+						//gameObject->getTransform()->setX(blockingX + blockingCollider->getXOffset() + blockingCollider->getWidth() / 2 + m_boxCollider->getWidth() / 2 + m_boxCollider->getXOffset());
 						std::cout << "Push right" << std::endl;
 					}
 					// Push down
 					else if (m_velocity.getY() > 0 && abs(penetrationBottom) < abs(penetrationLeft) && abs(penetrationBottom) < abs(penetrationRight) && abs(penetrationBottom) < abs(penetrationTop)) {
-						//gameObject->getTransform()->addTranslation(0, penetrationBottom);
-						gameObject->getTransform()->setY(blockingY + blockingCollider->getYOffset() - blockingCollider->getHeight() / 2 - m_boxCollider->getHeight() / 2 - m_boxCollider->getYOffset());
+						gameObject->getTransform()->addTranslation(0, penetrationBottom);
+						//gameObject->getTransform()->setY(blockingY + blockingCollider->getYOffset() - blockingCollider->getHeight() / 2 - m_boxCollider->getHeight() / 2 - m_boxCollider->getYOffset());
 						std::cout << "Push down" << std::endl;
 					}
 					// Push up
 					else if (m_velocity.getY() < 0 && abs(penetrationTop) < abs(penetrationLeft) && abs(penetrationTop) < abs(penetrationRight) && abs(penetrationTop) < abs(penetrationBottom)) {
-						//gameObject->getTransform()->addTranslation(0, penetrationTop);
-						gameObject->getTransform()->setY(blockingY + blockingCollider->getYOffset() + blockingCollider->getHeight() / 2 + m_boxCollider->getHeight() / 2 + m_boxCollider->getYOffset());
+						gameObject->getTransform()->addTranslation(0, penetrationTop);
+						//gameObject->getTransform()->setY(blockingY + blockingCollider->getYOffset() + blockingCollider->getHeight() / 2 + m_boxCollider->getHeight() / 2 + m_boxCollider->getYOffset());
 						std::cout << "Push up" << std::endl;
 					}
 

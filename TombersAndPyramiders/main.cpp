@@ -14,7 +14,7 @@ void RunGame();
 int main(int argc, char *argv[])
 {
 	//For Visual Studio std::cout outputs
-//#if defined _WIN32 || defined _WIN64
+//#if defined _WIN32 || defined _WIN64 
 //	AllocConsole();
 //	freopen("CONOUT$", "w", stdout);
 //	freopen("CONOUT$", "w", stderr);

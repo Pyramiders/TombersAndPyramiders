@@ -114,8 +114,8 @@ bool PhysicsManager::checkBoxCollision(BoxCollider* c1, BoxCollider* c2)
 		|| c1transform->getY() + c1->getYOffset() - c1->getHeight() / 2 >= c2transform->getY() + c2->getYOffset() + c2->getHeight() / 2
 		|| c1transform->getY() + c1->getYOffset() + c1->getHeight() / 2 <= c2transform->getY() + c2 ->getYOffset() - c2->getHeight() / 2);*/
 
-	return	(abs(c1transform->getX() - c2transform->getX()) * 2 < (c1->getWidth() + c2->getWidth())) &&
-			(abs(c1transform->getY() - c2transform->getY()) * 2 < (c1->getHeight() + c2->getHeight()));
+	return	(abs((c1transform->getX() + c1->getXOffset()) - (c2transform->getX() + c2->getXOffset())) * 2 < (c1->getWidth() + c2->getWidth())) &&
+			(abs((c1transform->getY() + c1->getYOffset()) - (c2transform->getY() + c2->getYOffset())) * 2 < (c1->getHeight() + c2->getHeight()));
 }
 
 bool PhysicsManager::checkCircleBoxCollision(CircleCollider* c, BoxCollider* b)
