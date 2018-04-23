@@ -20,21 +20,21 @@ void Codec::encode(std::vector<std::vector<int>> level)
 	}
 }
 
-void Codec::decode(unsigned __int32)
+void Codec::decode(int)
 {
 
 }
 
 void Codec::sendLevel()
 {
-	unsigned __int32 packetCount = encodedTiles.size();
+	int packetCount = encodedTiles.size();
 	// send
 
 	for (auto t : encodedTiles)
 	{
 		//send
 	}
-	unsigned __int32 endPacket = 2;
+	int endPacket = 2;
 	endPacket = endPacket << 30;
 	//send
 }

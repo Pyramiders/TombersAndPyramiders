@@ -55,23 +55,6 @@ void BaseProjectileWeapon::onStart()
 {
 	m_isAttacking = true;
 	m_timeUntilNextAttack = m_attackCooldownTime;
-	Vector2 spawnPoint = getProjectileSpawnPoint();
-	Vector2 velocity = getProjectileVelocity();
-	std::shared_ptr<Projectile> newProjectile =
-		GameManager::getInstance()->createGameObject<Projectile>(
-			false,
-			m_damage,
-			m_projectileImageName,
-			m_projectileColliderSize.getX(), m_projectileColliderSize.getY(),
-			m_criticalHitChance, 
-			m_destroyProjectilesOnCollision,
-			spawnPoint.getX(), spawnPoint.getY(),
-			-owner()->getTransform()->getRotation(), 
-			m_projectileSpriteScale,
-			velocity.getX(), velocity.getY(),
-			m_projectileLifespan);
-
-	newProjectile->setOwnerId(owner()->getId());
 }
 
 void BaseProjectileWeapon::onUpdate(int ticks)
@@ -81,6 +64,24 @@ void BaseProjectileWeapon::onUpdate(int ticks)
 
 void BaseProjectileWeapon::onEnd()
 {
+	/* Spawn the arrow. */
+	Vector2 spawnPoint = getProjectileSpawnPoint();
+	Vector2 velocity = getProjectileVelocity();
+	std::shared_ptr<Projectile> newProjectile =
+		GameManager::getInstance()->createGameObject<Projectile>(
+			false,
+			m_damage,
+			m_projectileImageName,
+			m_projectileColliderSize.getX(), m_projectileColliderSize.getY(),
+			m_criticalHitChance,
+			m_destroyProjectilesOnCollision,
+			spawnPoint.getX(), spawnPoint.getY(),
+			-owner()->getTransform()->getRotation(),
+			m_projectileSpriteScale,
+			velocity.getX(), velocity.getY(),
+			m_projectileLifespan);
+	newProjectile->setOwnerId(owner()->getId());
+
 	m_isAttacking = false;
 }
 

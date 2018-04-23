@@ -14,12 +14,12 @@ GhostCharacter::GhostCharacter(BasePilot* pilot) : ComplexSprite(createSpriteInf
 	m_mode = ghost;
 }
 
-std::shared_ptr<ComplexSpriteinfo> GhostCharacter::createSpriteInfo()
+std::shared_ptr<ComplexSpriteInfo> GhostCharacter::createSpriteInfo()
 {
-	auto spriteInfo = std::make_shared<ComplexSpriteinfo>();
+	auto spriteInfo = std::make_shared<ComplexSpriteInfo>();
 
-	spriteInfo->addInfo("ghostIdle.png", 8, 1);
-	spriteInfo->addInfo("ghostPossessing.png", 8, 1);
+	spriteInfo->addSprite("ghostIdle.png", "ghostIdle", 8, 1);
+	spriteInfo->addSprite("ghostPossessing.png", "ghostPossessing", 8, 1);
 
 	return spriteInfo;
 }
@@ -31,13 +31,13 @@ void GhostCharacter::setMode(Mode mode)
 	{
 	//Ghost == Default
 	case ghost:
-		changeSprite(0);
+		changeSpriteSheet(0);
 		getTransform()->setScale(1.0f);
 		getTransform()->setZ(1.0f);
 		break;
 	//Possessing == Play animation, growing and shrinking the effect
 	case possessing:
-		changeSprite(1);
+		changeSpriteSheet(1);
 		getTransform()->setScale(MIN_POSSESS_SIZE);
 		m_sizeChange = SIZE_CHANGE_RATE;
 		getTransform()->setZ(-1.0f);

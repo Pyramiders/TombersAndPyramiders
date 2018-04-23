@@ -25,7 +25,7 @@ public:
 	//The destructor that is called on deletion
 	~Panel();
 	//Any public methods you want other Components/GameObjects to have access too
-	std::shared_ptr<ComplexSpriteinfo> generateComplexSpriteInfo(string type);
+	std::shared_ptr<ComplexSpriteInfo> generateComplexSpriteInfo(string type);
 	void setVisible(bool set);
 
 	void onStart() {};

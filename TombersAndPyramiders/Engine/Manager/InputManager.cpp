@@ -55,14 +55,39 @@ void InputManager::updateKeys()
 
 void InputManager::handlePolledEvent(SDL_Event event)
 {
-	if (event.type != SDL_KEYDOWN && event.type != SDL_KEYUP)
-		return;
-	SDL_Keycode code = event.key.keysym.sym;
-	std::map<SDL_Keycode, KeyAction>::iterator it = m_keys.find(code);
-	if (event.type == SDL_KEYDOWN)
-		if (it == m_keys.end() || (it != m_keys.end() && it->second != InputManager::KeyAction::HELD))
-			m_keys[code] = InputManager::KeyAction::PRESSED;
-	if (event.type == SDL_KEYUP)
-		if (it != m_keys.end() && it->second == InputManager::KeyAction::HELD)
-			m_keys[code] = InputManager::KeyAction::RELEASED;
+	SDL_Keycode code;
+	std::map<SDL_Keycode, KeyAction>::iterator it;
+
+	switch (event.type)
+	{
+	case SDL_KEYDOWN:
+	case SDL_KEYUP:
+		code = event.key.keysym.sym;
+		it = m_keys.find(code);
+		if (event.type == SDL_KEYDOWN)
+			if (it == m_keys.end() || (it != m_keys.end() && it->second != InputManager::KeyAction::HELD))
+				m_keys[code] = InputManager::KeyAction::PRESSED;
+		if (event.type == SDL_KEYUP)
+			if (it != m_keys.end() && it->second == InputManager::KeyAction::HELD)
+				m_keys[code] = InputManager::KeyAction::RELEASED;
+		break;
+	default:
+		break;
+	}
+}
+
+std::shared_ptr<Vector2> InputManager::getMousePosition()
+{
+	int x;
+	int y;
+	SDL_GetMouseState(&x, &y);
+	return std::make_shared<Vector2>(x, y);
+}
+
+InputManager::KeyAction InputManager::getMouseLeftButtonState()
+{
+	if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
+		return InputManager::KeyAction::PRESSED;
+	}
+	return InputManager::KeyAction::NONE;
 }

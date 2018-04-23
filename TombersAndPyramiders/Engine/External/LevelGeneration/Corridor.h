@@ -1,5 +1,6 @@
 #pragma once
 
+
 class Corridor {
 private:
 
@@ -9,7 +10,7 @@ public:
 	int m_scale;
 	int m_width;
 	int m_height;
-
-	Corridor(int width, int height, int xCoord, int yCoord);
+	int m_level;
+	Corridor(int width, int height, int xCoord, int yCoord, int level);
 	void draw();
 };

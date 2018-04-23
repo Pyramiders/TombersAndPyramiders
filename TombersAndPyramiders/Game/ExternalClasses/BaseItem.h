@@ -11,11 +11,11 @@
 
 #include <memory>
 #include <string>
+#include "ComplexSprite.h"
 
 /*========================================================================================
 	Dependencies	
 ========================================================================================*/
-#include "RandomHelper.h"
 class Inventory;
 class GameObject;
 
@@ -28,7 +28,6 @@ class BaseItem
 		Class Fields
 	----------------------------------------------------------------------------------------*/
 	protected:
-		static RandomHelper s_random;
 
 	/*----------------------------------------------------------------------------------------
 		Instance Fields
@@ -42,8 +41,7 @@ class BaseItem
     ----------------------------------------------------------------------------------------*/
     public:
         /** Default constructor. */
-        explicit BaseItem() = default;
-
+        explicit BaseItem();
 		virtual ~BaseItem() {};
 
     /*----------------------------------------------------------------------------------------
@@ -65,6 +63,19 @@ class BaseItem
 			item is held by.
 		*/
 		virtual GameObject* owner();
+
+	/*----------------------------------------------------------------------------------------
+	Sprite/Animation Setup
+	----------------------------------------------------------------------------------------*/
+	public:
+		/**
+			Creates the data that need to be fed to ComplexSprite during setup.
+		*/
+		std::shared_ptr<ComplexSpriteInfo> spriteInfo;
+		void addSprite(std::string filePath, std::string spriteName, int columns, int rows);
+		void addAnimation(std::string spriteName, std::string animationName, int frameStart, int frameEnd);
+		virtual void setupSprites();
+		float m_zIndex;
 
 	protected:
 		/**

@@ -99,4 +99,5 @@ public:
 	void setIP(char *ip, int port = DEFAULT_PORT);
 	int addPlayer(Uint32 ip, TCPsocket sock);
 	int removePlayer(int ip);
+	void hardReset();
 };

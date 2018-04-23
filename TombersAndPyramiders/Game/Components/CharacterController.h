@@ -22,8 +22,8 @@
 #include "BasePilot.h"
 #include "WorldItem.h"
 #include "Rigidbody.h"
-#include "Audio\AudioSource.h"
-#include "Audio\AudioListener.h"
+#include "AudioSource.h"
+#include "AudioListener.h"
 
 class Inventory;
 
@@ -38,13 +38,14 @@ class CharacterController : public BaseController, public Damageable
 	public:
 		static const int DEFAULT_CHARACTER_MAX_HP;
 		static const Vector2 DEFAULT_CHARACTER_MOVEMENT_SPEED;
+		std::shared_ptr<AudioSource> m_audioSource;
+		int level;
 
 	private:
 		Inventory* m_inventory;
 		Vector2 m_movementSpeed;
 		std::shared_ptr<Rigidbody> m_rigidbody;
 		std::shared_ptr<BoxCollider> m_boxCollider;
-		std::shared_ptr<AudioSource> m_audioSource;
 		std::shared_ptr<AudioListener> m_audioListener;
 		std::shared_ptr<Character> m_character;
     /*----------------------------------------------------------------------------------------
@@ -81,11 +82,17 @@ class CharacterController : public BaseController, public Damageable
 			Uses the character's weapon this frame.
 		*/
 		void useWeapon();
+		void useWeaponMelee();
 
 		/**
 			Tries to trigger around the player the closest available thing, returning true if something triggered
 		*/
 		bool tryInvokeTrigger();
+
+		/**
+			Tries to enter next level
+		*/
+		void tryNextLevel();
 
 		/*
 			Uses the character's shield this frame.
@@ -111,6 +118,14 @@ class CharacterController : public BaseController, public Damageable
 			based on buffs and equipment.
 		*/
 		virtual void takeDamage(int damage, bool isCriticalHit);
+
+		/**
+			Changes a character's movement speed
+		*/
+		void updateSpeed(Vector2 newSpeed)
+		{
+			m_movementSpeed = newSpeed;
+		}
 
 	protected:
 		/**

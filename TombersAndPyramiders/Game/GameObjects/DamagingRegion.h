@@ -17,7 +17,6 @@
 #include "SimpleSprite.h"
 #include "Vector2.h"
 #include <unordered_set>
-#include "RandomHelper.h"
 class BaseWeapon;
 class Collider;
 
@@ -30,8 +29,6 @@ class DamagingRegion : public SimpleSprite
 		Class Fields
     ----------------------------------------------------------------------------------------*/
 	protected:
-		static RandomHelper s_random;
-
     /*----------------------------------------------------------------------------------------
 		Instance Fields
     ----------------------------------------------------------------------------------------*/

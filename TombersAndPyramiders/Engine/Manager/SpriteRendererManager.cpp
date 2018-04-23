@@ -235,8 +235,37 @@ void SpriteRendererManager::cleanup()
 	SDL_Quit();
 }
 
+
+GLuint SpriteRendererManager::generateTexture(int width, int height, unsigned char* rawBytes, GLuint* texture) 
+{
+	if (*texture != 0) {
+		glDeleteTextures(1, texture);
+	}
+	glGenTextures(1, texture);
+	glBindTexture(GL_TEXTURE_2D, *texture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, static_cast<void*>(rawBytes));
+	glGenerateMipmap(GL_TEXTURE_2D);
+	const char *sdlError = SDL_GetError();
+	GLenum glError = glGetError();
+	if (strlen(sdlError) > 0)
+	{
+		std::cout << "SDL ERROR: " << sdlError << std::endl;
+	}
+	if (glError != GL_NO_ERROR)
+	{
+		std::cout << "GL ERROR: " << glError << std::endl;
+	}
+	glBindTexture(GL_TEXTURE_2D, 0);
+	return *texture;
+}
+
 GLuint SpriteRendererManager::generateTexture(std::string textureFileName)
 {
+
 	if (m_cachedTextures.find(textureFileName) == m_cachedTextures.end() || true)
 	{
 		GLuint texture;
@@ -326,7 +355,7 @@ void SpriteRendererManager::prepareRenderingThread()
 		}
 
 		//##Have Renderers. Sort Them
-		std::sort(renderers.begin(), renderers.end(), sortByZ);
+		std::stable_sort(renderers.begin(), renderers.end(), sortByZ);
 
 		//##Have Sorted Renderers. Prepare Rendering Info Objects
 		for (size_t i = 0; i < renderers.size(); i++) {
@@ -562,6 +591,38 @@ void SpriteRendererManager::renderGaussianBlur(FrameBufferObject fboToBlur, Fram
 	renderFBO(m_fboHorizontalGaussianBlur, Shader::getShader(SHADER_PP_VERTICALBLUR), toFbo);
 }
 
+void SpriteRendererManager::renderFogOfWar(GLuint fogOfWarMask, FrameBufferObject gameRendering, FrameBufferObject* toFbo) 
+{
+	if (toFbo != nullptr)
+	{
+		toFbo->bindFrameBuffer();
+	}
+	Shader::getShader(SHADER_PP_FOGOFWAR)->use(); //
+	glBindVertexArray(m_VAO);
+	glEnableVertexAttribArray(0);
+	glDisable(GL_DEPTH_TEST);
+	glClearColor(56.0f / 255.0f, 38.0f / 255.0f, 24.0f / 255.0f, 0.0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	GLint ourTextureLocation = glGetUniformLocation(Shader::getShader(SHADER_PP_FOGOFWAR)->program, "fogOfWarMask");
+	glUniform1i(ourTextureLocation, 0);
+	ourTextureLocation = glGetUniformLocation(Shader::getShader(SHADER_PP_FOGOFWAR)->program, "gameRendering");
+	glUniform1i(ourTextureLocation, 1);
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, fogOfWarMask);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, gameRendering.getTexture());
+	
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	//Render FBO object with given shader
+	if (toFbo != nullptr)
+	{
+		toFbo->unbindFrameBuffer();
+	}
+}
+
 void SpriteRendererManager::renderBloom(FrameBufferObject fboToBloom, FrameBufferObject* toFbo)
 {
 	renderFBO(m_fboPlainPass, Shader::getShader(SHADER_PP_EXTRACTLIGHT), &m_fboBloomBrightness);
@@ -686,7 +747,7 @@ void SpriteRendererManager::applyEndProcessing(FrameBufferObject mainTexture, Fr
 
 void SpriteRendererManager::addSpriteForRendering(SpriteRenderer* sprite)
 {
-	if (sprite != nullptr)
+	if (sprite != nullptr && sprite != nullptr && sprite->getGameObject() != nullptr && sprite->getGameObject() != NULL)
 	{
 		m_spritesToSubscribe.push_back(sprite); //Have to lazy load it into a spritesToAdd list because sprite->getGameObject->getId() is not set when SpriteRenderer's constructor is called
 	}

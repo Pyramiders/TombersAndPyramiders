@@ -80,6 +80,11 @@ class PlayerPilot : public BasePilot
 		void tryInvokeTrigger();
 
 		/**
+			Tries to enter next level
+		*/
+		void tryNextLevel();
+
+		/**
 			Returns whether there is input to use the character's shield.
 		*/
 		bool getShieldInput();

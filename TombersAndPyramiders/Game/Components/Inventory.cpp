@@ -18,6 +18,7 @@
 #include "BaseChestplate.h"
 #include "BaseGreaves.h"
 #include "GameObject.h"
+#include "Character.h"
 
 /*----------------------------------------------------------------------------------------
 	Resource Management
@@ -43,6 +44,7 @@ std::shared_ptr<BaseWeapon> Inventory::getWeapon()
 {
 	return m_weapon;
 }
+
 
 std::shared_ptr<BaseShield> Inventory::getShield()
 {
@@ -74,6 +76,8 @@ std::shared_ptr<BaseWeapon> Inventory::setWeapon(std::shared_ptr<BaseWeapon> wea
 	m_weapon->setOwnerId(gameObject->getId());
 	return old;
 }
+
+
 
 std::shared_ptr<BaseShield> Inventory::setShield(std::shared_ptr<BaseShield> shield)
 {
@@ -108,7 +112,18 @@ std::shared_ptr<BaseGreaves> Inventory::setGreaves(std::shared_ptr<BaseGreaves> 
 ----------------------------------------------------------------------------------------*/
 std::shared_ptr<BaseItem> Inventory::addItem(std::shared_ptr<BaseItem> item)
 {
-	return item->addToInventory(this);
+	auto itemRemoved = item->addToInventory(this);
+
+	auto owner = (Character *)getGameObject();
+
+	//Character *owner = dynamic_cast<Character*>(getGameObject());
+	if (owner != nullptr)
+	{
+		owner->updateInventory(false, itemRemoved);
+		owner->updateInventory(true, item);
+	}
+
+	return itemRemoved;
 }
 
 

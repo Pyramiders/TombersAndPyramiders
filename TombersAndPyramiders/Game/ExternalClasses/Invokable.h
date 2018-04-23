@@ -5,4 +5,5 @@
 class Invokable {
 public:
 	virtual void trigger() = 0;
+	
 };

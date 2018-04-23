@@ -11,10 +11,10 @@ Boulder::Boulder(BasePilot* pilot) : ComplexSprite(createSpriteInfo(), 0, 0, 1.0
 }
 
 //Loads the boulder sprite sheet of the one rolling animation
-std::shared_ptr<ComplexSpriteinfo> Boulder::createSpriteInfo()
+std::shared_ptr<ComplexSpriteInfo> Boulder::createSpriteInfo()
 {
-	auto spriteInfo = std::make_shared<ComplexSpriteinfo>();
-	spriteInfo->addInfo("boulderRolling.png", 8, 2);
+	auto spriteInfo = std::make_shared<ComplexSpriteInfo>();
+	spriteInfo->addSprite("boulderRolling.png", "boulderRolling", 8, 2);
 	return spriteInfo;
 }
 

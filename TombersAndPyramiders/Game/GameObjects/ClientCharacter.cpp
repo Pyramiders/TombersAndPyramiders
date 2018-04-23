@@ -31,6 +31,7 @@ Instance Methods
 void ClientCharacter::onUpdate(int ticks)
 {
 	updateFrames(ticks);
+	updateInventoryPositions(ticks);
 }
 
 void ClientCharacter::onEnd () {

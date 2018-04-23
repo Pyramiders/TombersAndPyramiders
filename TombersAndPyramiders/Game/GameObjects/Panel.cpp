@@ -14,18 +14,18 @@ Panel::~Panel()
 
 }
 
-std::shared_ptr<ComplexSpriteinfo> Panel::generateComplexSpriteInfo(string image)
+std::shared_ptr<ComplexSpriteInfo> Panel::generateComplexSpriteInfo(string image)
 {
-	std::shared_ptr<ComplexSpriteinfo> spriteInfo = std::make_shared<ComplexSpriteinfo>();
-	spriteInfo->addInfo(image + "Blank.png", 1, 1);
-	spriteInfo->addInfo(image + ".png", 1, 1);
+	std::shared_ptr<ComplexSpriteInfo> spriteInfo = std::make_shared<ComplexSpriteInfo>();
+	spriteInfo->addSprite(image + "Blank.png", image + "Blank", 1, 1);
+	spriteInfo->addSprite(image + ".png", image, 1, 1);
 	return spriteInfo;
 }
 
 void Panel::setVisible(bool set)
 {
 	if (set)
-		changeSprite(VISIBLE);
+		changeSpriteSheet(VISIBLE);
 	else
-		changeSprite(INVISIBLE);
+		changeSpriteSheet(INVISIBLE);
 }

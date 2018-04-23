@@ -3,6 +3,7 @@
 #include "Inventory.h"
 #include "Receiver.h"
 #include "Sender.h"
+#include "SpawnManager.h"
 
 HostCharacter::HostCharacter(BasePilot* basePilot, int networkingID) :
 	Character(basePilot)
@@ -39,9 +40,14 @@ Instance Methods
 void HostCharacter::onUpdate(int ticks)
 {
 	updateFrames(ticks);
+	updateInventoryPositions(ticks);
 }
 
 void HostCharacter::onNetworkEnd () {
+	auto receiver = getComponent<Receiver>();
+	if (receiver != nullptr) {
+		SpawnManager::getInstance()->generateNetworkGhost(getTransform()->getX(), getTransform()->getY(), receiver->netID, false);
+	}
 	destroy (getId ());
 }
 

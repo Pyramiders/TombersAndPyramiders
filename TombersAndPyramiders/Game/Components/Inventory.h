@@ -30,6 +30,7 @@ class Inventory : public Component
     ----------------------------------------------------------------------------------------*/
     private:
 		std::shared_ptr<BaseWeapon> m_weapon;
+		std::shared_ptr<BaseWeapon> m_weaponMelee;
 		std::shared_ptr<BaseShield> m_shield;
 		std::shared_ptr<BaseHelmet> m_helmet;
 		std::shared_ptr<BaseChestplate> m_chestplate;

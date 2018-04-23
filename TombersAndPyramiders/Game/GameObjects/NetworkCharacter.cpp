@@ -3,6 +3,7 @@
 #include "Inventory.h"
 #include "Receiver.h"
 #include "Sender.h"
+#include "SpawnManager.h"
 
 NetworkCharacter::NetworkCharacter(BasePilot* basePilot, int networkingID) :
 	Character(basePilot)
@@ -43,5 +44,9 @@ void NetworkCharacter::onUpdate(int ticks)
 }
 
 void NetworkCharacter::onNetworkEnd () {
+	auto receiver = getComponent<Receiver> ();
+	if (receiver != nullptr) {
+		SpawnManager::getInstance ()->generateNetworkGhost (getTransform ()->getX (), getTransform ()->getY (), receiver->netID, false);
+	}
 	destroy (getId ());
 }

@@ -19,8 +19,8 @@ Transform::operator GLfloat*()
 		return nullptr;
 	}
 
-	float scaleRotCos = m_scale / GAME_WIDTH * 2.0 * cos(-m_rotation ? renderRotation : 0 * 3.14159 / 180.0);
-	float scaleRotSin = m_scale / GAME_WIDTH * 2.0 * sin(-m_rotation ? renderRotation : 0 * 3.14159 / 180.0);
+	float scaleRotCos = m_scale / GAME_WIDTH * 2.0 * cos(-m_rotation * renderRotation * 3.14159 / 180.0);
+	float scaleRotSin = m_scale / GAME_WIDTH * 2.0 * sin(-m_rotation * renderRotation * 3.14159 / 180.0);
 
 	Transform cameraTransform = (*(*Camera::getActiveCamera()).getTransform());
 

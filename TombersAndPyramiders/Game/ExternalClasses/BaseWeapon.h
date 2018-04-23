@@ -15,6 +15,7 @@
 #include "Updateable.h"
 #include "BaseEquippableItem.h"
 #include <string>
+#include "ComplexSprite.h"
 
 /*========================================================================================
 	BaseWeapon	

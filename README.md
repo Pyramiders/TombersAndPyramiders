@@ -36,7 +36,21 @@ Once built, go to the directory the .exe sits in and run the executable by doubl
 
 ### Mac
 
-Alpha does not include Mac support. The engine does support Mac, however currently the game logic utilizes a very small amount of Microsoft specific code that is to be replaced before Beta. Mac support will be included in the future. 
+Installation Previous to Compile:
+```
+brew install sdl2
+brew install sdl2_image
+brew install sdl2_net
+brew install sdl2_mixer
+brew install glew
+brew cask install xquartz
+brew install freeglut
+brew install glfw
+brew install boost
+```
+If you do not have Brew installed, visit https://brew.sh for quick install instructions.
+
+Compile with Ctrl + Shift + B in VSCode, or run the command line found in .vscode/tasks.json.
 
 ## Roadmap
 
